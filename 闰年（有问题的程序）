@@ -24,7 +24,7 @@ class date
 	int day; 
 };
 
-#include"sclass2_1_date.h."
+#include"sclass2_1_date.h."//这里出错啦
 int main()
 {
 	date d1;
