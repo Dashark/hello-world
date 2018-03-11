@@ -4,7 +4,7 @@
 using namespace std;
 class HelloWorld {
 public:
-  void hellowold()
+  void helloworld()
   {
     cout<<"HelloWorld"<<endl;
   }
