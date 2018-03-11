@@ -6,7 +6,7 @@ class HelloWorld {
 public:
   void hellowold()
   {
-    cout<<"HelloWord"<<endl;
+    cout<<"HelloWorld"<<endl;
   }
 };
 #endif
