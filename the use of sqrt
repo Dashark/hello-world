@@ -1,0 +1,17 @@
+#include<iostream>
+#include<cmath>                     //math.h也可以
+
+int main ()
+{
+	using namespace std;           //注意拼写错误 name space
+
+	double area;
+	cout << "Enter the floor area, in square feet ,of your home:";         // cout和cin 后面的指向符，之间需要有空格，不可省略
+	cin >> area;
+	double side;
+	side=sqrt(area);
+	cout << "That's the equivalent of a square " << side << "feet to the side." << endl;     //side后面的内容可以跳到下一行去写
+	cout << "Houw fascinating !"<<endl;
+	return 0;
+
+}
