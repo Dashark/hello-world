@@ -1,3 +1,5 @@
+#ifndef _SCLASS2_5_DATE_H_
+#define _SCLASS2_5_DATE_H_
 #include<iostream>
 using namespace std;
 
@@ -24,7 +26,7 @@ class date
 	int day; 
 };
 
-#include"sclass2_1_date.h."//这里出错啦
+#include"sclass2_5_date.h"//这里出错啦
 int main()
 {
 	date d1;
