@@ -1,6 +1,6 @@
 #include "HelloWorld.h"
-int main() {
-  HelloWorld hw;
-  hw.hello();
-  return 0;
+#include <iostream>
+int main(){
+    HelloWorld hi;
+    hi.hello();
 }
