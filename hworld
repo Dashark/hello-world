@@ -1,0 +1,12 @@
+#include <stdio.h>
+class HelloWorld{
+public:
+	HelloWorld(){
+		printf("Hello World in C++ style\n");
+	}
+};
+int main(){
+	printf("Hello World in C style\n");
+	HelloWorld hh;
+	return 0;
+}
