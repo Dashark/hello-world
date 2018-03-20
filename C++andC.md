@@ -108,3 +108,18 @@ C++是一门从C语言中发展出来的语言。虽然和C又许多相似点，
 
 ##总结
 C++的学习可以从C语言开始，C++本身是一门几乎全能的语言，从能力的角度看，C++毫无疑问比C语言更加优秀。但是要掌握C++，必须对其规则充分熟悉，对于C中不存在的虚函数等概念有深刻的理解。
+
+## 参考资料
+- CSDN
+ - http://blog.csdn.net/he_zhidan/article/details/78026299
+ - http://blog.csdn.net/njchenyi/article/details/1520440
+- 维基百科
+ - https://en.wikipedia.org/wiki/C++
+ - https://en.wikipedia.org/wiki/C_(programming_language)
+ - https://en.wikipedia.org/wiki/Polymorphism_(computer_science)
+- 知乎 
+ - https://www.zhihu.com/question/28834538/answer/100698972
+ - https://www.zhihu.com/question/20200615/answer/19322336
+ - https://www.zhihu.com/question/20200615/answer/52598753
+- 《C++ Primer Plus》
+- 《C++语言程序设计教程》
