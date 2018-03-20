@@ -1,0 +1,22 @@
+//统计一行字符中的英语单词数
+#include<stdio.h>
+int main()
+{
+	char string[81];
+	int i,num=0,word=0;
+	char c;
+	gets(string);
+	for(i=0;(c=string[i])!='\0';i++)  //如果写成（c=string[i]!='\0'）则会出现结果不正确
+	{
+		if(c==' ')              //如果出现空格，这重新计数
+			word=0;
+		else if(word==0)
+		{
+			word=1;
+			num++;             //单词个数增加
+		}
+	}
+	printf("There are %d words in this line.\n",num);
+	return 0;
+
+}
