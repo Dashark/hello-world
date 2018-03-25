@@ -1,7 +1,6 @@
 #include "HelloWorld.h"
-
 int main() {
   HelloWorld hw;
-  hw.print_helloworld();
+  hw.hello();
   return 0;
 }
