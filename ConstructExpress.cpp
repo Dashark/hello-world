@@ -1,0 +1,3 @@
+class {
+};
+int main()
