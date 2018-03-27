@@ -1,3 +1,4 @@
+#include<iostream>
 class Prime {
 public:
   Prime(int num);
@@ -57,7 +58,9 @@ int main() {
   Prime sb = pm.sumBit();
   Prime mb = pm.multiBit();
   Prime ssb = pm.sqaureSumBit();
-  if(pm.isPrime() && sb.isPrime() && mb.isPrime() && ssb.isPrime())
+  if(pm.isPrime() && sb.isPrime() && mb.isPrime() && ssb.isPrime()){
+      cout>>"This is prim number">>endl;
+  }
     ; //to do sth
   return 0;
 }
