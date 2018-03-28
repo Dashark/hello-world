@@ -8,9 +8,7 @@ class Prime {
 
 public:
 
-  Prime(int num){
-  	mNum=num;
-  }
+  Prime(int num):mNum(num) {}
 
   ~Prime();
 
@@ -28,7 +26,7 @@ public:
 
 private:
 	
-  int mNum;
+  const int mNum;
   
   
 
