@@ -1,4 +1,4 @@
-#include<iostream>//暂时没能解决平行四边形方向的问题，但是我没兴趣耗在这上面了
+#include<iostream>//暂时没能解决平行四边形斜边方向的问题，但是我没兴趣耗在这上面了
 #include<math.h>
 using namespace std;
 class Parallelogram 
@@ -14,8 +14,8 @@ class Parallelogram
 		/*
 		******
   		  ******
-            ******
-              ****** 
+                    ******
+                      ****** 
               比如此处b=2，每行间隔2个空格*/
 		char dir[10]; 
 		  	
@@ -24,7 +24,8 @@ class Parallelogram
 
 void Parallelogram::show()
 {
-	cin>>a>>h>>b;
+	cout<<"请依次输入底边长，高度，以及决定形状的间隔，每个数据以空格隔开："<<endl;
+	cin>>a>>h>>b;//
 	//gets(dir);
 	//if(dir=="right")
 	{
