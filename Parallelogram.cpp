@@ -1,4 +1,4 @@
-#include<iostream>//暂时没能解决平行四边形斜边方向的问题，但是我没兴趣耗在这上面了
+#include<iostream>//没解决控制平行四边形斜边方向的问题，只能默认向右，不想搞了
 #include<math.h>
 using namespace std;
 class Parallelogram 
@@ -24,12 +24,13 @@ class Parallelogram
 
 void Parallelogram::show()
 {
-	cout<<"请依次输入底边长，高度，以及决定形状的间隔，每个数据以空格隔开："<<endl;
+	cout<<"请依次输入底边长，高度，以及决定形状的间隔，每个数据以空格隔开（间隔数不能超过5）："<<endl;
 	cin>>a>>h>>b;//
 	//gets(dir);
 	//if(dir=="right")
 	{
-		for(int i=0;i<h;i++)
+		if(b>5){printf("输入的间隔数不符合要求但可以给出平行四边形的数据\n");}
+		else for(int i=0;i<h;i++)
 		{
 			for(int i=0;i<a;i++)
 			{
@@ -101,10 +102,10 @@ int Parallelogram::height()
 
 int Parallelogram::length()
 {
-	int m,l;
+	double m,l;
 	m=sqrt(h*h+(h*b)*(h*b));
 	l=2*(m+a);
-	printf("边长为：%d",l); 
+	printf("边长为：%lf",l); 
 }
 int main() {
   Parallelogram pg;
