@@ -103,7 +103,7 @@ int Parallelogram::height()
 int Parallelogram::length()
 {
 	double m,l;
-	m=sqrt(h*h+(h*b)*(h*b));
+	m=sqrt(h*h+(h*(b-1)*h*(b-1)));
 	l=2*(m+a);
 	printf("边长为：%lf",l); 
 }
