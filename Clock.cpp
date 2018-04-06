@@ -1,6 +1,8 @@
 #include<iostream>
 
-class Clock {
+using namespace std;
+
+class Clock
 };
 
 int main() {
