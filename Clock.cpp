@@ -3,6 +3,9 @@
 using namespace std;
 
 class Clock
+{
+	void click(){}
+
 };
 
 int main() {
