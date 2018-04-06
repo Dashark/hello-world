@@ -8,8 +8,6 @@ public:
 	void adjust(int,int,int );
 	void show(){}
 	int tick;
-	int kkk;
-	int zzz;
 };
 
 int main() {
