@@ -18,6 +18,9 @@ void Clock::tick(){
 	
 	for(int i=0;i<=1000000;i++)
 	{
+		for(int i=0;i<600000000;i++)
+		{
+		}
 		sec++;
 		if(sec==60){
 		sec=0;
@@ -44,7 +47,7 @@ void Clock::show(){
 	}
 	else cout<<min<<":";
 	if(sec<=9){
-		cout<<"0"<<sec;
+		cout<<"0"<<sec<<endl;
 	}
 	else cout<<sec<<endl;
 }
