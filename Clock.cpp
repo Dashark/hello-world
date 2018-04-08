@@ -56,7 +56,7 @@ int Clock::adjust(int s,int m,int h)
 		min=m;
 		hour=h;
 	}
-	else cout<<"ÇëÊäÈë·ûºÏÕýÈ·Ê±¼ä¸ñÊ½µÄÊ±¼äµã"<<endl; 
+	else cout<<"请输入符合正确时间格式的时间点"<<endl; 
 }
 
 
