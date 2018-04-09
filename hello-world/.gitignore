@@ -1,0 +1,34 @@
+
+
+
+
+
+
+# Compiled Dynamic libraries
+# Compiled Object files
+# Compiled Static libraries
+# Executables
+# Fortran module files
+# Precompiled Headers
+# Prerequisites
+*.a
+*.app
+*.d
+*.dll
+*.dylib
+*.exe
+*.gch
+*.la
+*.lai
+*.lib
+*.lo
+*.mod
+*.o
+*.obj
+*.out
+*.pch
+*.slo
+*.smod
+*.so
+/Date.cpp~
+/Prime.c~
