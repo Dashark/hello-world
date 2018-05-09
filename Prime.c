@@ -1,85 +1,21 @@
-/*Âú×ãÏÂÁĞÌõ¼şµÄ×ÔÈ»Êı³ÆÎª³¬¼¶ËØÊı:¸ÃÊı±¾Éí,ËùÓĞÊı×ÖÖ®ºÍ,ËùÓĞÊı×ÖÖ®»ıÒÔ¼°ËùÓĞÊı×ÖµÄÆ½·½ºÍ¶¼ÊÇËØÊı.ÀıÈç113¾ÍÊÇÒ»¸ö³¬¼¶ËØÊı.Çó[100,9999]Ö®ÄÚ:
-(1)³¬¼¶ËØÊıµÄ¸öÊı.
-(2)ËùÓĞ³¬¼¶ËØÊıÖ®ºÍ.
-(3)×î´óµÄ³¬¼¶ËØÊı.*/
-#include<stdio.h>
-#include<math.h>
-
- 
+/*æ»¡è¶³ä¸‹åˆ—æ¡ä»¶çš„è‡ªç„¶æ•°ç§°ä¸ºè¶…çº§ç´ æ•°:è¯¥æ•°æœ¬èº«,æ‰€æœ‰æ•°å­—ä¹‹å’Œ,æ‰€æœ‰æ•°å­—ä¹‹ç§¯ä»¥åŠæ‰€æœ‰æ•°å­—çš„å¹³æ–¹å’Œéƒ½æ˜¯ç´ æ•°.ä¾‹å¦‚113å°±æ˜¯ä¸€ä¸ªè¶…çº§ç´ æ•°.æ±‚[100,9999]ä¹‹å†…:(1)è¶…çº§ç´ æ•°çš„ä¸ªæ•°.(2)æ‰€æœ‰è¶…çº§ç´ æ•°ä¹‹å’Œ.(3)æœ€å¤§çš„è¶…çº§ç´ æ•°.*/
 int sum_bit(int num) {
-	int sum1=0;
-	while(num!=0){
-		sum1+=num%10;
-		num/=10;
-	}
-  return sum1;
-
+  return 0;
 }
-
-
 
 int multi_bit(int num) {
-	int mul=1;
-	while(num!=0){
-		mul*=num%10;
-		num/=10;
-	}
   return 0;
-
 }
-
-
 
 int square_sum_bit(int num) {
-	int sum2=0;
-	while(num!=0){
-		sum2+=(num%10)*(num%10);
-		num/=10;
-	}
-  return sum2;
-
+  return 0;
 }
-
-
 
 bool isprime(int num) {
-	int x=0;
-	int i=0;
-	for(i=2;i<num;i++){
-		if(num%i==0){
-			x=1;
-			break;
-		}
-	}
-	if(x==1){
-		  return false;
-	}
-	else{
-		return true;
-	}
-
-
+  return false;
 }
 
-
-
 int main() {
-	int i=0,j=0;
-	int flag=0;
-	int sum=0;
-	int maxin=0;
-	long long int allsum=0;
-	for(i=100;i<=9999;i++){
-	
-	if(isprime(i)&&isprime(sum_bit(i))&&isprime(multi_bit(i))&&isprime(square_sum_bit(i))){
-		sum++;
-		allsum+=i;
-		maxin=i;
-	}
-	
-	}
-  
-	printf("%d %lld %d",sum,allsum,maxin);
+  if(isprime(113)&&isprime(sum_bit(113))&&isprime(multi_bit(113))&&isprime(square_sum_bit(113)))
     //to do sth
-
 }
