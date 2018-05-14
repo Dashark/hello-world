@@ -16,5 +16,3 @@ git log --author="$(git config --get user.name)" --pretty=tformat: --numstat | g
 ```
 git shortlog -s
 ```
-
-[Code Reference](https://github.com/WangShouDao/count_github_push)
