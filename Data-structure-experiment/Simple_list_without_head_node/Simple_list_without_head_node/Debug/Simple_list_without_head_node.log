@@ -1,0 +1,11 @@
+﻿生成启动时间为 2017/12/17 22:33:41。
+     1>项目“C:\Users\Administrator\Desktop\数据结构实验\Simple_list_without_head_node\Simple_list_without_head_node\Simple_list_without_head_node.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\VS\VS 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\administrator\desktop\数据结构实验\simple_list_without_head_node\simple_list_without_head_node\main.cpp(94): fatal error C1075: 与左侧的 圆括号“(”(位于“c:\users\administrator\desktop\数据结构实验\simple_list_without_head_node\simple_list_without_head_node\simple_list_without_head_node.h(171)”)匹配之前遇到文件结束
+     1>已完成生成项目“C:\Users\Administrator\Desktop\数据结构实验\Simple_list_without_head_node\Simple_list_without_head_node\Simple_list_without_head_node.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.89

@@ -1,0 +1,12 @@
+使用以前完成的Account类来模拟一台ATM机。创建一个有10个账户的数组，其id为100~109，并初始化其账户金额为100.系统提示用户输入正确的id，如果输入不正确，则再次要求用户输入正确的id。输入正确的id后显示如下主菜单：
+
+
+Enter and id:108
+Main menu:
+1.check balance
+2.withdraw
+3.deposit
+4:exit
+Enter a choice:
+
+一旦退出，系统就会再次要求输入id。所以系统一旦启动就不会停止。
