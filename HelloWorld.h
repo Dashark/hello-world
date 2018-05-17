@@ -3,5 +3,6 @@
 class HelloWorld {
  public:
   void hello();  
+  void helloworld();
 };
 #endif
