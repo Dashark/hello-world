@@ -4,5 +4,6 @@ class HelloWorld {
  public:
   void hello();  
   void helloworld();
+  Helloworld();
 };
 #endif
