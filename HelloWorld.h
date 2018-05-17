@@ -2,6 +2,7 @@
 #define _HELLO_WORLD_
 class HelloWorld {
  public:
-  void hello();  
+  void hello();
+  void helloworld();
 };
 #endif
