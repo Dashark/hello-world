@@ -1,0 +1,11 @@
+sch2sym -intstyle ise -family kintex7 -refsym top_mux D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog top_mux_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch 
+sch2sym -intstyle ise -family kintex7 -refsym top_mux D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sym 
+sch2sym -intstyle ise -family kintex7 -refsym top_mux D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog top_mux_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch 
+sch2hdl -intstyle ise -family kintex7 -verilog top_mux_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch 
+sch2sym -intstyle ise -family kintex7 -refsym top_mux D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog top_mux_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch 
+sch2sym -intstyle ise -family kintex7 -refsym top_mux D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog top_mux_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.sch 
+xst -intstyle ise -ifn "D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.xst" -ofn "D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux.syr" 

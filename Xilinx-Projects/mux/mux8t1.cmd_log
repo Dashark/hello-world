@@ -1,0 +1,5 @@
+sch2sym -intstyle ise -family kintex7 -refsym mux8t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog mux8t1_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sch 
+xst -intstyle ise -ifn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.xst" -ofn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.syr" 
+sch2sym -intstyle ise -family kintex7 -refsym mux8t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sym 
+sch2sym -intstyle ise -family kintex7 -refsym mux8t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1.sym 

@@ -1,0 +1,3 @@
+sch2sym -intstyle ise -family kintex7 -refsym mux4t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux4t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux4t1.sym 
+sch2hdl -intstyle ise -family kintex7 -verilog mux4t1_drc.vf -w D:/Documents/GitHub/First/Xilinx-Projects/mux/mux4t1.sch 
+xst -intstyle ise -ifn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux4t1.xst" -ofn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux4t1.syr" 

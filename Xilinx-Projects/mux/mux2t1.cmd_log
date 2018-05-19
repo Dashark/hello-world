@@ -1,0 +1,3 @@
+sch2sym -intstyle ise -family kintex7 -refsym mux2t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.sym 
+xst -intstyle ise -ifn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.xst" -ofn "D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.syr" 
+sch2sym -intstyle ise -family kintex7 -refsym mux2t1 D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.sch D:/Documents/GitHub/First/Xilinx-Projects/mux/mux2t1.sym 
