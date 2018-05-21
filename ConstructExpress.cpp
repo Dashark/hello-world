@@ -2,7 +2,7 @@
 //version 00
 #include<iostream>
 #include"ClassConstructor.h"
-void Stock::Stock(const std::string & co,long n,double pr){
+Stock::Stock(const std::string & co,long n,double pr ){
 	company=co;
 	if(n<0){
 		std::cout << "Number of shares can't be negative;"

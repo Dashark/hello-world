@@ -1,7 +1,7 @@
-//stock00.h
+
 //version 00
-#ifndef STOCKOO_H_
-#define STOCKOO_H_
+#ifndef CLASSCONSTRUCTOR_H_
+#define CLASSCONSTRUCTOR_H_
 #include<string>
 class Stock
 {private:
