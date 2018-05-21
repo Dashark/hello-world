@@ -56,4 +56,4 @@ void Stock::show(){
 				<<" Share Price : $" << share_val
 				<<" Total Worth : $"<<total_val << '\n';
 }
-int main()
+
