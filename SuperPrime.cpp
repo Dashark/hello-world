@@ -1,6 +1,6 @@
 class Prime {
 public:
-  Prime(int num);
+  Prime(int num):mNum(num){}
   ~Prime();
 
   bool isPrime();
@@ -19,7 +19,7 @@ public:
   Prime sqaureSumBit();
 private:
   const int num;
-}
+};
 int main()
 {
     SuperPrime sp(113);
