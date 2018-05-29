@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Xilinx_Rroject\sword4.0\OExp05-DataPath\OExp05_DataPath.ncd
+OUTFILE=C:\Xilinx_Rroject\sword4.0\OExp05-DataPath\OExp05_DataPath.bit
+FAMILY=Kintex7
+PART=xc7k325t-2lffg676
+WORKINGDIR=C:\Xilinx_Rroject\sword4.0\OExp05-DataPath
+LICENSE=ISE
+USER_INFO=_

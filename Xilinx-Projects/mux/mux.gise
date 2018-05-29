@@ -92,7 +92,9 @@
     </file>
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="mux8t1_8.xst"/>
     <file xil_pn:fileType="FILE_VERILOG" xil_pn:name="mux8t1_8_drc.vf"/>
+    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_isim_beh.exe"/>
+    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_stx_beh.prj"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="mux8t1_8_summary.html"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="mux8t1_8_xst.xrpt"/>
@@ -119,9 +121,7 @@
     <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="top_mux.xst"/>
     <file xil_pn:fileType="FILE_VERILOG" xil_pn:name="top_mux_drc.vf"/>
     <file xil_pn:fileType="FILE_HTML" xil_pn:name="top_mux_summary.html"/>
-    <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="top_mux_top_mux_sch_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="top_mux_top_mux_sch_tb_isim_beh.exe"/>
-    <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="top_mux_top_mux_sch_tb_isim_beh.wdb"/>
     <file xil_pn:fileType="FILE_XRPT" xil_pn:name="top_mux_xst.xrpt"/>
     <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="webtalk_pn.xml"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
@@ -144,11 +144,11 @@
       <outfile xil_pn:name="rom.v"/>
       <outfile xil_pn:name="top_mux_tb.v"/>
     </transform>
-    <transform xil_pn:end_ts="1526714918" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="-7055174114724957568" xil_pn:start_ts="1526714918">
+    <transform xil_pn:end_ts="1527228128" xil_pn:name="TRAN_xawsToSimhdl" xil_pn:prop_ck="2206655968224099172" xil_pn:start_ts="1527228128">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1526714920" xil_pn:in_ck="-7560673416772292719" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-200195135721773260" xil_pn:start_ts="1526714918">
+    <transform xil_pn:end_ts="1527228131" xil_pn:in_ck="-7560673416772292719" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="-7288117381762961640" xil_pn:start_ts="1527228128">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="mux2t1.vf"/>
@@ -177,7 +177,7 @@
       <outfile xil_pn:name="top_mux.vf"/>
       <outfile xil_pn:name="top_mux_tb.v"/>
     </transform>
-    <transform xil_pn:end_ts="1526714925" xil_pn:in_ck="6977931468218787172" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-2381653514076590502" xil_pn:start_ts="1526714921">
+    <transform xil_pn:end_ts="1527228135" xil_pn:in_ck="6977931468218787172" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="952398832443844898" xil_pn:start_ts="1527228131">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -185,18 +185,18 @@
       <outfile xil_pn:name="fuse.log"/>
       <outfile xil_pn:name="isim"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="top_mux_top_mux_sch_tb_beh.prj"/>
-      <outfile xil_pn:name="top_mux_top_mux_sch_tb_isim_beh.exe"/>
+      <outfile xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_beh.prj"/>
+      <outfile xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1526714925" xil_pn:in_ck="-2717532490329918454" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-1294405001300460483" xil_pn:start_ts="1526714925">
+    <transform xil_pn:end_ts="1527228135" xil_pn:in_ck="-2717532490329918454" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-2039985101299370683" xil_pn:start_ts="1527228135">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="top_mux_top_mux_sch_tb_isim_beh.wdb"/>
+      <outfile xil_pn:name="mux8t1_8_mux8t1_8_sch_tb_isim_beh.wdb"/>
     </transform>
     <transform xil_pn:end_ts="1526632412" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1526632412">
       <status xil_pn:value="SuccessfullyRun"/>

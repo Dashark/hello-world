@@ -1,5 +1,5 @@
 ISim log file
-Running: D:\Documents\GitHub\First\Xilinx-Projects\mux\top_mux_top_mux_sch_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/Documents/GitHub/First/Xilinx-Projects/mux/top_mux_top_mux_sch_tb_isim_beh.wdb 
+Running: D:\Documents\GitHub\First\Xilinx-Projects\mux\mux8t1_8_mux8t1_8_sch_tb_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb D:/Documents/GitHub/First/Xilinx-Projects/mux/mux8t1_8_mux8t1_8_sch_tb_isim_beh.wdb 
 ISim P.20131013 (signature 0x7708f090)
 ----------------------------------------------------------------------
 WARNING:Security:42 - Your software subscription period has lapsed. Your current version of Xilinx tools will continue to function, but you no longer qualify for Xilinx software updates or new releases.

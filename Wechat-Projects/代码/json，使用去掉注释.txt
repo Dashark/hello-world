@@ -1,0 +1,43 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "微信",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh":true   //界面能否上下滑动
+  },
+/* "tabBar": {
+    "color": "#000",
+    "selectedColor": "#56abe4",
+    "backgroundColor": "#fff",
+    "boderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/latest.png",
+        "selectedIconPath": "images/latest_on.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "日志",
+        "iconPath": "images/hotest.png",
+        "selectedIconPath": "images/hotest_on.png"
+      }
+    ]
+  },
+  */ //定义界面下方的选择按钮，选择性使用，此处注释
+    "networkTimeout": { //请求服务器数据的几种方式
+      "request": 30000,
+      "connectSocket": 3000,
+      "uploadFile": 3000,
+      "downloadFile": 3000
+    },
+    "debug": true //显示调试信息
+
+
+}

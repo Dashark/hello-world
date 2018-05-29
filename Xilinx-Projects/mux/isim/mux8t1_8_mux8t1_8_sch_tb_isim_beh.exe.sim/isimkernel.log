@@ -2,12 +2,12 @@ Command line:
    mux8t1_8_mux8t1_8_sch_tb_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  36105
+     -socket  38551
 
-Sat May 19 14:28:39 2018
+Fri May 25 14:02:17 2018
 
 
- Elaboration Time: 0.0156 sec
+ Elaboration Time: 0.0468 sec
 
  Current Memory Usage: 672.641 Meg
 
@@ -20,9 +20,9 @@ Sat May 19 14:28:39 2018
  Total Traceable Variables  : 27
  Total Scalar Nets and Variables : 451
 
- Total Simulation Time: 0.0312 sec
+ Total Simulation Time: 0.0468 sec
 
- Current Memory Usage: 987.214 Meg
+ Current Memory Usage: 672.641 Meg
 
-Sat May 19 14:29:36 2018
+Fri May 25 14:07:10 2018
 

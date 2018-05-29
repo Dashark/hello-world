@@ -1,0 +1,7 @@
+{
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "我的页面",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,19 @@
+﻿生成启动时间为 2018/5/23 21:59:13。
+     1>项目“D:\Documents\GitHub\First\c++-test\Vector\Vector\Vector\Vector.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\VS\VS 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt runwalk.cpp vector.cpp
+         vector.cpp
+     1>d:\documents\github\first\c++-test\vector\vector\vector\vector.cpp(3): error C2143: 语法错误 : 缺少“;”(在“using”的前面)
+         runwalk.cpp
+     1>d:\documents\github\first\c++-test\vector\vector\vector\runwalk.cpp(5): error C2628: “Vector”后面接“int”是非法的(是否忘记了“;”?)
+     1>d:\documents\github\first\c++-test\vector\vector\vector\runwalk.cpp(6): error C3874: “main”的返回类型应为“int”而非“Vector”
+     1>d:\documents\github\first\c++-test\vector\vector\vector\runwalk.cpp(8): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+     1>d:\documents\github\first\c++-test\vector\vector\vector\runwalk.cpp(44): error C2664: “Vector::Vector(const Vector &)”: 无法将参数 1 从“int”转换为“const Vector &”
+                 原因如下:  无法从“int”转换为“const Vector”
+                 无构造函数可以接受源类型，或构造函数重载决策不明确
+         正在生成代码...
+     1>已完成生成项目“D:\Documents\GitHub\First\c++-test\Vector\Vector\Vector\Vector.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.71
