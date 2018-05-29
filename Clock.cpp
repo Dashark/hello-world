@@ -1,4 +1,13 @@
-class Clock {
+#include<iostream>
+
+using namespace std;
+
+class Clock
+{
+public:
+	void adjust(int,int,int );
+	void show(){}
+	int tick;
 };
 
 int main() {

@@ -4,4 +4,3 @@
 void HelloWorld::hello() {
   std::cout << "Hello World!" << std::endl;
 }
-

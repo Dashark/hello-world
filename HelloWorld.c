@@ -1,5 +1,6 @@
-#include <stdio.h>
-int main() {
-  printf("Hello World!\n");
-  return 0;
+#include "HelloWorld.h"
+#include <iostream>
+
+void HelloWorld::hello() {
+  std::cout << "Hello World!" << std::endl;
 }
