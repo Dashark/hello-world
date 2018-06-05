@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit\top.ncd
-OUTFILE=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit\top.bit
-FAMILY=Kintex7
-PART=xc7k325t-1ffg676
-WORKINGDIR=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit
-LICENSE=ISE
-USER_INFO=135256_15690819_173552794_661

@@ -1,8 +1,0 @@
-INTSTYLE=impact
-INFILE=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit\impact.xsl
-OUTFILE=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit\impact.xsl
-FAMILY=Single
-PART=Single
-WORKINGDIR=D:\Documents\GitHub\First\Xilinx-Projects\adder_4bit
-LICENSE=iMPACT
-USER_INFO=iMPACT

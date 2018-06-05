@@ -1,3 +1,0 @@
-vhdtdtfi -lib work D:/Documents/GitHub/First/Xilinx-Projects/DataPath/OExp05-DataPath/Code/common/Ext_imm16.v -lang verilog -prj OExp05-DataPath -o Ext_32.spl -module Ext_32 -template D:/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
-spl2sym -intstyle ise -family kintex7 Ext_32.spl D:/Documents/GitHub/First/Xilinx-Projects/DataPath/OExp05-DataPath/Ext_32.sym 
-vhdtdtfi -lib work {D:/学习资料/计算机组成原理及实验/Exp5 DataPath/OExp05-DataPath/Code/common/Ext_imm16.v} -lang verilog -prj OExp05-DataPath -o Ext_32.spl -module Ext_32 -template D:/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 

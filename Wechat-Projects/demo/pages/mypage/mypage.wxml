@@ -1,6 +1,0 @@
-<view class="container">
-<text>Hello word</text>
-<text>{{mytext}}</text>
-<text>{{mytextnum.num}}</text>
-<button type='default' bindtap='testfunction'>测试</button>
-</view>
