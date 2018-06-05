@@ -1,14 +1,14 @@
-﻿生成启动时间为 2018/6/5 17:36:55。
-     1>项目“D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Unit-Converter\Unit-Converter.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2018/6/5 22:33:53。
+     1>项目“D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Unit-Converter.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          D:\VS\VS 2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Test.cpp
          Test.cpp
        Link:
-         D:\VS\VS 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Debug\Unit-Converter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Debug\Unit-Converter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Debug\Unit-Converter.lib" /MACHINE:X86 Debug\Test.obj
+         D:\VS\VS 2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Debug\Unit-Converter.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Debug\Unit-Converter.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Debug\Unit-Converter.lib" /MACHINE:X86 Debug\Test.obj
          Debug\Unit.obj
-         Unit-Converter.vcxproj -> D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Debug\Unit-Converter.exe
-     1>已完成生成项目“D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Unit-Converter\Unit-Converter.vcxproj”(Build 个目标)的操作。
+         Unit-Converter.vcxproj -> D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Debug\Unit-Converter.exe
+     1>已完成生成项目“D:\Documents\GitHub\First\C++-Projects\Unit-Converter\Unit-Converter\Unit-Converter.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:06.26
+已用时间 00:00:01.04
