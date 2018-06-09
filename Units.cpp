@@ -19,9 +19,34 @@ class Unit{
       std::string unit;
 };
 
-class Weight:virtual public Unit{
+class Mass: virtual public Unit{
     public:
-      Weight(double num, std::string unit) : Unit(num, unit){};
+      Mass(double num, std::string unit) : Unit(num, unit){}
+      ~Mass(){}
     private:
       static std::vector<std::vector<std::string> > Formula;
+};
+
+class Length: virtual public Unit{
+    public:
+      Length(double num, std::string unit) : Unit(num, unit){}
+      ~Length(){}
+    private:
+      static std::vector<std::vector<std::string> > Formula;
+};
+
+class Stress : virtual public Unit{
+    public:
+      Stress(double num, std::string unit) : Unit(num, unit){}
+      ~Stress(){}
+    private:
+      static std::vector<std::vector<std::string> > Formula;      
+};
+
+class Force : virtual public Unit{
+    public:
+      Force(double num, std::string unit) : Unit(num, unit){}
+      ~Force(){}
+    private:
+      static std::vector<std::vector<std::string> > Formula;      
 };
