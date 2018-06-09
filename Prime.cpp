@@ -22,15 +22,15 @@ Prime::~Prime(){}
 
 bool Prime::isPrime() {
   int i = 2, m =mNum;
-  for (;i <= m/i;i++){
-    if (m%i==0){
-      a = false;
-		break;
-	}
+  if (m==0) {
+    return false;
   }
-   if (m==0)
-	  a = false;
-  return a;
+  for (;i <= m/i;i++){
+    if (m % i == 0){
+      return false;
+	  }
+  }
+   return true;   
 }
 
 Prime Prime::sumBit(){
