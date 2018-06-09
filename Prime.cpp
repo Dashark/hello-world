@@ -22,7 +22,6 @@ Prime::~Prime(){}
 
 bool Prime::isPrime() {
   int i = 2, m =mNum;
-  bool a = true;
   for (;i <= m/i;i++){
     if (m%i==0){
       a = false;
