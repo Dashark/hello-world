@@ -1,4 +1,62 @@
+#include<cstdlib>
 #include<cstdio>
+#include<cstring>
+#include<cmath>
+#include<vector>
+#include<queue>
+#include<algorithm>
+
+using namespace std;
+
+//manacher-start
+const int NMAX=110010;
+char str_raw[NMAX];
+char str[NMAX<<1];
+int p[NMAX<<1];
+int len,mid,ans;
+
+int init()
+{
+	mid=1;
+	ans=0;
+	memset(p,0,sizeof(p));
+	memset(str,0,sizeof(str));
+	return 0;
+}
+
+int manacher()
+{
+	while(~scanf("%s",str_raw+1))
+	{
+		init();
+		len=strlen(str_raw+1);
+		for(int i=1;i<=len;i++)
+		{
+			str[i*2]=str_raw[i];
+			str[i*2+1]='#';
+		}
+		str[0]='@';
+		str[1]='#';
+		str[len*2+2]='\0';
+		p[0]=1;
+		for(int i=1;i<=2*len+1;i++)
+		{
+			if(i>mid+p[mid]-1)
+				p[i]=1;
+			else
+				p[i]=min(p[2*mid-i],mid+p[mid]-i);
+			while(str[i+p[i]]==str[i-p[i]])
+				p[i]+=1;
+			if(i+p[i]-1>mid+p[mid]-1)
+				mid=i;
+			ans=max(ans,p[i]-1);
+		}
+		printf("%d\n",ans);
+	}
+	return 0;
+}
+//manacher-end
+
 class Date {
 	public:
 		Date(int y, int m, int d)

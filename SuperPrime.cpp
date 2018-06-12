@@ -4,12 +4,90 @@
 #include<cmath>
 #include<vector>
 #include<queue>
+#include<stack>
 #include<algorithm>
 
 using namespace std;
 
 const int NMAX=10000;
 int is_prime[NMAX];
+
+//graham-start
+struct point{
+	int x,y;
+};
+
+int n;
+vector<point> points;
+stack<int> s;
+
+point operator -(point A,point B)
+{
+	point C;
+	C.x=A.x-B.x;
+	C.y=A.y-B.y;
+	return C;
+}
+
+int operator *(point A,point B)
+{
+	return A.x*B.y-A.y*B.x;
+}
+
+int dist(point A,point B)
+{
+	return (A.x-B.x)*(A.x-B.x)+(A.y-B.y)*(A.y-B.y);
+}
+
+int cmp(point A,point B)
+{
+	int tmp=(A-points[0])*(B-points[0]);
+	if(tmp!=0)
+		return tmp>0;
+	int dist1=dist(points[0],A);
+	int dist2=dist(points[0],B);
+	return dist1>dist2;
+}
+
+int graham()
+{
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++)
+	{
+		point TMP;
+		scanf("%d %d",&TMP.x,&TMP.y);
+		points.push_back(TMP);
+	}
+	for(int i=1;i<n;i++)
+		if(points[i].y<points[0].y || (points[i].y == points[0].y && points[i].x<points[0].x))
+			swap(points[i],points[0]);
+	sort(points.begin()+1,points.end(),cmp);
+	s.push(0);s.push(1);s.push(2);
+	for(int i=3;i<n;i++)
+	{
+		s.push(i);
+		while(s.size()>3)
+		{
+			int a=s.top();s.pop();point A=points[a];
+			int b=s.top();s.pop();point B=points[b];
+			int c=s.top();s.pop();point C=points[c];
+			int tmp=(A-B)*(B-C);
+			if(tmp>=0)
+			{
+				s.push(c);s.push(a);
+			}
+			else if(tmp<0)
+			{
+				s.push(c);s.push(b);s.push(a);
+				break;
+			}
+		}
+		printf("%d\n",i);
+	}
+	printf("Calculate Success\n");
+	return 0;
+}
+//graham-end
 
 void init_prime()
 {
