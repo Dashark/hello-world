@@ -1,0 +1,55 @@
+#include<iostream>
+using namespace std;
+unsigned int func(int n)
+{
+	unsigned int a,b,m;
+	m=0;
+/*	a=n;
+	while(a!=0)
+	{
+		b=a%10;				//取最后一位 
+		a/=10;
+		m=m*10+b;			//倒序 
+	}
+	*/
+	while(m!=n)
+	{
+		n+=m;
+		a=n;
+		m=0;
+		while(a!=0)
+		{
+			b=a%10;				//取最后一位 
+			a/=10;
+			m=m*10+b;			//倒序 
+		}
+		if(m+n>2147483648)
+		{
+			return -1;
+		}
+	}
+	return m;
+/*	if(m==n)
+	{
+		return n;
+	}
+	else
+	{
+		n=m+n;
+		if(func(n)==-1||func(n)>=2147483648)	// 2^31 = 2147483648
+			return -1;
+		else
+			return func(n);
+	}
+	*/
+}
+int main()
+{
+	unsigned int m;
+	cin>>m;
+	if(func(m)==-1)
+		cout<<"No"<<endl;
+	else
+		cout<<func(m)<<endl;
+	return 0;
+}
