@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a;
+	cin>>a;
+	int i;
+	long long b[a];
+	for(i=0;i<a;i++)
+	{
+		cin>>b[i];
+	}
+	long long s=0,m=0;
+	for(i=0;i<a;i++)
+	{
+		s+=b[i];
+		if(m>s)
+		{
+			m=s;
+		}
+	}
+	m=m*(-1);
+	cout<<m<<endl;
+}
