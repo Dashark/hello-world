@@ -1,0 +1,41 @@
+#include<stdio.h> 
+#define i ii
+#define j jj 
+int test(int ax[9][9],int by[9][9],int numb)  
+{  
+        int i,j,jiaodu;  
+        for(i=0;i<numb;i++)  
+        {  
+                for(j=0;j<numb;j++)  
+                {  
+                        if(ax[i][j]==by[i][j])  
+                                jiaodu=0;  
+                        else if(ax[i][j]==by[j][numb-i-1])  
+                                jiaodu=90;  
+                        else if(ax[i][j]==by[numb-i-1][numb-j-1])  
+                                jiaodu=180;  
+                        else if(ax[i][j]==by[numb-j-1][i])  
+                                jiaodu=270;  
+                        else return -1;  
+                }  
+        }  
+        return jiaodu;  
+}  
+int main()  
+{  
+        int ax[9][9];  
+        int by[9][9];  
+        int i,j,numb,jiaodu;  
+        while(scanf("%d",&numb)!=EOF)  
+        {  
+                for(i=0;i<numb;i++)  
+                        for(j=0;j<numb;j++)  
+                                scanf("%d",&ax[i][j]);  
+                for(i=0;i<numb;i++)  
+                        for(j=0;j<numb;j++)  
+                                scanf("%d",&by[i][j]);  
+                jiaodu=test(ax,by,numb);  
+                printf("%d\n",jiaodu);  
+        }  
+        return 0;  
+} 
