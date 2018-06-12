@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int func(int a,int b)
+{
+	if(a==1||b==1)
+		return 1;
+	else if(a<0)
+		return 0;
+	return func(a,b-1)+func(a-b,b);
+}
+
+int main()
+{
+	int m,n;
+	while(cin>>m>>n)
+		cout<<func(m,n)<<endl;
+	return 0;
+}
