@@ -1,0 +1,29 @@
+#include<iostream>
+#define max(a,b) a>b?a:b
+using namespace std;
+
+int w[233];
+int p[233];
+int f[233][20000];
+
+int main()
+{
+	int n,V;
+	cin>>n>>V;
+	for(int i=1;i<=n;i++)
+		cin>>w[i]>>p[i];
+	for(int i=1;i<=n;i++)
+		f[i][0]=0;
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=V;j>=0;j--)
+		{
+			if(j>=w[i])  //剩余空间足够 
+				f[i][j] = max(f[i-1][j-w[i]]+p[i],f[i-1][j]);
+			else  //容量不足 
+				f[i][j] = f[i-1][j]; 
+		}
+	}
+	cout<<f[n][V]<<endl;
+	return 0;
+}
