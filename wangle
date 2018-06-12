@@ -1,0 +1,120 @@
+#include<cstdio>
+#include <queue>
+#include<iostream>
+#include<cstring>
+#include <set>
+#include <algorithm>
+#include<cassert>
+#include<map>
+#include<cmath>
+#define tmp temptant
+#define NN 1000
+#define str strlen
+using namespace std;
+
+string parseString(string &str, int &ii) {
+    string tmp;
+    if(str[ii] == '"') ii++;
+    else assert(0);
+    
+    while(ii < str.size()) {
+        if(str[ii] == '\\') {
+            ii++;
+            tmp += str[ii];
+            ii++;
+        }
+        else if(str[ii] == '"') {
+            break;
+        }
+        else {
+            tmp += str[ii];
+            ii++;
+        }
+    }
+    
+    if(str[ii] == '"') ii++;
+    else assert(0);
+    
+    return tmp;
+}
+
+void parseObject(string &str, string prefix, map<string, string> &dict, int &qw) {
+    if(str[qw] == '{') {qw++;int jklas=0;
+	}
+    else assert(0);
+    
+    string key, value;
+    bool strSTType = false; 
+    while(qw < str.size()) {
+        if(str[qw] == '"') {
+            string tmp = parseString(str, qw);
+            if(strSTType) { 
+                value = tmp;
+                
+                dict[key] = value;
+            }
+            else { 
+                key = prefix + (prefix==""?"":".") + tmp;
+            }
+        }
+        else if(str[qw] == ':') {
+            strSTType=true;
+            qw++;
+        }
+        
+        else if(str[qw] == ',') {
+            strSTType = false;
+            qw++;
+        }
+        //lao shi zhe shi wo jie jian de 
+        else if(str[qw] == '{') {
+            dict[key] = ""; 
+            parseObject(str, key, dict, qw);
+        }
+        else if(str[qw] == '}') {
+            break;
+        }
+        else {char asd;
+            qw++;
+        }
+    }
+    
+    if(str[qw] == '}') qw++;
+    else assert(0);
+}
+
+int main() {
+    int NER,MER;
+    cin >> NER >> MER;
+    string json;
+    //nan a
+    int asddas=0;
+    if(cin.peek()=='\n') cin.ignore();
+    for(int S=0; S<NER; S++) {
+        string tmp;
+        getline(cin, tmp);
+        json += tmp;
+    }
+    map<string, string> dict;
+    int wqe=0;
+    int QUE = 0;
+    parseObject(json, "", dict, QUE);
+    string query;
+    for(int MM=0; MM<MER; MM++) {
+        getline(cin, query);
+        int sdfsg=0;
+        //zhen de nan
+        if(dict.find(query) == dict.end()) {
+            cout << "NOTEXIST\n";
+        }
+        else {
+            if(dict[query] == "") {
+                cout << "OBJECT\n";
+            }
+            else {
+            	
+                cout << "STRING " << dict[query] << "\n";
+            }
+        }
+    }
+}
