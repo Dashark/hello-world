@@ -1,0 +1,39 @@
+#include<stdio.h>
+int main()
+{
+	int n,a[4],i,j,b[4];
+	scanf("%d",&n);
+	for(int k=0;k<n;k++)
+	{
+		int m,n,c;
+		int a0,a1,a2,a3;
+		scanf("%d,%d,%d,%d",&a0,&a1,&a2,&a3);
+		a[0]=a0;
+		a[1]=a1;
+		a[2]=a2;
+		a[3]=a3;
+		
+		for(i=1;i<4;i++)
+		{
+			m=a[0];
+			n=a[i];
+			while(n!=0)
+			{
+				c=m%n;
+				m=n;
+				n=c;
+			}
+			b[i]=m;
+		}
+		int y;
+		if(b[1]>b[2]){
+			y=b[2];
+		}
+		else{y=b[1];
+		}
+		if(y>b[3]){
+			y=b[3];
+		}
+		printf("%d\n",y);
+	}
+}
