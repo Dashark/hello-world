@@ -1,0 +1,32 @@
+#include <iostream>    
+using namespace std;   
+int result[40000];	//保存结果 
+int main()    
+{
+	int n;
+	cin>>n;
+	int len=1;	//结果长度 
+	result[0]=1;
+	for(int i=1;i<=n;i++)
+	{
+		int c=0;	//进位 
+		for(int j=0;j<len;j++)
+		{
+			int x=result[j]*i+c;
+			result[j]=x%10;	//当前位 
+			c=x/10;	//进位 
+		}
+		while(c!=0)	//计算进位 
+		{
+			result[len]=c%10; 
+			c/=10;
+			len++;	//长度+1 
+		}
+		
+	}
+	for(int i=len-1;i>=0;i--)
+		cout<<result[i];
+	cout<<endl;
+	
+	return 0;
+}  
