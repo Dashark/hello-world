@@ -1,0 +1,22 @@
+#include<iostream>
+#define max(a,b) a>b?a:b
+using namespace std;
+long long aha[200000];
+long long dp[200000];
+int main()
+{
+	int n;
+	cin>>n;
+	for(int i=0;i<n;i++)
+		cin>>aha[i];
+	dp[0]=aha[0];
+	long long ans=dp[0];
+	for(int i=1;i<n;i++)
+	{
+		dp[i]=max(dp[i-1]+aha[i],aha[i]);
+		if(dp[i]>ans)
+			ans=dp[i];
+	}
+	cout<<ans<<endl;
+	return 0;
+}
