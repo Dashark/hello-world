@@ -1,0 +1,27 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+void func(char begin,char end)  
+{
+    cout<<begin<<"->"<<end<<endl;  
+}
+void hannuota(int x,char a,char b,char c)
+{
+	if(x==1)
+		func(a,c);
+	else
+	{
+		hannuota(x-1,a,c,b);//把x-1个盘子由a借助于c移到b
+        func(a,c);
+        hannuota(x-1,b,a,c);//再把x-1个盘子由b借助于a移到c
+	}
+}
+int main()
+{
+	int n;
+	cin>>n;
+	int ans=pow(2,n)-1;
+	hannuota(n,'A','B','C');
+	cout<<ans<<endl;
+	return 0;
+}
