@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	int n,i;
+	scanf("%d",&n);
+	char a[10][100];//接收字符串的数组
+   char b[100];//接收待查找的字符串
+   for(i=0;i<n;i++)
+   {
+   	scanf("%s",&a[i][100]);
+   }
+   scanf("%s",&b[100]);
+   int k=0,m;
+   for(i=0;i<n;i++)
+   {
+   	m=strcmp(char b[100],a[i][100]);
+   	if(m>0){k++;
+	   }
+   }
+	printf("%d",k);
+}
