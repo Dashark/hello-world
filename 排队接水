@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int m,n;
+	cin>>m;
+	int t,l,r;
+	for(int i=0;i<m;i++)
+	{
+		cin>>n;
+		t=1;
+		for(int j=0;j<n;j++)
+		{
+			cin>>l>>r;
+			if(t<=l)
+			{
+				t=l;
+			}
+			if(t<=r)
+			{
+				cout<<t<<" ";
+			}
+			else
+			{
+				cout<<"0"<<" ";
+				continue; 
+			}
+			t++;
+		}
+		cout<<endl;
+	}
+	
+	return 0;
+}
