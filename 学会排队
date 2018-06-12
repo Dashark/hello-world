@@ -1,0 +1,48 @@
+#include<stdio.h>
+int main()
+{
+	int a[100]={0};
+	int n,b;
+	scanf("%d %d",&n,&b);
+	int i,t=1;
+	for(i=0;i<n;i++)
+	{
+		a[i]=t;
+		t++;
+	}
+
+	int x,y,z,temp;
+	for(z=0;z<b;z++)
+	{
+		scanf("%d%d",&x,&y);
+		if(y>=0)
+		{
+			for(int q=0;q<y;q++)
+			{
+				temp=a[x-1];
+				a[x-1]=a[x];
+				a[x]=temp;
+				x++; 
+			}
+			 
+			
+		}
+		else if(y<0)
+		{
+			y=-y;
+			for(int q=0;q<y;q++)
+			{
+				temp=a[x-1];
+				a[x-1]=a[x-2];
+				a[x-2]=temp;
+				x--;
+			}
+		}
+	}
+
+	for( i=0;i<n;i++)
+	{
+		printf("%d ",a[i]);
+	}
+	
+}
