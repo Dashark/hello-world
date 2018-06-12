@@ -1,0 +1,191 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct man{
+	int A;
+	int H;
+}cha[8];
+
+void init();		//初始化 
+void summon(int i,int p,int a,int h);	//召唤 
+void attack(int i,int a,int d);		//攻击 
+void judge();		//战场结算 
+
+man suicong1[8];
+man suicong2[8];
+int num1,num2; 
+int main()
+{
+	int n;
+	cin>>n;
+	init();
+	string action;
+	int a,b,c;
+	int cnt=0;
+//	getchar();
+	for(int i=0;i<n;i++)
+	{
+		cin>>action;
+		if(action == "summon")
+		{
+			cin>>a>>b>>c;
+			summon(cnt,a,b,c);
+		}
+		if(action == "attack")
+		{
+			cin>>a>>b;
+			attack(cnt,a,b);
+		}
+		if(action == "end")
+			cnt++;	
+	}
+	judge();
+	return 0;
+} 
+
+void init()
+{
+	suicong1[0].A=0;
+	suicong1[0].H=30;
+	num1=0;
+	suicong2[0].A=0;
+	suicong2[0].H=30;
+	num2=0; 
+}
+
+void summon(int i,int p,int a,int h)
+{
+	if(i%2==0)		//先手玩家回合 
+	{
+		if(p>num1)		//随从下在最右边 
+		{
+			suicong1[p].A=a;
+			suicong1[p].H=h;
+			num1++;	 
+		}
+		else		//随从非下在最右 
+		{
+			for(int j=num1+1;j>p;j--)	//原随从及其右方随从右移1格 
+			{
+				suicong1[j].A=suicong1[j-1].A;
+				suicong1[j].H=suicong1[j-1].H; 
+			}
+			suicong1[p].A=a;		//该随从站场 
+			suicong1[p].H=h;
+			num1++;
+		} 
+	}
+	if(i%2!=0)			//后手玩家回合 
+	{
+		if(p>num2) 		//随从下最右 
+		{
+			suicong2[p].A=a;
+			suicong2[p].H=h;
+			num2++;
+		}
+		else		//非最右 
+		{
+			for(int j=num2+1;j>p;j--)	
+			{
+				suicong2[j].A=suicong2[j-1].A;
+				suicong2[j].H=suicong2[j-1].H; 
+			}
+			suicong2[p].A=a;
+			suicong2[p].H=h;
+			num2++;
+		}
+	}
+}
+
+void attack(int i,int a,int d)
+{
+	if(i%2==0)		//先手玩家回合 
+	{
+		suicong1[a].H-=suicong2[d].A;		//进攻方随从减血 
+		cout<<"attack remain"<<suicong1[a].H<<endl;
+		if(suicong1[a].H<=0)		//进攻方随从死亡 
+		{
+			for(int j=a;j<num1;j++)		//死亡随从右边随从左移1格 
+			{
+				suicong1[j].A=suicong1[j+1].A;
+				suicong1[j].H=suicong1[j+1].H;
+			}
+			suicong1[num1].A=0;
+			suicong1[num1].H=0;
+			num1--;
+		}
+		suicong2[d].H-=suicong1[a].A;
+		cout<<"defence remain"<<suicong2[d].H<<endl;
+		if(suicong2[d].H<=0)		//防守方死亡 
+		{
+			if(d==0) ;		//击杀后手方英雄 
+			else		//防守方随从死亡 
+			{
+				for(int j=d;j<num2;j++)
+				{
+					suicong2[j].A=suicong2[j+1].A;
+					suicong2[j].H=suicong2[j+1].H;
+				}
+				suicong2[num2].A=0;
+				suicong2[num2].H=0;
+				num2--;
+			}
+		}
+	}
+	if(i%2!=0)		//后手玩家回合
+	{
+		suicong2[a].H-=suicong1[d].A;		//进攻方随从减血 
+		if(suicong2[a].H<=0)			//进攻方随从死亡 
+		{
+			for(int j=a;j<num2;j++)		//死亡随从右方随从左移1格 
+			{
+				suicong2[j].A=suicong2[j+1].A;
+				suicong2[j].H=suicong2[j+1].H;
+			}
+			suicong2[num2].A=0;
+			suicong2[num2].H=0;
+			num2--;
+		}
+		suicong1[d].H-=suicong2[a].A;		//防守方减血 
+		if(suicong1[d].H<=0)		//防守方死亡 
+		{
+			if(d==0) ;	//击杀先手方英雄 
+			else
+			{ 
+				for(int j=d;j<num1;j++)
+				{
+					suicong1[j].A=suicong1[j+1].A;
+					suicong1[j].H=suicong1[j+1].H;
+				}
+				suicong1[num1].A=0;
+				suicong1[num1].H=0; 
+				num1--;
+			}
+		}
+	}
+}
+
+void judge()
+{
+	if(suicong1[0].H<=0)		//判断胜负 
+		cout<<-1<<endl;
+	else if(suicong2[0].H<=0)
+		cout<<1<<endl;
+	else
+		cout<<0<<endl;
+	cout<<suicong1[0].H<<endl;		//先手英雄剩余血量 
+	cout<<num1<<" ";
+	for(int i=1;i<=num1;i++)		//先手随从剩余血量 
+	{
+		cout<<suicong1[i].H<<" ";
+	}
+	cout<<endl;
+	cout<<suicong2[0].H<<endl;
+	cout<<num2<<" ";
+	for(int i=1;i<=num2;i++)
+	{
+		cout<<suicong2[i].H<<" ";
+	}
+	cout<<endl;
+}
