@@ -1,0 +1,27 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int pow(long long a,long long b)
+{
+	int r=1;
+	int base=a;
+	while(b)
+	{
+		if(b&1)			// & 二进制按位与 
+			r*=base;
+		base*=base;
+		b >>= 1;	
+	}
+	return r;
+}
+
+int main()
+{
+	long long a,b,c;
+	cin>>a>>b>>c;
+	cout<<pow(a,b)%c<<endl;
+	
+	return 0;
+ } 
+
