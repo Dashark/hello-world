@@ -1,0 +1,51 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int T;
+	cin>>T;
+	int x[5],y[5],k1,k2;
+	for(int j=0;j<T;j++)
+	{
+		for(int i=0;i<4;i++)
+		{
+			cin>>x[i]>>y[i];
+		}
+		if(y[0]==y[1]&&y[2]==y[3])		//k均不存在 
+		{
+			if(y[0]==y[2])
+			{
+				cout<<"Yes"<<endl;
+			} 
+			else
+			{
+				cout<<"No"<<endl;
+			}
+		}
+		else if(y[0]!=y[1]&&y[2]!=y[3])		//k均存在 
+		{
+			k1=(y[1]-y[0])/(x[1]-x[0]);
+			k2=(y[3]-y[2])/(x[3]-x[2]);
+			if(k1!=k2)		//不平行
+			{
+				cout<<"Yes"<<endl;
+			}
+			else if(k1==(y[2]-y[1])/(x[2]-x[1]))		//重合 
+			{
+				cout<<"Yes"<<endl;
+			} 
+			else
+			{
+				cout<<"No"<<endl;
+			}
+		}
+		else		//恰有一k存在 
+		{
+			cout<<"Yes"<<endl;
+		}
+			 
+	}
+	
+	return 0;
+}
