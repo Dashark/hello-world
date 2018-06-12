@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+
+int pow(int a,int b)
+{
+	int r=1;
+	int base=a;
+	while(b)
+	{
+		if(b&1)			// & 二进制按位与  即 if(b%2==1) 
+			r*=base;
+		base*=base;
+		b >>= 1;		// >> 二进制右移一位 即/2(>10情况) 
+	}
+	return r;
+}
+
+int main()
+{
+	int a,b;
+	cin>>a>>b;
+	cout<<pow(a,b)<<endl;
+	return 0;
+ } 
