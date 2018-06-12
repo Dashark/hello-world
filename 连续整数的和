@@ -1,0 +1,21 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+//等差数列求和公式逆推 
+int main()
+{
+	int n,flag=0;
+	cin>>n;
+	for(int i=sqrt(2*n);i>=2;i--)	//遍历求首项 a1 
+	{
+		if((2*n-i*i+i)%(2*i)==0 && 2*n-i*i+1>0)
+		{
+			cout<<(2*n-i*i+i)/(2*i)<<endl;
+			flag=1;
+		}
+	}
+	if(flag==0)
+		cout<<"No Solution"<<endl;
+	
+	return 0;
+}
