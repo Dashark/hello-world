@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	long long a,n,sum=0; 
+	while(cin>>a>>n)
+	{	
+		long long temp=0;
+		for(int i=1;i<n+1;i++)
+		{
+			temp=temp*10+a;
+			sum+=temp;
+		}
+		cout<<sum<<endl;
+	}
+	return 0;
+}
