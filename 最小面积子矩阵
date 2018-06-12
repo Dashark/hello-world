@@ -1,0 +1,74 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+//合并成一维数组转换成求最短连续子序列 
+int a[100][100];
+int num[100];
+int n,m,k;
+	
+int func(int i,int j)
+{
+	for(int p=0;p<n;p++)
+		for(int q=i;q<=j;q++)
+			num[p]+=a[p][q];	//合并成一维数组 
+}
+
+int find()
+{
+	int start=0,end=0;
+	int sum=0;
+	int len=n;
+	int ans=len+1;
+	int flag=0;
+	while(end<len)
+	{
+		if(sum<k)
+			sum+=num[end];
+		while(sum>=k)
+		{
+			flag=1;
+			ans=min(ans,end-start+1);
+			sum-=num[start];
+			start++;
+		}
+		end++;
+	}
+	if(flag==1)
+		return ans;
+	else
+		return n*m;
+} 
+
+int main()
+{
+	cin>>n>>m>>k;
+	int sum=0; 
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<m;j++)
+		{
+			cin>>a[i][j];
+			sum+=a[i][j];
+		}
+	}
+	if(sum<k)
+		cout<<-1<<endl;
+	else
+	{
+		int min=n*m;
+		for(int i=0;i<m;i++)
+		{
+			for(int j=i;j<m;j++)
+			{
+				memset(num,0,sizeof(num));
+				func(i,j);
+				int temp=find();
+				temp*=(j-i+1);
+				if(temp<min)
+					min=temp;
+			}
+		}
+		cout<<min<<endl;
+	}
+	return 0;
+}
