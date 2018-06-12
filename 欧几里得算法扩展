@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+long long extragcd(long long a,long long b,long long &x,long long &y)
+{
+	if(b==0)
+	{
+		x=1;
+		y=0;
+		return a;
+	}
+	long long g=extragcd(b,a%b,x,y);
+	long long t=x;
+    x=y;
+    y=t-(a/b)*y;
+    return g;
+}
+
+int main ()
+{
+	long long a,b,x,y;
+	while(cin>>a>>b)
+	{
+		if(a==0||b==0)
+			break;
+		long long t=extragcd(a,b,x,y);
+		if(x>0)
+			cout<<x/t<<endl;
+		else
+		{
+			while(x<0)
+				x+=b;
+			cout<<x/t<<endl;
+		}
+	}
+	return 0;
+}
