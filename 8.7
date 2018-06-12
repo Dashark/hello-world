@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+class zigzag{
+	public:
+		zigzag(int m, int n) {
+			this->x = 0; 
+			this->y = 0; 
+			this->k = 1;
+			this->m = m;
+			this->n = n;
+		}
+		~zigzag() {};
+		
+		void fillin() {
+			a[0][0] = k;
+			while (k <= m * n) {
+				if (y + 1 < n) a[x][++y] = ++k;
+				else a[++x][y] = ++k;
+				while (x < m - 1 && y > 0) a[++x][--y] = ++k; 
+				if (x + 1 < m) a[++x][y] = ++k; 
+				else a[x][++y] = ++k; 
+				while (x > 0 && y < n - 1) a[--x][++y] = ++k;
+			} 
+		}
+		void output() {
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					cout << a[i][j] << " " ;
+				}
+				cout << endl;
+			}
+		}
+
+	private:
+		int x, y, k, m, n;
+		int a[100][100];
+};
+
+int main() {
+	int m, n;
+	cin >> m >> n;
+	zigzag zz(m, n);
+	zz.fillin();
+	zz.output();
+	return 0;
+}

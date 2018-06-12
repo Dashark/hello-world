@@ -1,3 +1,0 @@
-class {
-};
-int main()
