@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main()
+{
+	int n,k,m;
+	scanf("%d",&n);
+	for(int i=0;i<n;i++)
+	{
+		scanf("%d",&k);
+		if(k==1){printf("1\n");}
+		else 
+		{
+			m=2;
+			do
+			{
+				if(k%m==0)
+				{
+
+                printf("%d",m);
+
+            	k=k/m;
+				if(k!=1)
+                {printf("*");
+				}
+
+                m=2;
+				}
+				else m++;	
+		}while(k!=1);
+		printf("\n");
+		
+		}
+	}
+	
+}
