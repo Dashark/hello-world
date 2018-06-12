@@ -1,0 +1,37 @@
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){
+	string stra,strb;
+	int a[200]={0};
+	int b[200]={0};
+	int c[200]={0};
+	int len1,len2,p;
+	while (getline(cin,stra)){
+		getline(cin,strb);
+		len1=stra.length();
+		len2=strb.length();
+		memset(a,0,sizeof(a));
+		memset(b,0,sizeof(b));
+		for (int i=len1-1;i>=0;i--) a[len1-i-1]=stra[i]-'0';
+		for (int i=len2-1;i>=0;i--) b[len2-i-1]=strb[i]-'0';
+		p=0;
+		while (p<len1){
+			if (a[p]-b[p]<0) {
+				c[p]=10+a[p]-b[p];
+				a[p+1]-=1;
+			}
+			else {
+				c[p]=a[p]-b[p];
+			}
+			p++;
+		}
+		
+		for (int i=p-1;i>=0;i--)
+		if (i==0) cout<<c[i]<<endl;
+		else cout<<c[i];
+		
+	}
+	return 0;
+}
