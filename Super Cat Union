@@ -1,0 +1,32 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	int a1,b1,c1,a2,b2,c2;
+	int r1,r2;
+	int x,y,z;
+	cin>>n;
+	for(int i=0;i<n;i++)
+	{
+		cin>>a1>>b1>>c1;
+		cin>>r1;
+		cin>>a2>>b2>>c2;
+		cin>>r2;
+		cin>>x>>y>>z;
+		if( sqrt(pow(x-a1,2)+pow(y-b1,2)+pow(z-c1,2))>r1 && sqrt(pow(x-a2,2)+pow(y-b2,2)+pow(z-c2,2))>r2 )
+			cout<<"No"<<endl;
+		else
+		{
+			if( pow(x-a1,2)-pow(x-a2,2)+pow(y-b1,2)-pow(y-b2,2)+pow(z-c1,2)-pow(z-c2,2)==r1*r1-r2*r2 )
+				cout<<"No"<<endl;
+			else
+				cout<<"Yes"<<endl;
+		}
+		
+	}
+	
+	return 0;
+ } 
