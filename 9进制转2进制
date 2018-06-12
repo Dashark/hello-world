@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+int main()
+{
+	int g;
+	scanf("%d",&g);
+	for(int f=0;f<g;f++)
+	{
+		char a[30];	
+		
+		int x;
+		int b[30],c=0;
+		char ch;
+		int lg,i,k,l=0,n=0;
+		scanf("%s",&a); 
+		lg=strlen(a);
+		
+		for(i=lg-1;i>=0;i--)
+		{
+			ch=a[i];
+			k=ch-'0';
+			n=n+k*pow(9,l);
+			l++;
+		}
+	
+	
+		while(n!=0)
+		{
+			x=n%2;
+			b[c]=x;
+			c++;
+			n=n/2;
+		}
+		c--;
+		for(;c>=0;--c)
+		{
+			printf("%d",b[c]);
+		}
+		printf("\n");
+	}
+	
+	
+}
