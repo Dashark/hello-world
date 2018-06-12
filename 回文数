@@ -1,0 +1,112 @@
+#include<stdio.h>
+void function(int *A,int *B,int *length,int step,int *jinzhi);
+void savein_A(int number,int *A,int *length);
+void AintoB(int *A,int *B,int *length);
+void Aequa_AaddB(int *A,int *B,int *length,int *jinzhi);
+int judge_huiwen(int *A,int *B,int *length,int step);
+int main()
+{
+	int number;
+	scanf("%d",&number);
+	int jinzhi;
+ 	
+ 	int length;
+ 	int A[1000]={0};
+     int B[1000]={0};
+     jinzhi=10;
+    savein_A(number,A,&length);
+    
+	AintoB(A,B,&length);
+ 
+    function(A,B,&length,1,&jinzhi);
+	
+ } 
+ void function(int *A,int *B,int *length,int step,int *jinzhi)
+{
+ 
+   if(step>23)
+   {
+    printf("No\n");
+    return ;
+   }
+ 
+   Aequa_AaddB(A,B,length,jinzhi);
+   AintoB(A,B,length);
+   if(judge_huiwen(A,B,length,step)==1)
+   {
+     return ;
+   }
+ 
+   function(A,B,length,step+1,jinzhi);
+   return ;
+ 
+}
+
+void savein_A(int number,int *A,int *length)
+{
+ 
+   *length=0;
+ 
+   while(number!=0)
+   {
+ 
+     A[(*length)++]=number%10;
+     number/=10;
+   }
+ 
+   (*length)--;
+}
+ 
+
+void AintoB(int *A,int *B,int *length)
+{
+ 
+   for(int i=0,j=(*length);j>=0;j--,i++)
+      B[i]=A[j];
+ 
+}
+ 
+
+void Aequa_AaddB(int *A,int *B,int *length,int *jinzhi)
+{
+ 
+ 
+    for(int i=0;i<=(*length);i++)
+      A[i]+=B[i];
+ 
+ 
+    for(int j=0;j<=(*length);j++)
+    {
+       if(A[j]/(*jinzhi)&&j==(*length))
+       (*length)++;
+ 
+       A[j+1]+=A[j]/(*jinzhi);
+       A[j]%=(*jinzhi);
+    }
+ 
+ 
+}
+
+int judge_huiwen(int *A,int *B,int *length,int step)
+{
+   int i;
+ 
+   for( i=0;i<=(*length);i++)
+       {
+          if(A[i]!=B[i])
+          break;
+       }
+ 
+    if(i>(*length))
+      {
+        for(int i=0;i<=(*length);i++)
+        {
+        	printf("%d",A[i]);
+        
+		}
+			printf("\n");
+        return 1;
+      }
+    else
+        return 0;
+}
