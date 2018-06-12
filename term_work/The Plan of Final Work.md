@@ -44,7 +44,7 @@ PLAN
 微米(um)|10e6
 纳米(nm)|10e9
 英寸(in)|39.37007874016
-英尺(ft)|3.2808398.95013
+英尺(ft)|3.280839895013
 寸(Cun）| 30
 尺 (Chi) |  0.002
 丈(Zhang) | 3
@@ -114,14 +114,13 @@ mach|0.0029386
 
 >**help:**
 >help :帮助信息
->help + unit ：显示单位信息 转换标准等
 
 >**transform**
 >format： 
 >1.digit +  src_unit +  des_unit  ：src单位数值转为des
 >2.src_unit +  des_unit: des对src的比例 (即对1digit值置为默认1）
 
->**exit**
+>**quit**
 >退出程序
 
 

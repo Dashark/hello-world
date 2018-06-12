@@ -9,6 +9,7 @@
 #include<iomanip>
 #include<cctype>
 
+
 using namespace std;
 
 // the class defination
@@ -37,7 +38,7 @@ public:
 + srcUnit + desUnit\nplease input help to know more";
 	const string Version = "The procedure is  to accomplish the function of Unit Convertor\n\
 The input format is:\n1.help\n2.srcUnit + desUnit\n3.digit\
-+ srcUnit + desUnit\nAnd the Precision reserved 6 decimal places";
++ srcUnit + desUnit\n4.quit: close the codes\nAnd the Precision reserved 6 decimal places";
 	//Lenth 
 	const string Unit_Lenth[11] =
 	{
@@ -83,6 +84,7 @@ The input format is:\n1.help\n2.srcUnit + desUnit\n3.digit\
 	{
 		1,0.01,39.370079,3.3356e-9,0.001,0.0029386
 	};
+	pair<int,int> judge_Unit(const string&);
 };
 //:~end
 
@@ -97,7 +99,6 @@ public:
 	}
 	constexpr static const double standard_digit = 1;         //数值标准量
 	void getError();
-	int judge_Unit(const string&);
 	void Out_result(); //输出结果
 private:
 	double digit;     //转换数值
@@ -129,6 +130,7 @@ int main()
 	while(true)
 	{
 		string cmd; getline(cin,cmd);
+		if(cmd == "quit") return 0;
 		INPUTER inputer(cmd);
 		inputer.Out_result();
 	}
@@ -151,7 +153,7 @@ INPUTER::INPUTER(const string& cmd):digit(1),srcUnit(undefined),desUnit(undefine
 	if(lenth==1 && str[0]=="help") flag = 0;
 	else if(lenth == 2)
 	{
-		if(judge_Unit(str[0])==judge_Unit(str[1])&&judge_Unit(str[0]))
+		if(judge_Unit(str[0]).first==judge_Unit(str[1]).first&&judge_Unit(str[0]).first)
 		{
 			srcUnit = str[0];
 			desUnit = str[1];
@@ -170,12 +172,9 @@ INPUTER::INPUTER(const string& cmd):digit(1),srcUnit(undefined),desUnit(undefine
 				break;
 			}
 		}
-		if(mid&&judge_Unit(str[2])==judge_Unit(str[1])&&judge_Unit(str[1]))
+		if(mid&&judge_Unit(str[2]).first==judge_Unit(str[1]).first&&judge_Unit(str[1]).first)
 		{
-			
 			stringstream change(str[0]); change >> digit;
-			//cout << endl << "digit is " << digit << endl;
-			//cout <<fixed<<setprecision(6)<< "three unit transform" << endl;
 			srcUnit = str[1];
 			desUnit = str[2];
 			flag = 1;
@@ -185,10 +184,24 @@ INPUTER::INPUTER(const string& cmd):digit(1),srcUnit(undefined),desUnit(undefine
 	}
 	else flag = -1;
 }
-
 void INPUTER::Out_result()
 {
-	if(flag == 0) cout << Version << endl;
+	if(flag == 0) 
+	{
+		cout << Version << endl << endl;
+		cout << "The units we support are this:\n\n";
+		cout << "The Lenth:\n";
+		for(int i = 0;i < 11;i++) cout << Unit_Lenth[i] << "  ";
+		cout << endl << "\nThe Quality:\n";
+		for(int i = 0;i < 8;i++) cout << Unit_Quality[i] << "  ";
+		cout << endl << "\nThe Time:\n";
+		for(int i = 0;i < 9;i++) cout << Unit_Time[i] << "  ";
+		cout << endl << "\nThe Pressure:\n";
+		for(int i = 0;i < 7;i++) cout << Unit_Pressure[i] << "  ";
+		cout << endl << "\nThe Speed:\n";
+		for(int i = 0;i < 6;i++) cout << Unit_Speed[i] << "  ";
+		cout << endl << endl;
+	}
 	else if(flag == -1) getError();
 	else
 	{
@@ -203,29 +216,55 @@ void INPUTER::getError()
 }
 
 
-int INPUTER::judge_Unit(const string& target)
+pair<int,int> Unit_ALL::judge_Unit(const string& target)
 {
+	pair<int,int> pos(0,-1);
 	for(int i = 0;i < 11;i++)
 	{
-		if(Unit_Lenth[i] == target) return Lenth;
+		if(Unit_Lenth[i] == target)
+		{
+			pos.first = Lenth;
+			pos.second = i;
+			return pos;
+		}	
 	}
 	for(int i = 0;i < 8;i++)
 	{
-		if(Unit_Quality[i] == target) return Quality;
+		if(Unit_Quality[i] == target)
+		{
+			pos.first = Quality;
+			pos.second = i;
+			return pos;
+		}
 	}
 	for(int i = 0;i < 9;i++)
 	{
-		if(Unit_Time[i] == target) return Time;
+		if(Unit_Time[i] == target) 
+		{
+			pos.first = Time;
+			pos.second = i;
+			return pos;
+		}
 	}
 	for(int i = 0;i < 7;i++)
 	{
-		if(Unit_Pressure[i] == target) return Pressure;
+		if(Unit_Pressure[i] == target) 
+		{
+			pos.first = Pressure;
+			pos.second = i;
+			return pos;
+		}
 	}
 	for(int i = 0;i < 6;i++)
 	{
-		if(Unit_Speed[i] == target) return Speed;
+		if(Unit_Speed[i] == target) 
+		{
+			pos.first = Speed;
+			pos.second = i;
+			return pos;
+		}
 	}
-	return false;
+	return pos;
 }
 
 //: ~class INPUTER end
@@ -234,6 +273,29 @@ int INPUTER::judge_Unit(const string& target)
 
 double TRANSFORMER::getResult()
 {
-	return digit;
+	double result = -1;
+	pair<int,int> style_Src = judge_Unit(srcUnit);
+	pair<int,int> style_Des = judge_Unit(desUnit);
+	switch(style_Src.first)
+	{
+		case Lenth:
+			result = digit/DUnit_Lenth[style_Src.second]*DUnit_Lenth[style_Des.second];
+			break;
+		case Quality:
+			result = digit/DUnit_Quality[style_Src.second]*DUnit_Quality[style_Des.second];
+			break;
+		case Time:
+			result = digit/DUnit_Time[style_Src.second]*DUnit_Time[style_Des.second];
+			break;
+		case Pressure:
+			result = digit/DUnit_Pressure[style_Src.second]*DUnit_Pressure[style_Des.second];
+			break;
+		case Speed:
+			result = digit/DUnit_Speed[style_Src.second]*DUnit_Speed[style_Des.second];
+			break;
+		default :
+			break;
+	}
+	return result;
 }
 //:~ end TRANSFORMER
