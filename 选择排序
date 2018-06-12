@@ -1,0 +1,49 @@
+#include<stdio.h>
+int main()
+{
+	int n,i;
+	int j,s;
+	
+	scanf("%d",&n);
+	s=n;
+	int a[s];
+	for(j=0;j<s;j++)
+	{
+		scanf("%d",&a[j]);
+	}
+	int temp;
+	for(j=0;j<s;j++)
+	{
+		for(i=j+1;i<s;i++)
+		{
+			if(a[j]>a[i])
+			{
+				temp=a[j];
+				a[j]=a[i];
+				a[i]=temp;
+			}	
+		}
+	/*	int temp;  
+    for(int i=0;i<a.length;i++)  
+    {  
+        //内层循环j=i+1,外层循环控制着循环次数。即每趟中a[i]这个值就是本趟的最小值。i位置上是最小值  
+        for(int j=i+1;j<a.length;j++)     
+        {  
+            if(a[i]>a[j])  
+            {  
+                temp=a[i];  
+                a[i]=a[j];  
+                a[j]=temp;  
+            }  
+        }  
+    } */ 
+		for(int k=0;k<s;k++)
+	{
+		printf("%d ",a[k]);
+	}
+	printf("\n");
+	
+	}
+
+	
+}
