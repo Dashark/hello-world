@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string>
+#include<string.h>
+using namespace std;
+int main()
+{
+	int n,i,l1,l2;
+	char a[100];
+	char b[100];
+	char c[100];
+	cin>>a;
+	cin>>b;
+	l1=strlen(a);
+	l2=strlen(b);
+	i=1;
+	while(l1!=0&&l2!=0)
+	{
+		if(a[l1-1]!=b[l2-1])
+			break;
+		else
+		{
+			c[i]=c[i-1];
+			c[i-1]=a[l1-1];
+			l1--;
+			l2--;
+			i++;
+		}
+	}
+	if(i==1)
+		cout<<"null"<<endl;
+	else
+	{
+		for(int j=i-2;j>=0;j--)
+			cout<<c[j];
+		cout<<endl;
+	}
+	return 0;
+}
