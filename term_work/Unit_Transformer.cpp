@@ -91,9 +91,14 @@ class INPUTER: public Unit_ALL/* public HELPER ,public TRANSFORMER*/          //
 {										   					  //派生与帮助模块和转换模块
 public:
 	INPUTER(const string&);
+	~INPUTER()
+	{
+		cout << head;
+	}
 	constexpr static const double standard_digit = 1;         //数值标准量
 	void getError();
 	int judge_Unit(const string&);
+	void Out_result(); //输出结果
 private:
 	double digit;     //转换数值
 	string srcUnit;   //源单位
@@ -102,10 +107,19 @@ private:
 };
 //:~end INPUTER defination
 
-class TRANSFORMER
+//Transformer defination
+class TRANSFORMER:public Unit_ALL
 {
-	
+public:
+	TRANSFORMER(string a,string b,double c = 1.0):
+	srcUnit(a),desUnit(b),digit(c){}
+	double getResult(); 
+private:
+	double digit;     //转换数值
+	string srcUnit;   //源单位
+	string desUnit;   //目标单位
 };
+//:~end Transformer
 
 int main()
 {
@@ -116,6 +130,7 @@ int main()
 	{
 		string cmd; getline(cin,cmd);
 		INPUTER inputer(cmd);
+		inputer.Out_result();
 	}
 	return 0;
 }//:~
@@ -133,28 +148,23 @@ INPUTER::INPUTER(const string& cmd):digit(1),srcUnit(undefined),desUnit(undefine
 		str.push_back(temp);
 		lenth++;
 	}
-	if(lenth==1 && str[0]=="help")
-	{
-		flag = true;
-		cout << Version << endl;
-	}
+	if(lenth==1 && str[0]=="help") flag = 0;
 	else if(lenth == 2)
 	{
 		if(judge_Unit(str[0])==judge_Unit(str[1])&&judge_Unit(str[0]))
 		{
-			cout << "two unit transform" << endl;
 			srcUnit = str[0];
 			desUnit = str[1];
-			flag = true;
+			flag = 1;
 		}
-		else flag = false;
+		else flag = -1;
 	}
 	else if(lenth == 3)
 	{
 		bool mid = true;
 		for(int i = 0;i < str[0].size();i++)
 		{
-			if(isalpha(str[0][i]))
+			if(!(isdigit(str[0][i])||str[0][i] == '.'))
 			{
 				mid = false;
 				break;
@@ -162,20 +172,29 @@ INPUTER::INPUTER(const string& cmd):digit(1),srcUnit(undefined),desUnit(undefine
 		}
 		if(mid&&judge_Unit(str[2])==judge_Unit(str[1])&&judge_Unit(str[1]))
 		{
+			
 			stringstream change(str[0]); change >> digit;
-			cout << endl << "digit is " << digit << endl;
-			cout <<fixed<<setprecision(6)<< "three unit transform" << endl;
+			//cout << endl << "digit is " << digit << endl;
+			//cout <<fixed<<setprecision(6)<< "three unit transform" << endl;
 			srcUnit = str[1];
 			desUnit = str[2];
-			flag = true;
+			flag = 1;
 			
 		}
-		else flag = false;
+		else flag = -1;
 	}
-	else flag = false;
-	if(flag == false) cout << Error << endl;
-	cout << endl << head;
-	
+	else flag = -1;
+}
+
+void INPUTER::Out_result()
+{
+	if(flag == 0) cout << Version << endl;
+	else if(flag == -1) getError();
+	else
+	{
+		TRANSFORMER trans(srcUnit,desUnit,digit);
+		cout  << fixed << setprecision(6)<< trans.getResult() << endl;
+	}
 }
 
 void INPUTER::getError()
@@ -211,3 +230,10 @@ int INPUTER::judge_Unit(const string& target)
 
 //: ~class INPUTER end
 
+//class TRANSFORMER
+
+double TRANSFORMER::getResult()
+{
+	return digit;
+}
+//:~ end TRANSFORMER
