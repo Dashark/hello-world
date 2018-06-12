@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std; 
+int function(int n)
+{
+	int i;
+	for(i=2;i<n;i++)
+	{
+		while(i!=n)
+			if(n%i==0)
+			{
+				n/=i;
+				cout<<i<<"*";	
+			}
+			else
+				break;
+	}
+	cout<<n<<endl;
+} 
+int main()
+{
+	int i,m,n;
+	cin>>m;
+	for(i=0;i<m;i++)
+	{	
+		cin>>n;
+		function(n);
+	}
+	return 0;
+}
