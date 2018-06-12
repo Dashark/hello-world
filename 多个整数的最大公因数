@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+
+int gcd(int a,int b)
+{
+	if(b==0)
+		return a;
+	else
+		return gcd(b,a%b); 
+}
+
+int main ()
+{
+	int n;
+	cin>>n;
+//	getchar();
+	while(n!=0)
+	{
+		int a,b,x;
+		a=0;b=0;x=0;
+		int m=0;
+		char c=getchar();
+		while(c!=','&&c!='\n')		//输入即进位 
+		{
+			m=m*10+c-'0';
+			c=getchar();
+		}
+		a=m;
+		m=0;
+		c=getchar();
+		while(c!=','&&c!='\n')		//同上操作 读取头两个数 
+		{
+			m=m*10+c-'0';
+			c=getchar();
+		}
+		b=m;
+		m=0;
+		x=gcd(a,b);
+		if(c!='\n')
+		{
+			while(c!='\n')
+			{
+				c=getchar();
+				if(c!=',')
+					m=m*10+c-'0';
+				else 
+				{
+					a=m;
+					m=0;
+					x=gcd(a,x);
+				}	
+			}
+		} 
+		cout<<x<<endl;
+		n--;
+	}
+}
