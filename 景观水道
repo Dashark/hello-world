@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+	int n;
+	cin>>n;
+	int L,M;
+	int p,q;
+	int ans;
+	int arr[10000];
+	for(int i=0;i<n;i++)
+	{
+		cin>>L>>M;
+		memset(arr,1,sizeof(arr));
+		ans=0;
+		for(int j=0;j<M;j++)
+		{
+			cin>>p>>q;
+			for(int k=p;k<=q;k++)
+				arr[k]=0;
+		}
+		for(int l=0;l<=L;l++)
+				if(arr[l]==0)
+					ans++;
+		cout<<L-ans+1<<endl;
+	}
+	
+	return 0;
+}
