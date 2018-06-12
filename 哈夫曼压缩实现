@@ -1,0 +1,212 @@
+#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <string.h>
+#define N 100
+
+typedef struct
+{
+	char data[3];
+	double weight;
+	int parent;
+	int lchild;
+	int rchild;
+}HTNode;
+
+typedef struct
+{
+	char data[3];
+	char cd[N];
+	int start;
+}HCode;
+
+typedef struct
+{
+	char s[3];
+}ST;
+
+void CreateHT(HTNode ht[], int n0);
+void CreateHCode(HTNode ht[],HCode hcd[], int n0);
+void Input(HTNode a[], ST b[], int &n);
+void PrintCode(HTNode ht[],HCode hc[], int n);
+void TranCode(HCode hc[], ST b[], int n);
+void DeCode(HTNode ht[], HCode hc[], char c[], int n);
+
+int main()
+{
+	HTNode a[10000];
+	HCode hc[10000];
+	ST b[10000];
+	char c[10000];
+	int n;
+	int i = 0, j = 0;
+	char ch;
+	FILE *fp1, *fp2;
+	
+	fp1 = fopen("f:\\HuffmanFile.txt", "rt");
+	while((ch=fgetc(fp1))!=EOF)
+    {
+		if(ch<0)
+		{
+			b[i].s[0] = ch;
+			ch = fgetc(fp1);
+			b[i].s[1] = ch;
+			b[i].s[2] = '\0';
+			i++;
+		}
+		else
+		{
+			b[i].s[0] = ch;
+			b[i].s[1] = '\0';
+			i++;
+		}
+    }
+	fclose(fp1);
+	b[i].s[0] = '\0';
+	
+	Input(a, b, n);
+	CreateHT(a, n);
+	CreateHCode(a, hc, n);
+	PrintCode(a, hc, n);
+	TranCode(hc, b, n);
+	
+	fp2 = fopen("f:\\HuffmanFileCode.txt", "rt");
+	while((ch=fgetc(fp2))!=EOF)
+		c[j++] = ch;
+	fclose(fp2);
+	DeCode(a, hc, c, n);
+	
+	return 0;
+}
+
+void CreateHT(HTNode ht[], int n0)
+{
+	int i,k,lnode,rnode;
+	double min1,min2;
+	for(i=0;i<2*n0-1;i++)
+		ht[i].parent=ht[i].lchild=ht[i].rchild=-1;
+	for(i=n0;i<=2*n0-2;i++)
+	{
+		min1=min2=32767;
+		lnode=rnode=-1;
+		for(k=0;k<=i-1;k++)
+			if(ht[k].parent==-1)
+			{
+				if(ht[k].weight<min1)
+				{
+					min2=min1; rnode=lnode;
+					min1=ht[k].weight; lnode=k;
+				}
+				else if(ht[k].weight<min2)
+				{
+					min2=ht[k].weight;
+					rnode = k;
+				}
+			}
+			ht[i].weight = ht[lnode].weight + ht[rnode].weight;
+			ht[i].lchild = lnode;
+			ht[i].rchild = rnode;
+			ht[lnode].parent = i;
+			ht[rnode].parent = i;
+	}
+}
+
+void CreateHCode(HTNode ht[],HCode hcd[], int n0)
+{
+	int i,f,c;
+	HCode hc;
+	for(i=0; i<n0; i++)
+	{
+		hc.start = n0;
+		c = i;
+		f = ht[i].parent;
+		while(f!=-1)
+		{
+			if(ht[f].lchild==c)
+				hc.cd[hc.start--] = '0';
+			else
+				hc.cd[hc.start--] = '1';
+			c = f;
+			f = ht[f].parent;
+		}
+		hc.start++;
+		hcd[i] = hc;
+		strcpy(hcd[i].data, ht[i].data);
+	}
+}
+
+void Input(HTNode a[], ST b[], int &n)
+{
+	int i, j, flag=0;
+	n = 0;
+	for(j=0; b[j].s[0]!='\0'; j++)
+	{
+		for(i=0;i<n;i++)
+		{
+			if(strcmp(a[i].data,b[j].s)==0)
+			{
+				flag = 1;
+				a[i].weight++;
+			}
+		}
+		if(flag==0)
+		{
+			strcpy(a[n].data, b[j].s);
+			a[n].weight = 1;
+			n++;
+		}	
+		flag=0;
+	}
+}
+
+void PrintCode(HTNode ht[],HCode hc[], int n)
+{
+	int i, j, p;
+	for(i=0; i<n; i++)
+		{
+			printf("%s   ", ht[i].data);
+			printf("出现次数:");
+			printf("%3g   ", ht[i].weight);
+			printf("哈夫曼编码: ");
+			for(j=hc[i].start; j<n+1; j++)
+				printf("%c", hc[i].cd[j]);
+			printf("\n");
+		}
+}
+
+void TranCode(HCode hc[], ST b[], int n)
+{
+	int i, j, k;
+	FILE *fp;
+	fp = fopen("f:\\HuffmanFileCode.txt", "wt");
+	for(i=0; b[i].s[0]!='\0'; i++)
+		for(j=0; j<n; j++)
+		{
+			if(strcmp(hc[j].data, b[i].s)==0)
+				for(k=hc[j].start; k<n+1; k++)
+					fprintf(fp, "%c", hc[j].cd[k]);
+		}
+	fclose(fp);
+}
+
+void DeCode(HTNode ht[], HCode hc[], char c[], int n)
+{
+	int i, p, ch;
+	FILE *fp;
+	p = 2*n-2;
+	fp = fopen("f:\\HuffmanFileDeCode.txt", "wt");
+	for(i=0; c[i]!='\0'; i++)
+	{
+		if(c[i]=='1')
+		
+			p = ht[p].rchild;
+		else
+			p = ht[p].lchild;
+		if(ht[p].rchild==-1 && ht[p].lchild==-1)
+			{
+				fprintf(fp, "%s", ht[p].data);
+				p = 2*n-2;
+			}
+	}
+	fclose(fp);
+}
