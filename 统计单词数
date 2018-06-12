@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+
+int main()
+{
+	char c[105];
+	cin.get(c,100);
+	int len=strlen(c);
+	int cnt=0;
+	if(len==0)
+	{
+		cout<<0<<endl;
+		return 0;
+	}
+	for(int i=0;i<len;i++)
+	{
+		if(c[i]<='z'&&c[i]>='A')
+        {
+ 	       cnt++;
+           while(c[i]<='z'&&c[i]>='A')
+				i++;
+        }
+	}
+	cout<<cnt<<endl;
+	return 0;
+}
