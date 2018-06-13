@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int  num_of_new_cows(int n)
+{
+ if(n <= 4)
+ {
+  return 1;
+ }
+ else
+ {
+  return num_of_new_cows(n - 1)+num_of_new_cows(n - 3);
+ }
+}
+int num_of_cows(int n)
+{
+ int sum = 0;
+ for(int i = 1;i <= n;++i)
+ {
+  sum += num_of_new_cows(i);
+ }
+ return sum;
+}
+int main()
+{
+	int s;
+    while(cin>>s)
+    {
+    	cout<<num_of_cows(s)<<endl;
+	}
+
+	return 0;	
+}
