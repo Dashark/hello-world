@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+char time[32][10]= {"UTC","GMT","BST","IST","WET","WEST","CET","CEST","EET","EEST","MSK","MSD","AST","ADT","NST","NDT","EST","EDT","CST","CDT","MST","MDT","PST","PDT","HST","AKST","AKDT","AEST","AEDT","ACST","ACDT","AWST"};
+float tioff[32]= { 0, 0, 1, 1, 0, 1, 1, 2, 2, 3,
+                   3, 4, -4, -3, -3.5, -2.5, -5, -4, -6, -5,
+                   -7, -6, -8, -7, -10, -9, -8, 10, 11, 9.5,
+                   10.5, 8
+                 };
+int dif(char*s1,char*s2) {
+	int i,j;
+	for(j=0; j<32; j++) {
+		if(strcmp(s1,time[j])==0) break;
+	}
+	for(i=0; i<32; i++) {
+		if(strcmp(s2,time[i])==0) break;
+	}
+	return (int)((tioff[i]-tioff[j])*60);
+}
+int main() {
+	int n;
+	int hour;
+	int min;
+	char when[15];
+	char a[5];
+	char first[10];
+	char sed[10];
+	int i,j;
+	int total;
+	scanf("%d",&n);
+	//getchar();
+	for(i=0; i<n; i++) {
+		scanf("%s",when);
+		switch(when[0]) {
+			case 'n': {
+				hour=12;
+				min=0;
+				break;
+			}
+			case 'm': {
+				hour=0;
+				min=0;
+				break;
+			}
+			default:
+				sscanf(when,"%d:%d",&hour,&min);
+				hour%=12;
+				scanf("%s",a);
+				if(a[0]=='p')hour+=12;
+		}
+		scanf("%s %s",&first,&sed);
+		total=hour*60+min+dif(first,sed);
+		if(total<0)   total+=24*60;
+		if(total>=24*60)total-=24*60;
+		hour=total/60;
+		min=total%60;
+		switch(hour) {
+			case 0: {
+				if(min==0) {
+					printf("midnight\n");
+				} else {
+					printf("12:%d a.m.\n",min);
+				}
+				break;
+			}
+			case 12: {
+				if(min==0) {
+					printf("noon\n");
+				} else {
+					printf("12:%d p.m.\n",min);
+				}
+				break;
+			}
+			default:
+				if(hour>12) {
+					printf("%d:%d p.m.\n",hour-12,min);
+				} else {
+					printf("%d:%d a.m.\n",hour,min);
+				}
+		}
+	}
+
+	return 0;
+}
