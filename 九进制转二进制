@@ -1,0 +1,37 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+int  zhuanhuan(int b) 
+{
+	int shuzi=0,i=0;
+	while(b!=0)
+	{
+		shuzi=(b%10)*pow(10,i);
+		i++;
+		b=b/10;
+	}
+	return shuzi;
+}
+int  erjinzhi(int r)
+{
+	int q;
+	r=r%2;
+	r=r/2;
+	if(q!=0)
+	{
+		erjinzhi(r);
+	}
+	cout<<q;
+}
+int main()
+{
+	int n,w,a;
+	cin>>n;
+	for(int i=0;i<n;i++)
+	{
+		cin>>w;
+		a=zhuanhuan(w);
+		erjinzhi(a);
+		cout<<endl;
+	}
+}
