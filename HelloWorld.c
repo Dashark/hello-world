@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include"Hello-World.h"
 #include<iostream>
 void HelloWorld::helloworld(){
@@ -11,3 +12,10 @@ int main() {
   return 0;
 }
 >>>>>>> patch-5
+=======
+#include<iostream>
+int main(){
+  cout<<"hello world"<<endl;
+  return 0;
+  }
+>>>>>>> origin/patch-1
