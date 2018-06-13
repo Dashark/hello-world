@@ -1,0 +1,22 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+	int n=0,jiangyou=0;
+	cin>>n;
+	int k=n/10;
+	int a=k/5;
+	int b=k/3;
+		if(a>=1)
+		{
+			int shengyu=(k-a*5)/3;
+			jiangyou=2*a+k+shengyu*1;
+			}	
+		else
+		{
+			jiangyou=b*1+k;
+		}
+		cout<<jiangyou<<endl;
+		return 0;
+}
