@@ -10,6 +10,7 @@ bool isprime(int num) {
 	return true;
 }
 int sum_bit(int num) {
+<<<<<<< HEAD
 	int sum = 0;
 	while (num){
 		sum += num % 10;
@@ -52,4 +53,54 @@ int main() {
 		cout << "This is prim num " << endl;
 	}
 	//to do sth
+=======
+ int sum=0;
+  while(num){
+    sum+=num%10;
+  }
+  if(isprime(sum)){
+    return ture;
+  }
+  return 0;
+}
+
+int multi_bit(int num) {
+  int sum=0;
+  while(num){
+    sum*=(num%10);
+    num%=10;
+  }
+  if(isprime(sum)){
+    return ture;
+  }
+  return 0;
+}
+
+int square_sum_bit(int num) {
+  int sum=0;
+  while(num){
+    sum+=(num%10)*(num%10);
+    num%=10;
+  }
+  if(isprime(sum)){
+    return ture;
+  }
+  return 0;
+}
+
+bool isprime(int num) {
+  for(int i=2;i*i<=num;i++){
+    if(num%i==0){
+       return false;
+    }
+  }
+  return true;
+}
+
+int main() {
+  if(isprime(113)&&isprime(sum_bit(113))&&isprime(multi_bit(113))&&isprime(square_sum_bit(113))){
+      cout<<"This is a super prime"
+  }
+    return 0//to do sth
+>>>>>>> origin/patch-2
 }
