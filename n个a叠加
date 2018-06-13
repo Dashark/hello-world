@@ -1,0 +1,23 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+int main ()
+{
+	int a,b;
+	cin>>a>>b;
+	int sum=0;
+	int jieguo;
+	vector<int> cnt;
+	for(int i=b;i>0;i--)//while(b 
+	{
+		jieguo=a*i+sum;
+		sum = jieguo/10;
+		jieguo%=10;
+		cnt.push_back(jieguo);
+	}
+	for(int i=cnt.size()-1;i>=0;i--)
+	{
+		cout<<cnt[i];
+	}
+	cout<<endl;
+}
