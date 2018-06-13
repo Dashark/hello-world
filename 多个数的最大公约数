@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+	if(b==0) return a;
+	return gcd(b,a%b); 
+}
+int main ()
+{
+	int n;
+	cin>>n;
+	getchar();
+	while(n--)
+	{
+		int a=0,b=0;
+		int ans=0;
+		char m;
+		int t=0;
+		m=getchar();
+		while(m!=',')
+		{
+			t = t*10+m-'0';
+			m=getchar();
+		}
+		a=t;
+		t=0;
+		m=getchar();
+		while(m!=','&&m!='\n')
+		{
+			t = t*10+m-'0';
+			m=getchar();
+		}
+		b=t;
+		t=0;
+		ans = gcd(a,b);
+		if(m!='\n')
+		{
+			m=getchar();
+			while(m!='\n')
+			{
+				if(m!=',')
+				{
+					t = t*10+m-'0';
+				}
+				else 
+				{
+					a=t;
+					t=0;
+					ans = gcd(a,ans);
+				}
+			m=getchar();	
+			}
+		} 
+		cout<<ans<<endl;
+	}
+}
