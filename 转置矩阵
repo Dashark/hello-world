@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int m,n;
+	cin>>m>>n; 
+	if(m<=0||n<=0)
+	{
+		cout<<"NO"<<endl;
+	}
+	int arr[m][n];
+	for(int k=0;k<m;k++)
+	{
+		for(int q=0;q<n;q++)
+		cin>>arr[k][q];
+	}
+	for(int k=0;k<m;k++)
+	{
+		for(int q=0;q<n;q++)
+		cout<<arr[k][q]<<" ";
+	cout<<endl;
+	}
+	for(int k=0;k<m;k++)
+	{
+		for(int q=0;q<n;q++)
+		cout<<arr[q][k]<<" ";
+		cout<<endl;
+	}
+}
