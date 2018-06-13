@@ -5,6 +5,7 @@ struct Date {
   int month;
   int day;
 };
+<<<<<<< HEAD
 int month1[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
 int month2[13]={0,31,29,31,30,31,30,31,31,30,31,30,31};
 bool isrunnian(int year){
@@ -24,7 +25,14 @@ bool isrunnian(int year){
 }
 void next_day(struct Date &day);
 void previous_day(struct Date &day);
+=======
+int month1[12]={31,28,31,30,31,30,31,31,30,31,30,31};
+int month2[12]={31,29,31,30,31,30,31,31,30,31,30,31};
+void next_day(struct Date day);
+void previous_day(struct Date day);
+>>>>>>> origin/patch-4
 int equal(struct Date one, struct Date day);
+bool 
 void show(struct Date day) {
   printf("%04d%01d%01d\n",day.year,day.month,day.day);
 }
@@ -68,7 +76,24 @@ int equal(struct Date one,struct Date day){
         return false;
     }
 }
+<<<<<<< HEAD
 
+=======
+void next_day(struct Date day){
+  if(isrunyue){
+  }
+  if(day.day+1>)
+}
+void previous_day(struct Date day){
+  day.
+}
+int equal(struct Date one, struct Date day){
+  if()
+}
+void show(struct Date day) {
+  printf("%d %d %d\n",day.year,day.month,day.day);
+}
+>>>>>>> origin/patch-4
 int main() {
   struct Date today = {2018,3,20};
   struct Date day = {2018,3,20};
