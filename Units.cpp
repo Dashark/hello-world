@@ -966,6 +966,7 @@ int main()
 			{
 				system("cls");
 				cout<<"谢谢你的好心，我只是开个玩笑 XD"<<endl;
+				cout<<"本程序免费使用"<<endl;
 				
 				break; 
 			 } 
