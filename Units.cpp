@@ -69,7 +69,7 @@ void date::input()
 		s3+=m[i];//月份的天数 
 	}
 	int s;
-	s=s1+s2+s3-1;//总天数 
+	s=s1+s2+s3-2;//总天数 
 	cout<<endl;
 	switch(s%7)
 	{
@@ -1010,10 +1010,11 @@ int main()
 						 default:
 						 {
 						 	cout<<"选择不合法，我问你到底用不用？";
-						
+							break;
 						  } 
 						 
 					}
+					break;
 				 } 
 				
 				default:
