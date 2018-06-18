@@ -137,8 +137,56 @@ std::map<std::string, int> Length::lenMap(initial_length());
 std::map<std::string, int>Time::TimeMap(initial_time());
 
 int main() {
-    Mass a(153.2461841,"g");
-    std::printf("%lf\n",a.convert("oz"));
+    int typeNum;
+    double data;
+    char yOrn;
+    std::string unit, toUnit;
+    while(true) {
+        std::cout << "*************************" << std::endl;
+        std::cout << "请选择要转换的单位：" << std::endl;
+        std::cout << "1、长度" << std::endl << "2、质量" << std::endl << "3、时间" << std::endl << 
+        "4、速度" << std::endl << "输入序号：";
+        std::cin >> typeNum;
+        std::cout << "输入待转换内容（大小及单位）：" << std::endl;
+        std::cin >> data >> unit;
+        std::cout << "要转换为（单位）：" << std::endl;
+        std::cin >> toUnit;
+        switch(typeNum) {
+            case 1:
+            {
+                Length len(data, unit);
+                std::printf("结果是：%lf",len.convert(toUnit));
+                std::cout << toUnit << std::endl;
+                break;
+            }
+            case 2:
+            {
+                Mass weight(data, unit);
+                std::printf("结果是：%lf",weight.convert(toUnit));
+                std::cout << toUnit << std::endl;
+                break;
+            }
+            case 3:
+            {
+                Time t(data, unit);
+                std::printf("结果是：%lf",t.convert(toUnit));
+                std::cout << toUnit << std::endl;
+                break;
+            }
+            case 4:
+            {
+                Velocity v(data, unit);
+                std::printf("结果是：%lf",v.convert(toUnit));
+                std::cout << toUnit << std::endl;
+                break;
+            }
+        }
+        std::cout << "是否继续(y/n):" << std::endl;
+        std::cin >> yOrn;
+        if(yOrn == 'n') {
+            break;
+        }
+    }
     return 0;
 }
 
