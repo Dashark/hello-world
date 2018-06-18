@@ -1,14 +1,7 @@
-class Table {
-public:
+#include<iostream>
+#include<string>
+using namespace std;
 
-  void show();
-  int addRow();
-  void delRow(int n);
-  int addColumn();
-  void delColumn(int n);
-private:
-  Cell cells;
-};
 class Cell {
 public:
   Cell(char con[]);
@@ -17,7 +10,19 @@ public:
   void show();
 private:
   string content;
-}
+};
+
+class Table {
+public:
+  void show();
+  int addRow();
+  void delRow(int n);
+  int addColumn();
+  void delColumn(int n);
+private:
+  Cell cells;
+};
+
 int main() {
   Table tb;
   tb.show();

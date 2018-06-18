@@ -1,3 +1,26 @@
+#include<iostream>
+#include<string>
+#include<sstream>
+using namespace std;
+
+class Table {
+  public:
+    Table(int _row = 1, int _col = 1);
+    ~Table();
+    void show();
+    void addColumn();
+    void addRow();
+    void delRow(int _rowNum);
+    void delColumn(int _colNum);
+    template<class T>
+    void set(int _rowNum, int _colNum, T text);
+
+  private:
+    int rows, cols;
+
+
+};
+
 int main() {
   Table tb;
   tb.show();
@@ -16,3 +39,4 @@ int main() {
   tb1.show();
   return 0;
 }
+
