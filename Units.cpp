@@ -4,10 +4,7 @@
 //长度单位：m, km, ft, in,......
 //其它单位：md, cp,......
 //还有很多单位转换，有些单位是其它单位组合出来的
-#include<iostream>
-#include<map>
-#include<string>
-#include<cmath> 
+#include<bits/stdc++.h> 
 using namespace std;
 typedef map<string,double> Mapsi;
 class units{
@@ -19,6 +16,10 @@ public://单位成员insert  在单位组合中添加新单位的方法
 private: 
 };
 class Basic_units:public units{
+private:
+	map<string,Mapsi> total;
+	int index;
+	string u[4];
 public:
 	Basic_units():index(0){
 		//长度单位预置
@@ -81,7 +82,72 @@ public:
 		
 	}
 	virtual bool Find(string st1,string st2){
-		for(int i=0;i<4;i++){
+		for(int i=0;i<4;i++){  //个数
+			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
+			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
+				index=i;  //遍历，看是否相匹配
+				return true;
+			} 
+		}
+		return false;
+	}
+	double result(double x,string st1,string st2){
+		return x*total[u[index]][st2]/total[u[index]][st1];
+	}
+};
+
+class Combine_units:public units{ //组合单位
+private:
+	map<string,Mapsi> total;
+	int index;
+	string u[4];
+public:
+	Combine_units():index(0){
+		u[0]="speed_s";     //  length/time
+		Mapsi_insert(&total[u[0]],"m/s",1);
+		Mapsi_insert(&total[u[0]],"km/s",0.001);
+		Mapsi_insert(&total[u[0]],"dm/s",10);
+		Mapsi_insert(&total[u[0]],"cm/s",100);
+		Mapsi_insert(&total[u[0]],"mm/s",1000);
+		Mapsi_insert(&total[u[0]],"um/s",1000000);
+		Mapsi_insert(&total[u[0]],"nm/s",1000000000);
+		Mapsi_insert(&total[u[0]],"nmi/s",0.00053996);
+		Mapsi_insert(&total[u[0]],"mi/s",0.00062137);
+		Mapsi_insert(&total[u[0]],"in/s",39.37007874);
+		Mapsi_insert(&total[u[0]],"ft/s",3.2808399);
+		
+		u[1]="speed_min";
+		Mapsi_insert(&total[u[1]],"m/min",1/60);
+		Mapsi_insert(&total[u[1]],"km/min",0.001/60);
+		Mapsi_insert(&total[u[1]],"dm/min",10/60);
+		Mapsi_insert(&total[u[1]],"cm/min",100/60);
+		Mapsi_insert(&total[u[1]],"mm/min",1000/60);
+		Mapsi_insert(&total[u[1]],"um/min",1000000/60);
+		Mapsi_insert(&total[u[1]],"nm/min",1000000000/60);
+		Mapsi_insert(&total[u[1]],"nmi/min",0.00053996/60);
+		Mapsi_insert(&total[u[1]],"mi/min",0.00062137/60);
+		Mapsi_insert(&total[u[1]],"in/min",39.37007874/60);
+		Mapsi_insert(&total[u[1]],"ft/min",3.2808399/60);
+        
+		u[2]="speed_h";
+		Mapsi_insert(&total[u[2]],"km/h",0.001/3600);
+		Mapsi_insert(&total[u[2]],"dm/h",10/3600);
+		Mapsi_insert(&total[u[2]],"cm/h",100/3600);
+		Mapsi_insert(&total[u[2]],"mm/h",1000/3600);
+		Mapsi_insert(&total[u[2]],"um/h",1000000/3600);
+		Mapsi_insert(&total[u[2]],"nm/h",1000000000/3600);
+		Mapsi_insert(&total[u[2]],"nmi/h",0.00053996/3600);
+		Mapsi_insert(&total[u[2]],"mi/h",0.00062137/3600);
+		Mapsi_insert(&total[u[2]],"in/h",39.37007874/3600);
+		Mapsi_insert(&total[u[2]],"ft/h",3.2808399/3600);
+		
+		u[3]="work"; 
+		Mapsi_insert(&total[u[3]],"j",1);
+		Mapsi_insert(&total[u[3]],"kw.h",3600000);
+		//还有许多种组合 
+}
+virtual bool Find(string st1,string st2){
+		for(int i=0;i<4;i++){         
 			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
 			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
 				index=i;
@@ -93,11 +159,59 @@ public:
 	double result(double x,string st1,string st2){
 		return x*total[u[index]][st2]/total[u[index]][st1];
 	}
+}; 
+
+class Power_units:public units{  //基本单位的幂
 private:
 	map<string,Mapsi> total;
 	int index;
-	string u[4];
-};
+	string u[2];
+public:
+	Power_units():index(0){
+u[0]="area";
+		Mapsi_insert(&total[u[0]],"m^2",1);
+		Mapsi_insert(&total[u[0]],"km^2",0.000001);
+		Mapsi_insert(&total[u[0]],"dm^2",100);
+		Mapsi_insert(&total[u[0]],"cm^2",10000);
+		Mapsi_insert(&total[u[0]],"mm^2",1000000);
+		Mapsi_insert(&total[u[0]],"um^2",1000000000000);
+		Mapsi_insert(&total[u[0]],"nm^2",1000000000000000000);
+		Mapsi_insert(&total[u[0]],"nmi^2",0.00002915568); 
+		Mapsi_insert(&total[u[0]],"mi^2",0.00003861007);
+		Mapsi_insert(&total[u[0]],"in^2",1559.0031);
+		Mapsi_insert(&total[u[0]],"yd^2",1.195989);
+		Mapsi_insert(&total[u[0]],"ft^2",10.7639104);
+		Mapsi_insert(&total[u[0]],"fur^2",0.00002471054);
+	
+u[1]="volume";
+		Mapsi_insert(&total[u[1]],"m^3",1);
+		Mapsi_insert(&total[u[1]],"km^3",pow(0.001,3));
+		Mapsi_insert(&total[u[1]],"dm^3",pow(10,3));
+		Mapsi_insert(&total[u[1]],"cm^3",pow(100,3));
+		Mapsi_insert(&total[u[1]],"mm^3",pow(1000,3));
+		Mapsi_insert(&total[u[1]],"um^3",pow(1000000,3));
+		Mapsi_insert(&total[u[1]],"nm^3",pow(1000000000,3));
+		Mapsi_insert(&total[u[1]],"nmi^3",pow(0.00053996,3)); 
+		Mapsi_insert(&total[u[1]],"mi^3",pow(0.00062137,3));
+		Mapsi_insert(&total[u[1]],"in^3",pow(39.37007874,3)); 
+		Mapsi_insert(&total[u[1]],"yd^3",pow(1.0936133,3));
+		Mapsi_insert(&total[u[1]],"ft^3",pow(3.2808399,3));
+		Mapsi_insert(&total[u[1]],"fu^3",pow(0.00497097,3));
+	} 
+	virtual bool Find(string st1,string st2){
+		for(int i=0;i<2;i++){         
+			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
+			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
+				index=i;
+				return true; 
+			} 
+		}
+		return false;
+	}
+	double result(double x,string st1,string st2){
+		return x*total[u[index]][st2]/total[u[index]][st1];
+	}
+}; 
 int main(){
 	double n;
 	string st1,st2;
