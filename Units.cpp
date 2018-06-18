@@ -7,14 +7,15 @@
 #include<iostream>
 #include<string>
 #include<map>
+#include<cstdio>
 
 class Unit{
   public:
     Unit(double num, std::string unit) : data(num), unit(unit){}
-    ~Unit(){}
+    virtual ~Unit(){}
     virtual double convert(std::string unit) = 0;
-    virtual double _from(double num, std::string unit) = 0;
-    virtual double _to(double num,std::string unit) =0;
+    virtual double _from() = 0;
+    virtual double _to(double num,std::string unit) = 0;
     double getData() {
         return data;
     }
@@ -29,22 +30,24 @@ class Unit{
 class Mass: virtual public Unit{
     public:
       Mass(double num, std::string unit) : Unit(num, unit){}
-      ~Mass(){}
+      virtual ~Mass(){}
       double convert(std::string toUnit);
-    private:
       double _from();
       double _to(double num,std::string unit);
-      static std::map<std::string,int> massMap;
+    private:
+      static std::map<std::string,int> massMap;      
 };
 
 /*
 class Length: virtual public Unit{
   public:
-    Length(double num, std::string unit) : Unit(num, unit){}
+    Length(double num, std::string unit) : Unit(num, unit){map}
     ~Length(){}
   private:
     static std::map<std::string,int> lenMap;      
 };
+std::map<std::string,int> Unit::lenMap.insert(std::pair<std>);
+
 
 class Stress : virtual public Unit{
     public:
@@ -77,11 +80,12 @@ std::map<std::string,int> initial_mass() {
     temp.insert(std::make_pair("point",10));
     return temp;
 }
-
 std::map<std::string,int> Mass::massMap(initial_mass());
 
 int main() {
-  return 0;
+    Mass a(153.2461841,"g");
+    std::printf("%lf\n",a.convert("oz"));
+    return 0;
 }
 
 double Mass::_from() {
