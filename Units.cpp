@@ -38,23 +38,47 @@ class Mass: virtual public Unit{
       static std::map<std::string,int> massMap;      
 };
 
-/*
-class Length: virtual public Unit{
-  public:
-    Length(double num, std::string unit) : Unit(num, unit){map}
-    ~Length(){}
-  private:
-    static std::map<std::string,int> lenMap;      
+class Length : virtual public Unit{
+    public:
+      Length(double num, std::string unit) : Unit(num, unit) {}
+      ~Length() {}
+      double convert(std::string toUnit);
+    private:
+      double _from();
+      double _to(double num, std::string unit);
+      static std::map<std::string, int> lenMap;
 };
-std::map<std::string,int> Unit::lenMap.insert(std::pair<std>);
 
+class Time :virtual public Unit{
+    public:
+      Time(double num, std::string unit) :Unit(num, unit) {}
+      ~Time() {}
+      double convert(std::string toUnit);
+    private:
+      double _from();
+      double _to(double num,std::string unit);
+      static std::map<std::string, int> TimeMap;
+};
+
+class Velocity{
+    public:
+      Velocity(double _data, std::string unit):data(_data), len(1,unit.substr(0, unit.find('/'))),t(1,unit.substr(unit.find('/')+1, unit.length() - 1)){}
+      ~Velocity(){}
+      double convert(std::string toUnit);
+    private:
+      double data;
+      Length len;
+      Time t;
+};
+
+/*
 
 class Stress : virtual public Unit{
     public:
       Stress(double num, std::string unit) : Unit(num, unit){}
       ~Stress(){}
     private:
-      static std::vector<std::vector<double(*)(double)> > Formula;      
+      static std::map<std::string, int> stressMap;
 };
 
 class Force : virtual public Unit{
@@ -62,9 +86,25 @@ class Force : virtual public Unit{
       Force(double num, std::string unit) : Unit(num, unit){}
       ~Force(){}
     private:
-      static std::vector<std::vector<double(*)(double)> > Formula;      
+      static std::map<std::string, int> forceMap;
 };
 */
+
+std::map<std::string, int>initial_length()
+{
+	std::map<std::string, int> tmp;
+	tmp.insert(std::make_pair("m", 1));
+	tmp.insert(std::make_pair("km", 2));
+	tmp.insert(std::make_pair("mile", 3));
+	tmp.insert(std::make_pair("foot", 4));
+	tmp.insert(std::make_pair("inch", 5));
+	tmp.insert(std::make_pair("mm", 6));
+	tmp.insert(std::make_pair("cm", 7));
+	tmp.insert(std::make_pair("chi", 8));//尺
+	tmp.insert(std::make_pair("cun", 9));//寸
+	tmp.insert(std::make_pair("zhang", 10));//丈
+	return tmp;
+}
 
 std::map<std::string,int> initial_mass() {
     std::map<std::string,int> temp;
@@ -80,7 +120,21 @@ std::map<std::string,int> initial_mass() {
     temp.insert(std::make_pair("point",10));
     return temp;
 }
+
+std::map<std::string, int>initial_time()
+{
+	std::map<std::string, int>tmp;
+	tmp.insert(std::make_pair("s", 1));
+	tmp.insert(std::make_pair("min", 2));
+	tmp.insert(std::make_pair("h", 3));
+	tmp.insert(std::make_pair("day", 4));
+	tmp.insert(std::make_pair("ms", 5));
+	return tmp;
+}
+
 std::map<std::string,int> Mass::massMap(initial_mass());
+std::map<std::string, int> Length::lenMap(initial_length());
+std::map<std::string, int>Time::TimeMap(initial_time());
 
 int main() {
     Mass a(153.2461841,"g");
@@ -100,6 +154,7 @@ double Mass::_from() {
       case 8:return Unit::getData()*0.02835;
       case 9:return Unit::getData()*100;
       case 10:return Unit::getData()*2.0/1000000;
+      default:return 0;
    }
 }
 
@@ -115,9 +170,86 @@ double Mass::_to(double num, std::string unit) {
       case 8:return num/0.02835;
       case 9:return num/100;
       case 10:return num/2.0*1000000;
+      default:return 0;
     }
 }
 
 double Mass::convert(std::string toUnit) {
     return this->_to(this->_from(), toUnit);
+}
+
+double Length::_from()
+{
+	switch (lenMap.at(Unit::getUnit()))
+	{
+	case 1:return Unit::getData();
+	case 2:return 1000 * Unit::getData();
+	case 3:return 1609.3448*Unit::getData();
+	case 4:return 0.3048*Unit::getData();
+	case 5:return 0.0254*Unit::getData();
+	case 6:return 0.001*Unit::getData();
+	case 7:return 0.01*Unit::getData();
+	case 8:return Unit::getData() / 3;
+	case 9:return Unit::getData() /30;
+	case 10:return Unit::getData() * 10 / 3;
+	default:return 0;
+  }
+}
+
+double Length::_to(double num, std::string unit)
+{
+	switch (lenMap.at(unit))
+	{
+	case 1: return num;
+	case 2:return num / 1000;
+	case 3:return num / 1609.3448;
+	case 4:return num / 0.3048;
+	case 5:return num / 0.0254;
+	case 6:return num / 0.001;
+	case 7:return num / 0.01;
+	case 8:return Unit::getData() *3;
+	case 9:return Unit::getData() *30;
+	case 10:return Unit::getData() *0.3;
+	default:return 0;
+  }
+}
+
+double Length::convert(std::string toUnit)
+{
+	return _to(this->_from(), toUnit);
+}
+
+double Time::_from()
+{
+	switch (TimeMap.at(Unit::getUnit()))
+	{
+	case 1:return Unit::getData();
+	case 2:return Unit::getData() * 60;
+	case 3:return Unit::getData() * 3600;
+	case 4:return Unit::getData() * 24 * 3600;
+	case 5:return  Unit::getData()/ 1000;
+  default:return 0;
+	}
+}
+
+double Time::_to(double num, std::string unit)
+{
+	switch (TimeMap.at(unit))
+	{
+	case 1:return num;
+	case 2:return num/ 60;
+	case 3:return num/ 3600;
+	case 4:return num/ (24 * 3600);
+	case 5:return num * 1000;
+	default:return 0;
+  }
+}
+
+double Time::convert(std::string toUnit)
+{
+	return _to(this->_from(), toUnit);
+}
+
+double Velocity::convert(std::string toUnit) {
+  return data * len.convert(toUnit.substr(0,toUnit.find('/'))) / t.convert(toUnit.substr(toUnit.find('/')+1, toUnit.length() - 1));
 }
