@@ -9,31 +9,29 @@ using namespace std;
 map<string, int> unit_list;
 class weight_unit
 {
-	public:
-		weight_unit(string name,double digit) :unit_name(name), temp(digit) {
-			unit_list["千克"]= 23; 
-			unit_list["公吨"]= 24; 
-			unit_list["克"]=   25;
-			unit_list["毫克"]= 26; 
-			unit_list["微克"]= 27; 
-			unit_list["格令"]= 28; 
-			unit_list["打兰"]= 29; 
-			unit_list["盎司"]= 30; 
-			unit_list["磅"]=   31; 
- 			unit_list["英石"]= 32; 
-			unit_list["英担"]= 33; 
-			unit_list["短吨"]= 34;
-			unit_list["长吨"]= 35; 
-			unit_list["斤"]=   36;
-			unit_list["两"]=   37;
-			unit_list["担"]=   38;
-		}
-		~length_unit() {}
-
+public:
+	weight_unit(string name, double digit) :unit_name(name), temp(digit) {
+		unit_list["千克"] = 23;
+		unit_list["公吨"] = 24;
+		unit_list["克"] = 25;
+		unit_list["毫克"] = 26;
+		unit_list["微克"] = 27;
+		unit_list["格令"] = 28;
+		unit_list["打兰"] = 29;
+		unit_list["盎司"] = 30;
+		unit_list["磅"] = 31;
+		unit_list["英石"] = 32;
+		unit_list["英担"] = 33;
+		unit_list["短吨"] = 34;
+		unit_list["长吨"] = 35;
+		unit_list["斤"] = 36;
+		unit_list["两"] = 37;
+		unit_list["担"] = 38;
+	}
+	~weight_unit() {}
 	void getallunit();//获取全部单位的值
-
 	void printans(string name);//打印所需单位
-	private:
+private:
 
 	double kilogram;//千克 
 	double gongdun;//公吨 
@@ -66,7 +64,7 @@ void weight_unit::getallunit() {
 		break;
 	}
 	case 25: {
-		gram = temp ;
+		gram = temp;
 		break;
 	}
 	case 26: {
@@ -78,7 +76,7 @@ void weight_unit::getallunit() {
 		break;
 	}
 	case 28: {
-		gram = 0.065*temp ;
+		gram = 0.065*temp;
 		break;
 	}
 	case 29: {
@@ -98,15 +96,15 @@ void weight_unit::getallunit() {
 		break;
 	}
 	case 33: {
-		gram = 50800.0*temp ;
+		gram = 50800.0*temp;
 		break;
 	}
 	case 34: {
-		gram = 907000.0*temp ;
+		gram = 907000.0*temp;
 		break;
 	}
 	case 35: {
-		gram = 1016000.0*temp ;
+		gram = 1016000.0*temp;
 		break;
 	}
 	case 36: {
@@ -117,26 +115,26 @@ void weight_unit::getallunit() {
 		gram = temp * 50.0;
 		break;
 	}
-	case 38:{
-		gram = temp*50000.0;
+	case 38: {
+		gram = temp * 50000.0;
 		break;
 	}
 	}
-	 kilogram=gram/1000.0; 
-	 gongdun=gram/1000000.0; 
-	 mg=gram*1000.0; 
-	 mcg=gram*1000000.0; 
- 	grain=gram/0.065; 
-	 dram=gram/1.772; 
-	 ounce=gram/28.35;
-	pound=gram/453.6;
-	 yingshi=gram/6350.0;
-	 yingdan=gram/50800.0;
-	 dd=gram/907000.0;
-	 cd=gram/1016000.0;
-	 jin=gram/500.0; 
-	liang=gram/50.0;	
-	 dan=gram/50000.0; 
+	kilogram = gram / 1000.0;
+	gongdun = gram / 1000000.0;
+	mg = gram * 1000.0;
+	mcg = gram * 1000000.0;
+	grain = gram / 0.065;
+	dram = gram / 1.772;
+	ounce = gram / 28.35;
+	pound = gram / 453.6;
+	yingshi = gram / 6350.0;
+	yingdan = gram / 50800.0;
+	dd = gram / 907000.0;
+	cd = gram / 1016000.0;
+	jin = gram / 500.0;
+	liang = gram / 50.0;
+	dan = gram / 50000.0;
 }
 void weight_unit::printans(string name)
 {
@@ -171,10 +169,10 @@ void weight_unit::printans(string name)
 	}
 	case 30: {
 		cout << ounce << "盎司" << endl;
-     	break;
+		break;
 	}
 	case 31: {
-		cout << pound<< "磅" << endl;
+		cout << pound << "磅" << endl;
 		break;
 	}
 	case 32: {
@@ -201,10 +199,9 @@ void weight_unit::printans(string name)
 		cout << liang << "两" << endl;
 		break;
 	}
-	case 38：{
-		cout << dan <<"担" <<endl;
-		break; 
-
+	case 38: {
+		cout << dan << "担" << endl;
+		break;
 	}
 	}
 }
@@ -222,8 +219,8 @@ public:
 	void printans(string name);//打印所需单位
 private:
 	double bar;//巴 
-	double MPa;//兆帕 
-	double KPa;//千帕 
+	double Mpa;//兆帕 
+	double Kpa;//千帕 
 	double Pa;//帕 
 	double ATM;//标准大气压 
 	double temp;
@@ -235,47 +232,47 @@ void pressure_unit::getallunit() {
 	{
 	case 39:
 	{
-		bar = temp;	
-		Pa = bar*100000.0;
-		Kpa = Pa/1000.0;
-		Mpa = Pa/1000000.0;
-		ATM = Pa/103330.0;
+		bar = temp;
+		Pa = bar * 100000.0;
+		Kpa = Pa / 1000.0;
+		Mpa = Pa / 1000000.0;
+		ATM = Pa / 103330.0;
 		break;
 	}
 	case 40:
 	{
-		 MPa = temp;
-		Pa = 1000000.0*MPa;
-		Kpa = Pa/1000.0;
-		ATM = Pa/103330.0;
-		bar = Pa/100000.0;
+		Mpa = temp;
+		Pa = 1000000.0*Mpa;
+		Kpa = Pa / 1000.0;
+		ATM = Pa / 103330.0;
+		bar = Pa / 100000.0;
 		break;
 	}
 	case 41:
 	{
-		KPa = temp;
-		Pa = KPa*1000.0;
-		ATM = Pa/103330.0;
-		bar = Pa/100000.0;
-		MPa = Pa/1000000.0;
+		Kpa = temp;
+		Pa = Kpa * 1000.0;
+		ATM = Pa / 103330.0;
+		bar = Pa / 100000.0;
+		Mpa = Pa / 1000000.0;
 		break;
 	}
 	case 42:
 	{
 		Pa = temp;
-		MPa = Pa /1000000.0;
-		Kpa = Pa/1000.0;
-		ATM = Pa/103330.0;
-		bar = Pa/100000.0;
+		Mpa = Pa / 1000000.0;
+		Kpa = Pa / 1000.0;
+		ATM = Pa / 103330.0;
+		bar = Pa / 100000.0;
 		break;
 	}
 	case 43:
 	{
-		ATM= temp;
-		Pa = ATM*101325.0;
-		Kpa = Pa/1000.0;
-		MPa = Pa /1000000.0;
-		bar = Pa/100000.0;
+		ATM = temp;
+		Pa = ATM * 101325.0;
+		Kpa = Pa / 1000.0;
+		Mpa = Pa / 1000000.0;
+		bar = Pa / 100000.0;
 		break;
 	}
 	}
@@ -285,27 +282,27 @@ void pressure_unit::printans(string name) {
 	{
 	case 39:
 	{
-		cout << bar << "bar\n" << endl;
+		cout << bar << "bar" << endl;
 		break;
 	}
 	case 40:
 	{
-		cout << MPa << "MPa\n" << endl;
+		cout << Mpa << "MPa" << endl;
 		break;
 	}
 	case 41:
 	{
-		cout << KPa << "KPa\n" << endl;
+		cout << Kpa << "KPa" << endl;
 		break;
 	}
 	case 42:
 	{
-		cout << Pa << "Pa\n" << endl;
+		cout << Pa << "Pa" << endl;
 		break;
 	}
 	case 43:
 	{
-		cout << ATM << "ATM\n" << endl;
+		cout << ATM << "ATM" << endl;
 		break;
 	}
 	}
@@ -341,7 +338,8 @@ private:
 	double centimetre;//厘米
 	double millimetre;//毫米
 	double micrometre;//微米
-	double li;//里	double zhang;//丈
+	double li;//里	
+	double zhang;//丈
 	double chi;//尺
 	double cun;//寸
 	double fen;//分
@@ -593,27 +591,27 @@ void temperature_unit::printans(string name) {
 	{
 	case 18:
 	{
-		cout << C << "℃\n" << endl;
+		cout << C << "℃" << endl;
 		break;
 	}
 	case 19:
 	{
-		cout << F << "℉\n" << endl;
+		cout << F << "℉" << endl;
 		break;
 	}
 	case 20:
 	{
-		cout << K << "K\n" << endl;
+		cout << K << "K" << endl;
 		break;
 	}
 	case 21:
 	{
-		cout << Ra << "°Ra\n" << endl;
+		cout << Ra << "°Ra" << endl;
 		break;
 	}
 	case 22:
 	{
-		cout << Re << "°Re\n" << endl;
+		cout << Re << "°Re" << endl;
 		break;
 	}
 	}
@@ -670,46 +668,48 @@ void power_unit::printans(string name) {
 	{
 	case 44:
 	{
-		cout << W << "W\n" << endl;
+		cout << W << "W" << endl;
 		break;
 	}
 	case 45:
 	{
-		cout << kW << "kW\n" << endl;
+		cout << kW << "kW" << endl;
 		break;
 	}
 	case 46:
 	{
-		cout << hp << "hp\n" << endl;
+		cout << hp << "hp" << endl;
 		break;
 	}
 	case 47:
 	{
-		cout << ps << "ps\n" << endl;
+		cout << ps << "ps" << endl;
 		break;
 	}
 	}
 }
 int main() {
-	string from, to;
-	double temp;
-	cout << "请依次输入数值、原单位、新单位（请以中文全称输入单位名称）" << endl;
-	cin >> temp >> from >> to;
-	pressure_unit a(from, temp);
-	weight_unit b(from, temp);
-	temperature_unit c(from, temp);
-	power_unit d(from, temp);
-	length_unit e(from, temp);
-	b.getallunit();
-	b.printans(to);
-	a.getallunit();
-	a.printans(to);
-	c.getallunit();
-	c.printans(to);
-	d.getallunit();
-	d.printans(to);
-	e.getallunit();
-	e.printans(to);
+	while (1) {
+		string from, to;
+		double temp;
+		cout << "请依次输入数值、原单位、新单位（请以中文全称输入单位名称）" << endl;
+		cin >> temp >> from >> to;
+		pressure_unit a(from, temp);
+		weight_unit b(from, temp);
+		temperature_unit c(from, temp);
+		power_unit d(from, temp);
+		length_unit e(from, temp);
+		b.getallunit();
+		b.printans(to);
+		a.getallunit();
+		a.printans(to);
+		c.getallunit();
+		c.printans(to);
+		d.getallunit();
+		d.printans(to);
+		e.getallunit();
+		e.printans(to);
+	}
 	return 0;
 }
 //单位转换程序，输入值和原单位，新单位，返回新单位下的值。
