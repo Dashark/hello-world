@@ -6,12 +6,12 @@
 
 using namespace std;
 
-map<string, int> unit_list;
-class weight_unit
+map<string, int> unit_list;//单位列表，存放单位的名称和与之一一对应的整数编号
+class weight_unit//将每种单位都构建一个类，用来存放相应单位以及在该单位下的数值，并且有单位转换和输出功能，这里时重量单位的类
 {
 public:
-	weight_unit(string name, double digit) :unit_name(name), temp(digit) {
-		unit_list["千克"] = 23;
+	weight_unit(string name, double digit) :unit_name(name), temp(digit) {//构造函数中unit_name代表当前待转换单位的单位名称，temp是数值
+		unit_list["千克"] = 23;//在赋值的同时初始化单位的列表，将重量单位的名称和一个编号一一对应
 		unit_list["公吨"] = 24;
 		unit_list["克"] = 25;
 		unit_list["毫克"] = 26;
@@ -30,7 +30,7 @@ public:
 	}
 	~weight_unit() {}
 	void getallunit();//获取全部单位的值
-	void printans(string name);//打印所需单位
+	void printans(string name);//打印所需单位的结果，包括数值和单位名称
 private:
 
 	double kilogram;//千克 
@@ -52,10 +52,10 @@ private:
 	double temp;
 	string unit_name;//输入单位名称
 };
-void weight_unit::getallunit() {
-	switch (unit_list[unit_name])
+void weight_unit::getallunit() {//该函数用于获取全部单位
+	switch (unit_list[unit_name])//判断输入的单位（即判断输入单位在单位列表中的编号，然后通过switch语句对不同的输入单位进行不同的操作
 	{
-	case 23: {
+	case 23: {//不论输入何种单位，都先将该单位数值转换成以克为单位的数值
 		gram = 1000.0*temp;
 		break;
 	}
@@ -119,7 +119,7 @@ void weight_unit::getallunit() {
 		gram = temp * 50000.0;
 		break;
 	}
-	}
+	}//取得以克为单位的数值后，再通过统一的公式将以克为单位的数值转化为其他单位
 	kilogram = gram / 1000.0;
 	gongdun = gram / 1000000.0;
 	mg = gram * 1000.0;
@@ -135,10 +135,10 @@ void weight_unit::getallunit() {
 	jin = gram / 500.0;
 	liang = gram / 50.0;
 	dan = gram / 50000.0;
-}
-void weight_unit::printans(string name)
+}//其实也可以只获取所需单位，但是这里为了避免麻烦就统一把所有单位都一同获取，这样输出函数就可以直接输出计算后的值
+void weight_unit::printans(string name)//输出函数
 {
-	switch (unit_list[name]) {
+	switch (unit_list[name]) {//也是通过switch语句找到单位列表中对应的所需单位，将值输出并打印单位名称
 	case 23: {
 		cout << kilogram << "千克" << endl;
 		break;
@@ -205,7 +205,7 @@ void weight_unit::printans(string name)
 	}
 	}
 }
-class pressure_unit {
+class pressure_unit {//后面就是其他的物理量的单位，思路大致一样，只需要在固定框架中做修改
 public:
 	pressure_unit(string name, double digit) :unit_name(name), temp(digit) {
 		unit_list["巴"] = 39;
@@ -688,10 +688,10 @@ void power_unit::printans(string name) {
 	}
 	}
 }
-int main() {
+int main() {//main函数里面其实没有做的很细致，只是简单地创建对象然后，调用对象内的函数来输出
 	while (1) {
-		string from, to;
-		double temp;
+		string from, to;//from为原单位，to为新单位
+		double temp;//为原单位的值
 		cout << "请依次输入数值、原单位、新单位（请以中文全称输入单位名称）" << endl;
 		cin >> temp >> from >> to;
 		pressure_unit a(from, temp);
@@ -699,6 +699,7 @@ int main() {
 		temperature_unit c(from, temp);
 		power_unit d(from, temp);
 		length_unit e(from, temp);
+		/*这里是把所有物理量都创建了对象，然后由于单位里表中，把所有单位从小到大排列，所以只有唯一的一个单位会输出出来，但实际上调用了很多函数*、
 		b.getallunit();
 		b.printans(to);
 		a.getallunit();
