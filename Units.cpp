@@ -699,7 +699,7 @@ int main() {//main函数里面其实没有做的很细致，只是简单地创�
 		temperature_unit c(from, temp);
 		power_unit d(from, temp);
 		length_unit e(from, temp);
-		/*这里是把所有物理量都创建了对象，然后由于单位里表中，把所有单位从小到大排列，所以只有唯一的一个单位会输出出来，但实际上调用了很多函数*、
+		/*这里是把所有物理量都创建了对象，然后由于单位里表中，把所有单位从小到大排列，所以只有唯一的一个单位会输出出来，但实际上重复调用了很多函数*/
 		b.getallunit();
 		b.printans(to);
 		a.getallunit();
