@@ -1,0 +1,205 @@
+/*描述
+
+ 
+
+已知图案：
+
+--**-**--
+
+-*-*****-
+
+-*----**-
+
+--*--**--
+
+---***---
+
+----*----
+
+输入正整数n(0<n<8)，输出上图中有多少个*的8邻域内有n个-，边界点领域不完整，但也计入统计。
+
+如果不满足输入，则输出Input Error。
+
+8邻域的意思如下：
+
+--*
+
+-*-
+
+-*-
+
+上图中间*周围的8邻域内有2个*，6个-。*/
+
+
+
+#include<stdio.h>
+
+
+
+int main(){
+
+	char xing[100][100]={
+
+       "--**-**--",
+
+       "-*-*****-",
+
+  "-*----**-",
+
+  "--*--**--",
+
+     "---***---",
+
+   "----*----"
+
+	} ;
+
+	int count =0;
+
+	int n;
+
+	int m=0;
+
+	scanf("%d",&n);
+
+
+
+	if(n<8&&0<n)
+
+	{
+
+	
+
+	
+
+	for(int i=0;i<6;i++)
+
+	{
+
+		for(int j=0;j<9;j++)
+
+		{
+
+			if(xing[i][j]=='*')
+
+			{
+
+		
+
+				if(i==0){
+
+					if(xing[i][j-1]=='-'){count++;}
+
+					if(xing[i][j+1]=='-'){count++;}
+
+					if(xing[i+1][j-1]=='-'){count++;}
+
+					if(xing[i+1][j+1]=='-'){count++;}
+
+					if(xing[i+1][j]=='-'){count++;}	
+
+					if(count==n){
+
+						m++;
+
+					}
+
+					count=0;
+
+				}
+
+				else if (i==5){
+
+					if(xing[i][j-1]=='-'){count++;}
+
+					if(xing[i][j+1]=='-'){count++;}
+
+					if(xing[i-1][j-1]=='-'){count++;}
+
+					if(xing[i-1][j+1]=='-'){count++;}
+
+					if(xing[i-1][j]=='-'){count++;}
+
+					
+
+					if(count==n){
+
+						m++;
+
+					}
+
+					count=0;
+
+				}
+
+				else{
+
+					if(xing[i][j-1]=='-'){count++;}
+
+					if(xing[i][j+1]=='-'){count++;}
+
+					if(xing[i+1][j-1]=='-'){count++;}
+
+					if(xing[i+1][j+1]=='-'){count++;}
+
+					if(xing[i+1][j]=='-'){count++;}
+
+					if(xing[i-1][j]=='-'){count++;}
+
+					if(xing[i-1][j-1]=='-'){count++;}
+
+					if(xing[i-1][j+1]=='-'){count++;}
+
+						
+
+						
+
+						if(count==n){
+
+						m++;
+
+					}
+
+					count=0;
+
+				
+
+					
+
+				}
+
+			}
+
+		}
+
+	}
+
+	printf("%d",m);
+
+	
+
+	
+
+	} 
+
+	else{
+
+		printf("Input Error");
+
+	}
+
+	
+
+	
+
+
+
+	
+
+	return 0;
+
+	
+
+
+
+}
