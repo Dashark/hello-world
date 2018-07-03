@@ -1,0 +1,85 @@
+#include<iostream> 
+
+#include<cctype>
+
+using namespace std;
+
+int main()
+
+{
+
+	cout<< "enter a text"<<endl;
+
+	
+
+	char ch;
+
+	int space=0;
+
+	int digits=0;
+
+	int chars=0;
+
+	int punct=0;
+
+	int  others=0;
+
+	
+
+	
+
+	cin.get(ch);
+
+	while (ch != '\n')   //现在是无法暂停输入
+
+	{
+
+		if(isalpha(ch)){chars++;
+
+		}
+
+		else if(isspace(ch))
+
+		   space++;
+
+		else if (isdigit(ch))
+
+	digits++;
+
+		else if (ispunct(ch))
+
+		punct++;
+
+		else
+
+		others++;
+
+		
+
+		cin.get();
+
+		
+
+	}
+
+	
+
+	
+
+	
+
+	cout << chars << "letters, "
+
+	<< space <<"space, "
+
+	<<digits<<"digits, "
+
+	<<punct<<"punctuations, "
+
+	<<others <<"others\n";
+
+	
+
+    return 0;
+
+}
