@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+#include<string.h>
+
+
+
+char  s[]="1234567890-=QWERTYUIOP[]\\ASDFGHJKL;'ZXCVBNM,./";
+
+int main() {
+
+	int i,c;
+
+	while((c=getchar())!=EOF){
+
+		for(i=1;s[i]&&s[i]!=c;i++);//此处i不会超过数组s的长度。 
+
+	
+
+		if(s[i]) putchar(s[i-1]);  //判断S【i】是不是非空，如果空，说明不是数组里面的字符，则原样输出 
+
+		else putchar(c);
+
+
+
+	}
+
+
+
+	return 0;
+
+}
