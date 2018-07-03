@@ -1,0 +1,87 @@
+#include "stdafx.h"  
+#include "iostream"  
+#define  N 5  
+using namespace std;  
+  
+void DPKnapsack(int *v, int *w, int c, int **f);  
+int max(int a,int b);  
+  
+int _tmain(int argc, _TCHAR* argv[])  
+{  
+    system("color 0A");  
+    int cap=10;  
+    int value[N]={6,3,5,4,6};  
+    int weight[N]={2,2,6,5,4};  
+  
+    int **f = new int *[N+1];  //6行  
+    for (int i=0; i < N+1; i++)    
+    {    
+        f[i] = new int[cap+1];  //11列  
+    }    
+  
+    DPKnapsack(value, weight,cap,f);  
+    int count=0;  
+    for (int i=1; i < N+1; i++)  //hang  
+    {    
+        for (int j=1;j < cap +1;j++)//lie  
+        {  
+            cout<<f[i][j]<<" ";  
+            count++;  
+            if (count%10==0)  
+            {  
+                cout<<endl;  
+            }  
+        }  
+    }    
+  
+    for (int i=0;i<N+1;i++)    
+    {    
+        delete[] f[i];//删除行指针    
+        f[i]=NULL;    
+    }    
+    delete[] f;    
+    f=NULL;  
+    system("pause");  
+    return 0;  
+}  
+  
+  
+void DPKnapsack(int *v, int *w, int cap, int **f)  
+{   
+    //初始化数据  
+    for (int j=0;j<cap+1;j++)//其意义就是当不允许（即行为0）物品放入时，所能取得的价值肯定为0  
+    {  
+        f[0][j]=0;  
+    }  
+      
+    for (int k=0;k<N+1;k++)//当限制重量为0时无论怎么放入最大价值都会为0  
+    {  
+        f[k][0]=0;  
+    }  
+  
+    for ( int j=1;j<N+1;j++)//当前允许放入的前j个物品,1到5  
+        for ( int i=1;i < cap+1;i++)//当前限制的背包容量,1到10  
+        {  
+            if (w[j-1]>i)//第j个（在数组中的价值实际是j-1的位置）物品的重量与当前限制重量的比较  
+            {  
+                f[j][i]=f[j-1][i];//只能这样放，属于情况1  
+            }else  
+            {  
+                int k1=0,k2=0;  
+                k1=f[j-1][i-w[j-1]]+v[j-1];  
+                k2=f[j-1][i];  
+                f[j][i]=max(k1,k2);//这时有两种选择，属于情况2，则最优值是较大者  
+            }  
+        }  
+}  
+  
+int max(int a,int b)  
+{  
+    if ( a >= b )  
+    {  
+        return a;  
+    }else  
+    {  
+        return b;  
+    }  
+}  
