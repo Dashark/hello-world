@@ -1,0 +1,339 @@
+描述
+
+ 
+
+计算两个超大正整数的和。
+
+ 
+
+输入
+
+ 
+
+第1行是一个整数n，表示随后有n组数据。每组数据占一行，输入正整数a和b，以空格分开。
+
+ 
+
+输出
+
+ 
+
+对每组数据，计算并输出a和b的和，并换行。
+
+ 
+
+
+
+
+
+
+
+/*int main()
+
+{
+
+	int max (int A,int B);
+
+	int N,i,j,k,L;
+
+	int num1,num2,num3;
+
+	char a[100],b[100];
+
+	char fina[100];
+
+	scanf("%d",&N);
+
+	for(int i=0;i<N;i++){
+
+		scanf("%c",&a);
+
+		scanf("%c",&b);
+
+		num1=strlen(a);
+
+		num2=strlen(b);
+
+		L=max(num1,num2);
+
+		for(j=num1-1,k=num2-1;j>=0,k>=0;j--,k--,L--){
+
+			if(a[j]+b[k]>=10){
+
+				fina[L]=a[j]+b[k]-10;
+
+				a[j-1]=a[j-1]+1;
+
+				
+
+			}
+
+			else{
+
+				fina[L]=a[j]+b[k];
+
+			}
+
+		} 
+
+		num3=strlen(fina);
+
+		for(i=num3-1;i>=0;i--)
+
+		{
+
+			printf("%c",fina);
+
+		}
+
+		
+
+	} 
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+
+	return 0;
+
+	
+
+ } 
+
+ 
+
+ int max(int A,int B){
+
+ 
+
+	 if(A>B)
+
+	 {
+
+	 	return A;
+
+	  } 
+
+	  else
+
+	  {
+
+	  	return B;
+
+	  }
+
+ 	
+
+ } */ 
+
+ 
+
+ 
+
+ #include <stdio.h>  
+
+#include <string.h>  
+
+  
+
+#define MAXSIZE 1000  
+
+  
+
+int main()  
+
+{  
+
+   int N,l;
+
+    scanf("%d",&N);
+
+    for(l=0;l<N;l++){
+
+
+
+    char number1[MAXSIZE+1];  
+
+    char number2[MAXSIZE+1];  
+
+    char sum[MAXSIZE+2];  
+
+    char temp1[MAXSIZE+1];  
+
+    char temp2[MAXSIZE+1];  
+
+    int len1 = 0;  
+
+    int len2 = 0;  
+
+    int i = 0;  
+
+    int j = 0;  
+
+    int maxLen = 0;  
+
+    int nSum = 0;  
+
+    int nCarryBit = 0;  
+
+    int nOverFlow = 0;  
+
+ 
+
+	scanf("%s",&number1);
+
+	scanf("%s",&number2);
+
+  
+
+    //gets(number1);  
+
+    //gets(number2);  
+
+  
+
+    len1 = strlen(number1);  
+
+    len2 = strlen(number2);  
+
+  
+
+    j = 0;  
+
+    for(i = len1-1; i >= 0; --i)  
+
+    {  
+
+        temp1[j++] = number1[i];  
+
+    }  
+
+    temp1[j] = '\0';  
+
+    j = 0;  
+
+    for(i = len2-1; i >= 0; --i)  
+
+    {  
+
+        temp2[j++] = number2[i];  
+
+    }  
+
+
+
+    maxLen = (len1 > len2)?len1:len2;  
+
+    if(len1 < len2)  
+
+    {  
+
+        for(i = len1; i < len2; ++i)  
+
+            temp1[i] = '0';  
+
+        temp1[len2] = '\0';  
+
+    }  
+
+    else if(len1 > len2)  
+
+    {  
+
+        for(i = len2; i < len1; ++i)  
+
+            temp2[i] = '0';  
+
+        temp2[len1] = '\0';  
+
+    }  
+
+  
+
+    for(i = 0; i < maxLen; i++)  
+
+    {  
+
+        nSum = temp1[i] - '0' + temp2[i] - '0' + nCarryBit;  
+
+  
+
+        if(nSum > 9)  
+
+        {  
+
+            if(i == (maxLen-1))  
+
+            {  
+
+                nOverFlow = 1;  
+
+            }  
+
+              
+
+            nCarryBit = 1;  
+
+              
+
+            sum[i] = nSum - 10 + '0';  
+
+        }  
+
+        else  
+
+        {  
+
+            nCarryBit = 0;  
+
+            sum[i] = nSum + '0';  
+
+        }  
+
+  
+
+    }  
+
+  
+
+    if(nOverFlow == 1)  
+
+    {  
+
+        sum[maxLen++] = nCarryBit + '0';  
+
+    }  
+
+    sum[maxLen] = '\0';  //不要也行
+
+ 
+
+    for(i = maxLen-1; i >=0; --i)  
+
+        putchar(sum[i]);  //scanf也行
+
+        
+
+    printf("\n");
+
+    }
+
+    
+
+
+
+    return 0;  
+
+}  
+
+
+
+//大致思路：利用数组存储输入的两个数，利用strlen统计其字数，然后将两个数反向
