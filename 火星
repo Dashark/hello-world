@@ -1,0 +1,215 @@
+s (102 sloc) 2.96 KB 
+
+题目描述
+
+    读入两个不超过25位的火星正整数A和B，计算A+B。需要注意的是：在火星上，整数不是单一进制的，第n位的进制就是第n个素数。例如：地球上的10进制数2，在火星上记为“1,0”，因为火星个位数是2进制的；地球上的10进制数38，在火星上记为“1,1,1,0”，因为火星个位数是2进制的，十位数是3进制的，百位数是5进制的，千位数是7进制的……
+
+输入描述:
+
+测试输入包含若干测试用例，每个测试用例占一行，包含两个火星正整数A和B，火星整数的相邻两位数用逗号分隔，A和B之间有一个空格间隔。当A或B为0时输入结束，相应的结果不要输出。
+
+
+
+输出描述:
+
+对每个测试用例输出1行，即火星表示法的A+B的值。
+
+
+
+
+
+
+
+
+
+#include <iostream>
+
+#include <algorithm>
+
+#include <cstring>
+
+#include <string>
+
+#include <cmath>
+
+#include <iomanip>
+
+#include <stdio.h>
+
+using namespace std;
+
+int main()
+
+{
+
+   string s1,s2;
+
+   int a[100], b[100], s[100];
+
+   int cnt = 0,flag,ch[25];
+
+   for(int i = 2; i < 100; i++)
+
+    {
+
+       flag = 0;
+
+       for(int j = 2; j < i; j++)
+
+       {
+
+           if(i % j == 0)
+
+           {
+
+                flag = 1;
+
+                break;
+
+           }
+
+       }
+
+       if(flag == 0)
+
+           ch[cnt] = i,
+
+           cnt++;
+
+       if(cnt == 25)
+
+           break;
+
+   }
+
+   while(cin >> s1 >> s2)
+
+    {
+
+       memset(a, 0, sizeof a);//全部置零 
+
+       memset(b, 0, sizeof b);
+
+       memset(s, 0, sizeof s);
+
+       int k = 0, l1 = 0, l2 = 0, maxlen = 0, minlen = 0, cnt = 0, ans = 0, t =0;
+
+       l1 = s1.length();
+
+       l2 = s2.length();
+
+       for(int i = 0; i < l1; i++)
+
+       {
+
+           if(s1[i] != ',')
+
+                a[cnt] = a[cnt] * 10 + (s1[i] -'0');
+
+           else if(s1[i] == ',')
+
+                cnt++;
+
+       }
+
+       for(int i = 0; i < l2; i++)
+
+       {
+
+           if(s2[i] != ',')
+
+                b[ans] = b[ans] * 10 + (s2[i] -'0');
+
+           else if(s2[i] == ',')
+
+                ans++;
+
+       }
+
+       if(cnt == 0 && ans == 0 && a[0] == 0 && b[0] ==0)
+
+           break;
+
+       for(int i = 0, j = cnt; i < j; i++, j--)
+
+       {
+
+           int mid = a[i];
+
+           a[i] = a[j];
+
+           a[j] = mid;
+
+        }
+
+        for(int i = 0, j = ans; i < j; i++, j--)
+
+        {
+
+            int mid = b[i];
+
+            b[i] = b[j];
+
+            b[j] = mid;
+
+        }//???a?b?????
+
+       maxlen = max(cnt, ans);
+
+       for(int i = 0; i <= maxlen; i++)
+
+       {
+
+           s[t] = k + a[i] + b[i];
+
+           if(s[t] >= ch[t])
+
+           {
+
+                s[t] = s[t] - ch[t];
+
+                k = 1;
+
+                t++;
+
+           }
+
+           else if(s[t] < ch[t])
+
+           {
+
+                k = 0;
+
+                t++;
+
+           }
+
+       }
+
+       if(k != 0)
+
+           s[t] = k;
+
+        else
+
+           t = t - 1;
+
+       for(int i = t; i >= 0; i--)
+
+       {
+
+           if(i > 0)
+
+                cout << s[i] <<",";
+
+           else if(i == 0)
+
+                cout << s[i] <<endl;
+
+       }
+
+    }
+
+   return 0;
+
+}
