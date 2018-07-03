@@ -1,0 +1,247 @@
+//输入
+
+ 
+
+依次输入三个整数，分别表示a，b，c，数字间用逗号隔开。
+
+ 
+
+输出
+
+ 
+
+如果是锐角三角形，输出字符串“acute”；
+
+如果是直角三角形，输出字符串“right”；
+
+如果是钝角三角形，输出字符串“obtuse”；
+
+如果无法构成三角形，输出字符串“illegal”。
+
+
+
+
+
+
+
+#include<stdio.h>
+
+
+
+int main()
+
+{
+
+
+
+	int a,b,c;
+
+	int temp;
+
+    scanf("%d,%d,%d",&a,&b,&c);
+
+	if(a+b>c&&a+c>b&&b+c>a)
+
+	{
+
+		if(c>a)
+
+		{
+
+			temp=c;
+
+			c=a;
+
+			a=temp;
+
+		}
+
+		if(a>b)
+
+		{
+
+			if(b>c)
+
+			{
+
+				if(c*c+b*b>(a*a))
+
+				{
+
+					printf("acute\n");
+
+				}
+
+				else if(c*c+b*b<(a*a))
+
+				{
+
+			printf("obtuse\n");
+
+				}
+
+				else 
+
+				{
+
+				printf("right\n");
+
+				}
+
+				
+
+			}
+
+			else if(b=c)
+
+			{
+
+				if(c*c+b*b>a*a)
+
+				{
+
+					printf("acute\n");
+
+				}
+
+				else if(c*c+b*b<a*a)
+
+				{
+
+				printf("obtuse\n");
+
+				}
+
+				else
+
+				{
+
+					printf("right\n");
+
+				}
+
+				
+
+			}
+
+		}
+
+		else
+
+		{
+
+		if(b>c)
+
+			{
+
+				if(c*c+a*a>b*b)
+
+				{
+
+					printf("acute\n");
+
+				}
+
+				else if(c*c+a*a<b*b)
+
+				{
+
+			printf("obtuse\n");
+
+				}
+
+				else
+
+				{
+
+					printf("right\n");
+
+				}
+
+				
+
+			}
+
+			else if(b=c)
+
+			{
+
+				if(c*c+a*a>b*b)
+
+				{
+
+					printf("acute\n");
+
+				}
+
+				else if(c*c+a*a<b*b)
+
+				{
+
+				printf("obtuse\n");
+
+				}
+
+				else
+
+				{
+
+					printf("right\n");
+
+				}
+
+				
+
+			}
+
+			else if(b<c)
+
+			{
+
+				if(a*a+b*b>c*c)
+
+				{
+
+					printf("acute\n");
+
+				}
+
+				else if(a*a+b*b<c*c)
+
+				{
+
+					printf("obtuse\n");
+
+				}
+
+				else
+
+				{
+
+					printf("right\n");
+
+				}
+
+				
+
+			}
+
+			
+
+		}
+
+	}
+
+	else
+
+	{
+
+		printf("illegal\n");
+
+	}
+
+	return 0;
+
+
+
+}
