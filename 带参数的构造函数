@@ -1,0 +1,73 @@
+#include<iostream> 
+
+#include<cctype>
+
+using namespace std;
+
+class square{
+
+	public:
+
+		square(double s){
+
+			side=s;
+
+		}
+
+		double getside(){
+
+			return side;
+
+		}
+
+		double zhouchang(){
+
+			return 4*side;
+
+		}
+
+		double surfrance(){
+
+			return side*side;
+
+		}
+
+		void print(){
+
+			cout<<"±ß³¤Îª"<<side<<"µÄÕý·½ÐÎµÄÖÜ³¤Îª"<<4*side<<"£¬Ãæ»ýÎª"<<side*side<<endl;
+
+		}
+
+	
+
+	private:
+
+		double side;
+
+	
+
+}; 
+
+
+
+
+
+int main(void){
+
+	square square1(20.5);
+
+	square1.print();
+
+	square square2(13.5);
+
+	square2.print();
+
+	square square3(35.9);
+
+	square3.print(); 
+
+	
+
+	return 0; 
+
+}
