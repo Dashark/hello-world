@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<math.h>
+
+
+
+int main(){
+	void hanno(int n,char one ,char two,char three );
+	int m,k;
+	scanf("%d",&m);        //m代表有多少个物品 
+	k=pow(2,m)-1;         //计算需要的移动步数 ，利用了pow算乘方 
+	
+	hanno(m,'A','B','C');
+	printf("%d",k);
+}
+void hanno(int n,char one ,char two ,char three){
+	void move(char x ,char y);
+	if(n==1){
+		move(one,three);       //直到n=1时，结束递归 
+	}
+	else{
+		hanno(n-1,one,three,two);
+		move(one,three);
+		hanno(n-1,two,one,three);
+	}
+}
+void move(char x,char y){
+	printf("%c->%c\n",x,y);      //打印移动的方式 
+}
