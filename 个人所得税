@@ -1,0 +1,147 @@
+#include<stdio.h>
+
+
+
+int main()
+
+{
+
+	double money;
+
+	double large1,large2,large3,large4,large5,large6,large7;
+
+	double s;
+
+	
+
+	
+
+	scanf("%lf",&money);
+
+	
+
+	if(money<3500)
+
+	{
+
+		printf("0.00");
+
+		
+
+	}
+
+	else
+
+	{
+
+		large1=money-3500;
+
+		if(large1<=1500)
+
+		{
+
+			s=large1*0.03;
+
+			printf("%.2f",s);
+
+			
+
+			
+
+		}
+
+		else if(large1<=4500)
+
+		{
+
+		
+
+			large2=large1-1500;
+
+			s=large2*0.1+45;
+
+			printf("%.2f",s);
+
+		}
+
+		else if(large1<=9000)
+
+		{
+
+			large3=large1-4500;
+
+			s=large3*0.2+45+300; 
+
+			printf("%.2f",s);
+
+		}
+
+		else if(large1<=35000)
+
+		{
+
+			large4=large1-9000;
+
+			s=large4*0.25+345+900;
+
+				printf("%.2lf",s);
+
+		}
+
+		else if(large1<=55000)
+
+		{
+
+			large5=large1-35000;
+
+			s=large5*0.3+345+900+6500;
+
+			printf("%.2f",s);
+
+		}
+
+		else if(large1<=80000)
+
+		{
+
+			large6=large1-550000;
+
+			s=large6*0.35+345+6500+900+6000;
+
+			printf("%.2f",s);
+
+		}
+
+		else 
+
+		{
+
+			large7=large1-80000;
+
+			s=large7*0.45+345+6500+900+6000+8750;
+
+			printf("%.2f",s);
+
+		}
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+	}
+
+	return 0;
+
+	
+
+	
+
+}
