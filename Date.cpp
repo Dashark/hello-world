@@ -128,7 +128,7 @@ void Date::show() {
 
 }
 bool Date::equal(Date other){
-	return false;
+	return true;
 }
 
 
