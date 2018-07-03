@@ -1,0 +1,312 @@
+/描述
+
+已知1900年1月1日是星期一，问这天之后的任意一天是星期几？
+
+
+
+输入
+
+1900年1月1日以后的任一合法日期，格式为yyyy-MM-dd，如2000-01-01。
+
+
+
+输出
+
+输入日期所对应的星期
+
+//还未添加如果输入日期不规范怎么办
+
+include<stdio.h>
+
+
+
+int main ()
+
+{
+
+	int year,month,day;
+
+	int week;
+
+	int allday=0;
+
+	int cha;
+
+	int run;
+
+
+
+	scanf("%d-%d-%d",&year,&month,&day);
+
+	if(year>=1900)
+
+	{
+
+		if((year%4==0&&year%100!=0)||year%400==0)
+
+		{
+
+			if(month>11)
+
+			{
+
+				allday=31+31+31+31+31+31+30+30+30+30+29+day;
+
+
+
+			}
+
+			else if(month>10)
+
+			{
+
+				allday=31+31+31+31+31+31+30+30+30+29+day;
+
+			}
+
+			else if  (month>9)
+
+			{
+
+				allday=31+31+31+31+31+30+30+30+29+day;
+
+			}
+
+			else if  (month>8)
+
+			{
+
+				allday=31+31+31+31+31+30+30+29+day;
+
+			}
+
+			else if  (month>7)
+
+			{
+
+				allday=31+31+31+31+30+30+29+day;
+
+			}
+
+			else if  (month>6)
+
+			{
+
+				allday=31+31+31+30+30+29+day;
+
+			}
+
+			else if  (month>5)
+
+			{
+
+				allday=31+31+31+30+29+day;
+
+			}
+
+			else if  (month>4)
+
+			{
+
+				allday=31+31+30+29+day;
+
+			}
+
+			else if  (month>3)
+
+			{
+
+				allday=31+31+29+day;
+
+			}
+
+			else if  (month>2)
+
+			{
+
+				allday=31+29+day;
+
+			}
+
+			else if  (month>1)
+
+			{
+
+				allday=31+day;
+
+			}
+
+			else if  (month>0)
+
+			{
+
+				allday=day;
+
+			}
+
+		}
+
+		else
+
+		{
+
+				if(month>11)
+
+			{
+
+				allday=31+31+31+31+31+31+30+30+30+30+28+day;
+
+
+
+			}
+
+			else if(month>10)
+
+			{
+
+				allday=31+31+31+31+31+31+30+30+30+28+day;
+
+			}
+
+			else if  (month>9)
+
+			{
+
+				allday=31+31+31+31+31+30+30+30+28+day;
+
+			}
+
+			else if  (month>8)
+
+			{
+
+				allday=31+31+31+31+31+30+30+28+day;
+
+			}
+
+			else if  (month>7)
+
+			{
+
+				allday=31+31+31+31+30+30+28+day;
+
+			}
+
+			else if  (month>6)
+
+			{
+
+				allday=31+31+31+30+30+28+day;
+
+			}
+
+			else if  (month>5)
+
+			{
+
+				allday=31+31+31+30+28+day;
+
+			}
+
+			else if  (month>4)
+
+			{
+
+				allday=31+31+30+28+day;
+
+			}
+
+			else if  (month>3)
+
+			{
+
+				allday=31+31+28+day;
+
+			}
+
+			else if  (month>2)
+
+			{
+
+				allday=31+28+day;
+
+			}
+
+			else if  (month>1)
+
+			{
+
+				allday=31+day;
+
+			}
+
+			else if  (month>0)
+
+			{
+
+				allday=day;
+
+			}
+
+
+
+		}
+
+		cha=year-1900;
+
+		run=cha/4;
+
+		allday=allday+run*366+(cha-run)*365;
+
+		week=(allday%7);
+
+		if(week==0)
+
+		{ printf("Sunday\n");}
+
+		else if(week==1)
+
+		{ printf("Monday\n");}
+
+		else if(week==2)
+
+		{ printf("Tuesday\n");}
+
+		else if(week==3)
+
+		{ printf("Wednesday\n");}
+
+		else if(week==4)
+
+		{ printf("Thursday\n");}
+
+		else if(week==5)
+
+		{ printf("Friday\n");}
+
+		else if(week==6)
+
+		{ printf("Saturday\n");}
+
+
+
+	}
+
+	else
+
+	{
+
+		printf("error\n");
+
+	}
+
+
+
+
+
+	return 0;
+
+
+
+
+
