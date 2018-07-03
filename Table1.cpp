@@ -14,6 +14,10 @@ class Table {
 		int column;
 		string str;
 };
+Table::Table(){
+	 row=1;
+	column=1;
+	str='0';}
 int main() {
 
   Table tb;
