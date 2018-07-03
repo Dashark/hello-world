@@ -1,10 +1,12 @@
 
 #include <iostream>
 using namespace std;
-
 void HelloWorld::hello() {
  
-  cout << "Hello World!" <<endl;
-  
+  cout << "HelloWorld!" <<endl;}
+int main(){
+ HelloWorld();
+ return 0;
 }
+
 
