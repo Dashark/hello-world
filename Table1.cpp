@@ -20,6 +20,10 @@ Table::Table(){
 	str='0';}
 void Table::show(){
 	cout<<str<<endl;}
+void Table::addRow(){
+	row++;
+}
+
 
 int main() {
 
