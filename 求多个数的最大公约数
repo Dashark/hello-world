@@ -1,0 +1,73 @@
+#include<stdio.h>
+
+
+
+int main()
+
+{
+
+	int a,b,c,d;
+
+	int a1,b1,c1,d1;
+
+	int n;
+
+	
+
+	
+
+	int i,j;
+
+	scanf("%d",&n);
+
+	for(int i=0;i<=n;i++)                 //表示有多组数据
+
+	{
+
+		scanf("%d,%d,%d,%d",&a,&b,&c,&d);
+
+		for(j=a;j>0;j--)
+
+		{
+
+			a1=a%j;
+
+			b1=b%j;
+
+			c1=c%j;
+
+			d1=d%j;
+
+			
+
+			if(a1==0&&b1==0&&c1==0&&d1==0)   //此处用if(a1==b1==c1==d1==0)是错的
+
+			{
+
+				printf("%d\n",j);
+
+				break;
+
+				
+
+			}
+
+		}
+
+		
+
+		
+
+	 } 
+
+
+
+
+
+
+
+	return 0;
+
+	
+
+}
