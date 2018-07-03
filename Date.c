@@ -1,157 +1,145 @@
-#include<stdio.h>
+#include<iostream>
 #include<math.h>
-struct Date {
+class Date {
+public:
+  Date(int y, int m, int d);
+  ~Date();
+
+  void nextDay();
+  void previousDay();
+  bool equal(Date other);
+  void show();
+private:
   int year;
   int month;
   int day;
 };
-
-void next_day(struct Date day){
-	
-	if(day.month==12){
-		if(day.day!=31){
-			day.day++;
+Date.Date(int y,int m,int d){
+	year=y;
+	day=d;
+	month=m;
+}
+void  Date.nextDay(){
+	if(month==12){
+		if(day!=31){
+			day++;
 		}
 		else{
-			day.day=1;
-			day.month=1;
-			day.year++;
+			day=1;
+			month=1;
+			year++;
 		}
 	}
-  else	if(day.month==1||day.month==3||day.month==5||day.month==7||day.month==8||day.month==10){
-		if(day.day!=31){
-			day.day++;
+  else	if(month==1||month==3||month==5||dmonth==7||month==8||month==10){
+		if(day!=31){
+			day++;
 		}
 		else{
-			day.day=1;
-		    day.month++;
+			day=1;
+		    month++;
 		}
 	}
-	else if(day.month==4||day.month==6||day.month==9||day.month==11){
-		if(day.day!=30){
-			day.day++;
+	else if(month==4||month==6||month==9||month==11){
+		if(day!=30){
+			day++;
 		}
 		else{
-			day.day=1;
-		    day.month++;
+		day=1;
+		    month++;
 		}
 	}
-	else if(day.month==2){
-		if((day.year%4==0&&day.year%100!=0)||day.year%400==0){
-	    	if(day.day!=29){
-			day.day++;
+	else if(month==2){
+		if((year%4==0&&year%100!=0)||year%400==0){
+	    	if(day!=29){
+			day++;
 	        	}
 	      	else{
-			day.day=1;
-		    day.month++;
+		day=1;
+		    month++;
 		}
 		}
 		else{
-		  if(day.day!=28){
-			day.day++;
+		  if(day!=28){
+			day++;
 	        	}
 	      	else{
-			day.day=1;
-		    day.month++;
+		day=1;
+		   month++;
 		}
 			
 		}
 	}
 }
-
-void previous_day(struct Date day){
-	if(day.month==1){
-		if(day.day!=1){
-			day.day--;
+void Date.previousDay(){
+		if(month==1){
+		if(day!=1){
+		day--;
 		}
 		else{
-			day.day=31;
-			day.month=12;
-			day.year--;
+		day=31;
+			month=12;
+		year--;
 		}
 	}
-	else if(day.month==12||day.month==5||day.month==7||day.month==8||day.month==10){
-		if(day.day!=1){
-			day.day--;
+	else if(month==12||month==5||month==7||month==8||month==10){
+		if(day!=1){
+			day--;
 		}
 		else{
-			day.day=30;
-		    day.month--;
+			day=30;
+		    month--;
 		}
 	}
-	else if(day.month==4||day.month==6||day.month==9||day.month==11||day.month==2){
-		if(day.day!=1){
-			day.day--;
+	else if(month==4||month==6||month==9||month==11||month==2){
+		if(day!=1){
+			day--;
 		}
 		else{
-			day.day=31;
-		    day.month--;
+			day=31;
+		    month--;
 		}
 	}
-   else 	if(day.month==3){
-		if((day.year%4==0&&day.year%100!=0)||day.year%400==0){
-	    	if(day.day!=1){
-			day.day--;
+   else 	if(month==3){
+		if((year%4==0&&year%100!=0)||year%400==0){
+	    	if(day!=1){
+			day--;
 	        	}
 	      	else{
-			day.day=29;
-		    day.month--;
+		day=29;
+		    month--;
 		}
 		}
 		else{
-		  if(day.day!=1){
-			day.day--;
+		  if(day!=1){
+		day--;
 	        	}
 	      	else{
-			day.day=28;
-		    day.month--;
+			day=28;
+		   month--;
 		}
 			
 		}
 	}
-	
 }
-
-int equal(struct Date one, struct Date day){
-	if(one.year==day.year&&one.day==day.day&&one.month==day.month) {
-		return 1;
-	}
-	else {
-		return 0;
-	}
-}
-
-void show(struct Date day) {
+void Date.show(struct Date day) {
 
   printf("%d Äê %d ÔÂ %d ÈÕ\n",day.year,day.month,day.day);
 
 }
 
 int main() {
-
-  struct Date today = {2018,3,20};
-
-  struct Date day = {2018,3,20};
-  show(day);
+  Date today(2018,3,20);
+  Date day(2018,3,20);
+  day.show();
   for(int i=0;i<30;i++)
-    {next_day(day);}
-
-  show(day);
-
+    day.nextDay();
+  day.show();
   for(int i=0;i<30;i++)
-    {
-	previous_day(day);}
-
-  show(day) ;
-
-  if(equal(today, day))
-
+    day.previousDay();
+  day.show();
+  if(day.equal(today))
     printf("Very Good!\n");
-
   else
-
     printf("Very Bad!\n");
-
   return 0;
-
 }
