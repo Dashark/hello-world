@@ -1,0 +1,431 @@
+*描述
+
+ 
+
+
+
+在基于Internet的程序中，我们常常需要判断一个IP字符串的合法性。合法的IP是这样的形式：
+
+   A.B.C.D
+
+其中A、B、C、D均为位于[0, 255]中的整数。为了简单起见，我们规定这四个整数中不会有前导零存在，如001这种情况。现在，请你来完成这个判断程序吧^_^
+
+
+
+ 
+
+输入
+
+ 
+
+
+
+输入由多行组成，每行是一个字符串，输入由“End of file”结束。字符串长度最大为30，且不含空格和不可见字符。
+
+ 
+
+输出
+
+ 
+
+对于每一个输入，单独输出一行。如果该字符串是合法的IP，输出YES，否则，输出NO
+
+ 
+
+样例
+
+ 
+
+输入
+
+输出
+
+202.115.32.24
+
+a.b.c.d
+
+End of file*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+#include <string.h>
+
+
+
+int main()
+
+{
+
+	char str[1000][1000];
+
+	int count=0;
+
+     for(int j=0;;){
+
+     	gets(str[j]);
+
+     	count++;
+
+     	if(strcmp(str[j],"End of file") != 0){
+
+     		j++;
+
+     		continue;
+
+		 }
+
+		else{
+
+			break;
+
+		}
+
+		 
+
+	 }
+
+	 int countpoint=0;
+
+	for(int j=0;j<count-1;j++){
+
+		int len;
+
+		len=strlen(str[j]);
+
+		//printf("%d",len);
+
+		int flag=1;
+
+		int k=0;
+
+		int test=-1;
+
+	//	printf("   %d  len   ",len);
+
+		for(int i=0;i<len;i++){
+
+			if(str[j][i]=='.'&&countpoint!=2){
+
+	//			printf(" %d i ",i);
+
+				
+
+				
+
+				countpoint++;
+
+				
+
+				if(i-test==4)
+
+		       {	
+
+		               if('0'<=str[j][i-3]&&str[j][i-3]<='2'&&'0'<=str[j][i-2]&&str[j][i-2]<='5'&&'0'<=str[j][i-1]&&str[j][i-1]<='5'){
+
+						//printf("%d 4  ",i);
+
+					//	continue;
+
+					}
+
+					else{
+
+						//printf("不是数字");
+
+						flag=0; 
+
+					
+
+						
+
+					}
+
+				if(flag==0){
+
+			
+
+				printf("NO\n");
+
+				break;
+
+			} 
+
+			    test=i;
+
+				continue;
+
+		      }
+
+		        else if(i-test==3){
+
+		        	
+
+		        	   if('0'<=str[j][i-2]&&str[j][i-2]<='9'&&'0'<=str[j][i-1]&&str[j][i-1]<='9'){
+
+						//printf("%d  3 ",i);
+
+				
+
+					    }
+
+					else{
+
+						//printf("不是数字");
+
+						flag=0; 
+
+					
+
+						
+
+					}
+
+					if(flag==0){
+
+						
+
+				      printf("NO\n");
+
+				     break;
+
+			        } 
+
+			      test=i;
+
+				   continue;
+
+					
+
+			
+
+		        }
+
+		        else if(i-test==2){
+
+		        	
+
+		        	   if('0'<=str[j][i-1]&&str[j][i-1]<='9'){
+
+						//printf("%d  2   ",i);
+
+					
+
+					    }
+
+					else{
+
+						//printf("不是数字");
+
+						flag=0; 
+
+					
+
+						
+
+					}
+
+					if(flag==0){
+
+				      printf("NO\n");
+
+				     break;
+
+			        } 
+
+			      test=i;
+
+				   continue;
+
+					
+
+			
+
+		        }
+
+		        else{
+
+		        	flag=0;
+
+		        	printf("NO\n");
+
+		        	break;
+
+				}
+
+			
+
+			
+
+				}
+
+				else if(str[j][i]=='.'&&countpoint==2){
+
+					
+
+	//				printf(" %d i 2point ",i);
+
+					
+
+					int len1=len-i-1;
+
+					
+
+	//				printf("  %d  len1",len1);
+
+					if(len1==3){
+
+						if('0'<=str[j][i+1]&&str[j][i+1]<='2'&&'0'<=str[j][i+2]&&str[j][i+2]<='5'&&'0'<=str[j][i+3]&&str[j][i+3]<='5'){
+
+						}
+
+						
+
+						else{
+
+								printf("NO\n");
+
+							flag=0;
+
+							break;
+
+							
+
+						}
+
+				       
+
+					
+
+					
+
+					}
+
+					else if(len1==2){
+
+						if('0'<=str[j][i+2]&&str[j][i+2]<='9'&&'0'<=str[j][i+1]&&str[j][i+1]<='9')
+
+						{
+
+						}
+
+						else{
+
+								printf("NO\n");
+
+							flag=0;
+
+							break;
+
+							
+
+						}
+
+				       
+
+					
+
+					
+
+					}
+
+					else if(len1==1){
+
+						if('0'<=str[j][i+1]&&str[j][i+1]<='9')
+
+						{
+
+							
+
+						}
+
+						else{
+
+								printf("NO\n");
+
+							flag=0;
+
+							break;
+
+							
+
+						}
+
+				       
+
+					
+
+					
+
+					}
+
+					else if (4<=len1){
+
+						printf("NO\n");
+
+						flag=0;
+
+						break;
+
+						
+
+					}
+
+					
+
+					
+
+				}
+
+				else{
+
+					continue;
+
+				} 
+
+			}
+
+	countpoint=0;
+
+				
+
+				
+
+
+
+
+
+	if(flag==1){
+
+			printf("YES\n");
+
+		}
+
+	
+
+	
+
+	
+
+	continue; 
+
+	}
+
+	
+
+	
+
+	return 0;
+
+}
