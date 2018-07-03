@@ -7,7 +7,7 @@ struct Date {
 };
 
 void next_day(struct Date day){
-	printf("sadsa\n");
+	
 	if(day.month==12){
 		if(day.day!=31){
 			day.day++;
