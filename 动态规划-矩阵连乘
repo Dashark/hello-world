@@ -1,0 +1,97 @@
+
+#include "stdafx.h"  
+#include<iostream>  
+  
+#define  N 6  
+#define  MAX_VALUE 65535  
+using namespace std;  
+void MatrixChainOrder(int n, int *p, int **m, int **s);  
+void traceback(int i, int j,int **s);  
+  
+//p用来记录矩阵的行列，main函数中有说明  
+//m[i][j]用来记录第i个矩阵至第j个矩阵的最优解  
+//s[][]用来记录从哪里断开的才可得到该最优解  
+int _tmain(int argc, _TCHAR* argv[])  
+{  
+    system("color 0A");  
+    int p[N+1]={30,35,15,5,10,20,25};  
+    int **m = new int *[N];  
+    int **s = new int *[N];  
+    for (int i=0; i < N; i++)  
+    {  
+        m[i] = new int [N];  
+        s[i] = new int [N];  
+    }  
+    MatrixChainOrder(N, p, m, s);  
+    cout<<"矩阵连乘顺序："<<endl;  
+    traceback(0, N-1, s);  
+    cout<<endl<<"矩阵相乘最少次数：";  
+    cout<<m[0][N-1]<<endl;  
+  
+      
+    for (int i=0;i<N;i++)  
+    {  
+        delete[] m[i];//删除行指针  
+        m[i]=NULL;  
+    }  
+    delete[] m;  
+    m=NULL;  
+      
+    for (int i=0;i<N;i++)  
+    {  
+        delete[] s[i];  
+        s[i]=NULL;  
+    }  
+    delete[] s;  
+    s=NULL;  
+  
+    system("pause");  
+    return 0;  
+}  
+  
+  
+void MatrixChainOrder(int n, int *p, int **m, int **s)  
+{  
+  
+    int q=0;  
+    for(int i=0; i < n; i++)//意义：单一矩阵A[i,i]的最小乘次都置为0  
+    {  
+        m[i][i]=0;  
+    }  
+    for(int l = 2; l <= n; l++) //矩阵链长度的控制，即Ai~到Aj的长度控制  
+    {  
+        for(int i = 0; i <= n - l; i++) //行的遍历，从第i个矩阵Ai开始,  
+        {  
+            int j = l + i - 1;  //列的控制j,到Aj，即矩阵段为(Ai~Aj)  
+            m[i][j]=MAX_VALUE;  
+            for(int k = i; k < j; k++)  //断开点k从i到j - 1循环找m[i][j]的最小值  
+            {  
+                //将矩阵段(Ai~Aj)分成左右2部分(左m[i][k],右m[k+1][j]), //再加上左右2部分最后相乘的次数(p[i-1] *p[k]*p[j])  
+                q = m[i][k] + m[k+1][j] + p[i] * p[k+1] * p[j+1];  
+                if(q < m[i][j])  
+                {  
+                    m[i][j] = q;   
+                    s[i][j] = k;    
+                }  
+            }  
+        }  
+    }  
+      
+}  
+  
+//s[][]用来记录在子序列i到j段中，在k位置处断开得到最优解位置k  
+//根据s[][]记录的各个子段的最优解，将其输出  
+void traceback(int i, int j,int **s)  
+{  
+    if(i == j)  
+    {  
+        cout<<"A"<<i;  
+    }  
+    if(i < j)  
+    {  
+        cout<<"(";  
+        traceback(i, s[i][j],s);  
+        traceback(s[i][j]+1, j,s);  
+        cout<<")";  
+    }  
+}  
