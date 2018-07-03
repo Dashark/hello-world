@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int getLen(int num)    //计算该数一共有多少位(长度)
+{
+    int flags = 0;
+    for (num; num >0 ; num/=10)  
+    {
+        flags++;   
+    }
+    return flags;   //返回位数(长度)
+}
+
+int getIndex(int len)   //len是数的位数
+{
+    int i=0;
+    int res = 1;
+    for (i = 0; i < len ; i++)
+    {
+        res=res*10;    
+    }
+    return res;    //返回10^i
+}
+
+int main()
+{
+    int num,temp,LastNum;
+    printf("please input a num:\n");
+    scanf("%d",&num);
+
+    int len = getLen(num);
+
+    int i=0;   
+    for(i = 0; i<len ; i++)
+    {
+
+        temp=num%10;   //提取每个位的数
+        num=num/10;
+
+        LastNum+=temp*getIndex(len-i-1);   //这里是个累加过程
+    }
+
+    printf("the resault=%d\n",LastNum);
+}
