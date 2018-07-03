@@ -1,0 +1,97 @@
+//描述
+
+
+
+输入n个整数，使用选择排序算法按从小到大排序，然后输出结果。
+
+
+
+输入
+
+ 
+
+一行是1个整数n，表示随后有n个整数，第二行有n个整数，空格隔开。 
+
+ 
+
+输出
+
+ 
+
+输出结果有n-1行，每行为排序一趟后的结果。//
+
+#include<stdio.h>  
+
+int main()
+
+{
+
+	void sort(int array[],int n);
+
+	int a[1000],i,N;
+
+	scanf("%d",&N);
+
+	for(i=0;i<N;i++)
+
+		scanf("%d",&a[i]);  
+
+	sort(a,N);
+
+	printf("\n");
+
+	return 0;
+
+}
+
+
+
+void sort(int array[],int n) 
+
+{
+
+	int i,j,k,t,time;
+
+	for(i=0;i<n-1;i++)
+
+	{
+
+		k=i;
+
+		for(j=i+1;j<n;j++)
+
+		{
+
+			if(array[j]<array[k])
+
+			{
+
+				k=j;}
+
+		}
+
+			
+
+			t=array[k];
+
+			array[k]=array[i];
+
+			array[i]=t;
+
+	for(time=0;time<n;time++)
+
+		{
+
+		printf("%d ",array[time]);}
+
+		
+
+		printf("\n");
+
+
+
+	}
+
+
+
+}
