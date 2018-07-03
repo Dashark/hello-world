@@ -1,0 +1,51 @@
+/*有序数组添加数*/ 
+
+
+
+#include<stdio.h>
+
+int a[10]={1,3,5,7};
+
+int main(){
+
+	int num;
+
+	scanf("%d",&num);
+
+	for(int i=0;i<4;i++){
+
+		if(num>a[i])
+
+		{
+
+		continue;
+
+		 } 
+
+		else {
+
+			int temp=num;
+
+			for(int j=4;j>i;j--){
+
+				a[j]=a[j-1]; 
+
+			}
+
+			a[i]=temp;
+
+			break;
+
+		}
+
+	}
+
+	for(int i=0;i<5;i++){
+
+		printf("%d ",a[i]);
+
+	}
+
+	return 0;
+
+}
