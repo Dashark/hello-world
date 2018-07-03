@@ -25,7 +25,7 @@ int Parallelogram::area(){
 	return leng*hei;
 }
 void Parallelogram::show(){
-	cout<<leng*hei;
+	cout<<"Ãæ»ýÎª"<<leng*hei;
 }
 
 int main() {
@@ -36,3 +36,4 @@ int main() {
   pg.length();
   return 0;
 }
+
