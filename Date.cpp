@@ -5,7 +5,6 @@ public:
   Date(int y, int m, int d);
   ~Date(){
   };
-
   void nextDay();
   void previousDay();
   bool equal(Date other);
@@ -91,7 +90,7 @@ void Date::previousDay(){
 		    month--;
 		}
 	}
-	else if(month==4||month==6||month==9||month==11||month==2){
+	else if(month==6||month==4||month==9||month==11||month==2){
 		if(day!=1){
 			day--;
 		}
@@ -128,6 +127,7 @@ void Date::show() {
 
 }
 bool Date::equal(Date other){
+	
 	return true;
 }
 
