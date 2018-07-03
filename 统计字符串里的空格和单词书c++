@@ -1,0 +1,43 @@
+#include<iostream>
+
+
+
+int main()
+
+{
+
+	using namespace std;
+
+	char ch;
+
+	int space=0;
+
+	int total=0;
+
+	cin.get();
+
+	while(ch!='.'){
+
+		if(ch==' '){
+
+			++space;
+
+		}
+
+	++total;
+
+	cin.get(ch);
+
+	
+
+	}
+
+	cout<<space<<"spaces, "<<total;
+
+	cout<<"characters tpta; om semtemce\n";
+
+	return 0;
+
+
+
+ } 
