@@ -1,0 +1,65 @@
+//  
+  
+#include "stdafx.h"  
+#include "iostream"  
+  
+using namespace std;  
+int DPBottomUpCutRod(int *p,int n,int *r,int *s);  
+  
+int _tmain(int argc, _TCHAR* argv[])  
+{  
+    system("color 0A");  
+    int price[11]={0,1,5,8,9,10,17,17,20,24,30};  
+    int *rb=new int[11];  
+    int *s=new int[10];  
+  
+    for (int i = 0; i < 10; i++)  
+    {  
+        s[i]=0;  
+    }  
+    DPBottomUpCutRod(price,10,rb,s);  
+      
+    cout<<"以下数据分别是钢条长度从1到10下的最优值售卖价格"<<endl;  
+    for (int i = 1; i < 11; i++)  
+    {  
+        cout<<rb[i]<<"  ";  
+    }  
+    cout<<endl<<"以下数据分别是钢条长度从1到10下的切割点（距离钢条左端,0为无切割）"<<endl;  
+    for (int i = 0; i < 10; i++)  
+    {  
+        cout<<s[i]<<"  ";  
+    }  
+  
+    cout<<endl;  
+    delete[] rb;  
+    rb=NULL;  
+    delete[] s;  
+    s=NULL;  
+    system("pause");  
+    return 0;  
+}  
+  
+int DPBottomUpCutRod(int *p,int n,int *r,int *s)  
+{  
+  
+    r[0]=0;  
+    r[1]=0;//初始化规模为0,1时的最优值  
+    int max=0;  
+    int sum=0;  
+    for (int i=1;i <= n;i++)//规模的遍历从1到n，本例子n=10  
+    {  
+        max=p[i];//不进行切割时  
+        for (int j=0;j < i;j++)//切割方法的遍历，距离钢条左端j（j可以从0到i-1，到i是没有必要的）英寸处切下,钢条将会分成两段  
+        {  
+            sum=r[j]+r[i-j];  
+            if (sum>max)  
+            {  
+                max=sum;  
+                s[i-1]=j;  
+            }  
+              
+        }  
+        r[i]=max;//规模为j时的最优值  
+    }  
+    return 0;  
+}  
