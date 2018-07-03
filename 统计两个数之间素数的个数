@@ -1,0 +1,95 @@
+#include<Stdio.h>
+
+#include<math.h>
+
+
+
+
+
+int main()
+
+{
+
+	int m,n;
+
+	int b[500];
+
+	int s=0;
+
+	int i,j,test;
+
+	int num;
+
+	
+
+	scanf("%d %d",&m,&n);
+
+	
+
+	b[0]=n;
+
+	num=m-n-1;
+
+	for(i=1;i<(m-n);i++)
+
+	{
+
+		b[i]=b[i-1]+1;
+
+	}
+
+	for(i=1;i<(m-n);i++){
+
+	
+
+	
+
+	for(j=2;j<b[i];j++)
+
+		{
+
+			test=b[i]%j;
+
+			if(test==0){
+
+				b[i]=0;
+
+				--num;
+
+				continue;
+
+				
+
+			}
+
+		
+
+			
+
+		}
+
+	}
+
+	for(i=1;i<(m-n);i++)
+
+	{
+
+		s=s+b[i];
+
+	}
+
+	printf("%d ",s);
+
+	printf("%d",num);
+
+
+
+	return 0;
+
+	
+
+
+
+	
+
+}
