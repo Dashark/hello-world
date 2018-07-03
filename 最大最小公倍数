@@ -1,0 +1,99 @@
+#include<stdio.h>
+
+int  pji(int a);
+
+
+
+
+
+int main(){
+
+
+
+	int N;
+
+	long long ans;
+
+	scanf("%d",&N);
+
+	if(3<=N&&N<=1000000){
+
+	
+
+	int test=pji(N);
+
+	if(test){
+
+		ans=N*(N-1)*(N-2);
+
+		printf("%lld",ans);
+
+	} 
+
+	else if(test==0&&N%3==0){
+
+		ans=(N-1)*(N-2)*(N-3);
+
+		printf("%lld",ans);
+
+		
+
+	}
+
+	else{
+
+		ans=(N)*(N-1)*(N-3);
+
+		printf("%lld",ans);	
+
+	}
+
+}
+
+
+
+
+
+	return 0;
+
+	
+
+}
+
+int  pji(int a ){
+
+	
+
+	for(int i=1;;){
+
+		if(i==a){
+
+			return 1;
+
+			break;
+
+		}
+
+		else{
+
+			if(i>a){
+
+				return 0;
+
+				break;
+
+			}
+
+			else{
+
+				i=i+2;
+
+				continue;
+
+			}
+
+		}
+
+	}
+
+}
