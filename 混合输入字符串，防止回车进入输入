@@ -1,0 +1,19 @@
+#include<iostream>
+
+int main(){
+	using namespace std;
+	cout<<"what year was your house built?\n";
+	int year;
+	(cin>>year).get();//这样用也行 
+	//cin>>year;
+	// char ch; cin.get(ch);也行           
+	//cin.get();  //此处，如果没有这个用来接受回车字符，那么回车字符将进入address中，从而结束输入，连输入地址的机会也没有。 
+	cout<<"what's its street address?\n";
+	char address[80];
+	cin.getline(address,80);
+	cout <<"year built:"<<year<<endl;
+	cout<<"address:"<<address<<endl;
+	cout<<"done!\n";
+	return 0;
+	
+}
