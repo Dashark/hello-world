@@ -1,0 +1,57 @@
+#include<iostream>
+
+using namespace std;
+
+
+
+class csample{
+
+	public:
+
+		csample(void){
+
+		};
+
+	    csample(int a ){
+
+	    	n=a;
+
+		}
+
+		csample add(csample s1,csample s2){
+
+			this->n=s1.n*s2.n;
+
+			return (*this);
+
+		}
+
+		int getn(void){
+
+			return n;
+
+		}
+
+	private:
+
+		int n;
+
+};
+
+int main(){
+
+	csample s1(10);
+
+	csample s2(20);
+
+	csample s3;
+
+	s3.add(s1,s2);
+
+	cout<<"s3.n="<<s3.getn()<<endl;
+
+	return 0;
+
+	
+
+}
