@@ -1,0 +1,107 @@
+/*创建程序，存储某个公司员工的编号和薪酬，这些可以算成是与员工的基本属性*/ 
+
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+class staff{               
+
+	public:
+
+		staff(void){             //构造函数的声明 
+
+			number=++count;
+
+			salary=1000.0; 
+
+		}
+
+		~staff(void){	//析构函数，设置一个空的析构函数 
+
+		}
+
+		void setsalary(double s){   //改变月薪 
+
+			salary=s;
+
+		}
+
+		int getnumber(void){          //访问工作编号 
+
+			return number;
+
+		}
+
+		double getsalary(void){          //访问月薪 
+
+			return salary;
+
+		}
+
+	private:
+
+		int number;
+
+		double salary;
+
+		static int count;       //静态变量的声明，利用它来作为编号递增器，从而自动增加编号 
+
+		
+
+}; 
+
+int staff::count=1000;
+
+
+
+int main()
+
+{
+
+	staff st1,st2,st3,st4;
+
+	cout<<"请输入下一个员工的月薪:";
+
+	double s;
+
+	cin>>s;
+
+	st1.setsalary(s);
+
+	cout<<endl<<"请输入下一个员工的月薪:";
+
+	cin>>s; 
+
+	st2.setsalary(s);
+
+	cout<<endl<<"请输入下一个员工的月薪:";
+
+	cin>>s; 
+
+	st3.setsalary(s);
+
+	cout<<endl<<"请输入下一个员工的月薪:";
+
+	cin>>s; 
+
+	st4.setsalary(s);
+
+	cout<<"编号"<<st1.getnumber()<<"的月薪是"<<st1.getsalary()<<endl;
+
+	cout<<"编号"<<st2.getnumber()<<"的月薪是"<<st2.getsalary()<<endl;
+
+	cout<<"编号"<<st3.getnumber()<<"的月薪是"<<st3.getsalary()<<endl;
+
+	cout<<"编号"<<st4.getnumber()<<"的月薪是"<<st4.getsalary()<<endl;
+
+	
+
+	return 0; 
+
+		
+
+}
