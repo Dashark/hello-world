@@ -18,6 +18,9 @@ Table::Table(){
 	 row=1;
 	column=1;
 	str='0';}
+void Table::show(){
+	cout<<str<<endl;}
+
 int main() {
 
   Table tb;
