@@ -1,5 +1,6 @@
 #include<iostream>
 #include<math.h>
+using namespace std;
 class Prime {
 public:
   Prime(int num){
