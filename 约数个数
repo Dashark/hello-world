@@ -1,0 +1,63 @@
+#include<stdio.h>
+
+int num[1000]; 
+
+
+
+int main(){
+
+	int N;
+
+	
+
+	scanf("%d",&N);
+
+	
+
+	for(int i=0;i<N;i++){
+
+		scanf("%d",&num[i]);
+
+	} 
+
+	int j=0; 
+
+	for(j;j<N;j++){
+
+		int time=0;
+
+		for(int k=1;k<=num[j];k++){
+
+			if(num[j]%k==0){
+
+				time++;
+
+			//	continue;
+
+			}
+
+			
+
+		}
+
+		printf("%d\n",time); 
+
+	}
+
+	
+
+		
+
+/*	for(int i=0;i<N;i++){
+
+		printf("%d\n",ans[i]);
+
+	}*/
+
+	
+
+	
+
+	return 0;
+
+}
