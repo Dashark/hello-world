@@ -1,0 +1,211 @@
+题目描述
+
+一个N*M的矩阵，找出这个矩阵中所有元素的和不小于K的面积最小的子矩阵（矩阵中元素个数为矩阵面积）
+
+输入描述:
+
+每个案例第一行三个正整数N,M<=100，表示矩阵大小，和一个整数K
+
+接下来N行，每行M个数，表示矩阵每个元素的值
+
+
+
+输出描述:
+
+输出最小面积的值。如果出现任意矩阵的和都小于K，直接输出-1。
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+
+int ju[100][100]; //申明数组用来存放矩阵 
+
+int testhen(int arr[][100],int n,int m,int K,int order){   //用来计算横向的矩阵的大小 
+
+	int i,j;
+
+for( i=0;i<n;i++){  //从第一排第一个开始 
+
+int sum=arr[i][0];
+
+	for(j=1;j<order,j<m;j++){  //order代表阶数 
+
+		sum+=arr[i][j];
+
+		if(sum>K){
+
+			return order;   //如果sum大，则return order 
+
+		}
+
+		else{
+
+			continue;
+
+		}
+
+	}
+
+}
+
+return 0;
+
+}
+
+
+
+
+
+
+
+int testshu(int arr[][100],int n,int m,int K,int order){//申明函数计算竖直方向的值  
+
+		int i,j;
+
+for( i=0;i<m;i++){
+
+int sum=arr[0][i];
+
+	for(j=1;j<order,j<n;j++){
+
+		sum+=arr[j][i];
+
+		if(sum>K){
+
+			return order;
+
+		}
+
+		else{
+
+			continue;
+
+		}
+
+	}
+
+}return 0;
+
+}
+
+
+
+
+
+
+
+int testall(int arr[][100],int n,int m,int K,int order){
+
+/*	if(order<4&&(order%2!=0)){
+
+		return 0;
+
+	}*/
+
+	int i,j;
+
+   
+
+	int shunxu=order/2; 
+
+	for( i=0;i<=n-shunxu+1;i++){
+
+			int sum=arr[i][0] ;
+
+		for(j=1;j<=m-shunxu+1;j++){
+
+			sum+=arr[i][j];
+
+		if(sum>K){
+
+			return order;
+
+		}
+
+		else{
+
+			
+
+			continue;
+
+		}
+
+	}}
+
+
+
+	return 0;	
+
+}		
+
+ 
+
+int main(){
+
+	int N,M,k;
+
+	 int flag=0; 
+
+	scanf("%d %d %d",&N,&M,&k);
+
+	for(int i=0;i<N;i++){
+
+		for(int j=0;j<M;j++){
+
+			scanf("%d",&ju[i][j]);
+
+		}
+
+	}
+
+	int order=1;
+
+	while(order<=N*M){
+
+		if(order<=N){
+
+			if(testhen(ju,N,M,k,order)!=0&&testshu(ju,N,M,k,order)!=0){
+
+			  printf("%d",order);
+
+			  flag=1;
+
+				break;
+
+			}
+
+		}
+
+	    if(order>=4&&order%2==0&&order<=N*M){
+
+	    	if(testall(ju,N,M,k,order)!=0){
+
+	    		flag=1;
+
+	    		printf("%d ",order);
+
+	    		break;
+
+			}
+
+		}
+
+		order++;
+
+	} 
+
+	if(!flag){
+
+		printf("-1");
+
+	}
+
+	return 0;
+
+}
