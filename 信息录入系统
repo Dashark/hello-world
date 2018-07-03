@@ -1,0 +1,235 @@
+
+#include<stdio.h>
+#include<stdlib.h> 
+#include<string.h>
+struct ZG{
+    char num[10];
+    char name[10];
+    char sex[10];
+    char birthday[10];
+    char marry[10];
+    char title[10];
+    char site[20];
+    char tel[15];
+    char mail[20];
+    }zhigong[10];
+int menu()
+{
+		printf("\n");
+		printf("\n\t\t               职工信息管理系统\n");
+		printf("\n\t\t***********************************************");
+		printf("\n\t\t*          1------职工信息录入               *");
+		printf("\n\t\t*          2------浏览职工信息               *");
+		printf("\n\t\t*          3------按工号查询职工             *");
+		printf("\n\t\t*          4------按姓名查询职工             *");
+		printf("\n\t\t*          5------按职称查询职工             *");
+		printf("\n\t\t*          6------职工信息的删除与修改       *");
+		printf("\n\t\t*          0------退出系统                   *");
+		printf("\n\t\t***********************************************");
+		printf("\n\n\t\t    请选择菜单号(0--7)： ");
+		
+		return 0;
+}
+int mannum;
+int input_data()
+{
+     printf("\n欢迎进入职工信息录入系统,请输入要录入多少个数据：N=");
+    // system("pause");
+    // system("cls");fflush(stdin);
+     scanf("%d",&mannum);
+     printf("请按序号输入工号，姓名，性别，出生年月，婚姻状态，职称，家庭地址，电话，e-mail\n"); 
+	 int i=0;    
+	 //char ch;  //输入10个职工
+     for(i;i<mannum;i++){
+        char ch;
+       /* gets(zhigong[i].num);
+        gets(zhigong[i].name);
+        gets(zhigong[i].sex);
+        gets(zhigong[i].birthday);
+        gets(zhigong[i].marry);
+        gets(zhigong[i].title);
+        gets(zhigong[i].site);
+        gets(zhigong[i].tel);
+        gets(zhigong[i].mail);
+        ch=getchar();*/
+        
+        
+    scanf("%s %s %s %s %s %s %s %s %s",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+        /*if(ch=='\n'){
+        	continue;
+		}*/
+		ch=getchar();
+		continue;
+		   //getchar gets
+	 }
+	 	return 0;
+}
+
+int datas()
+{
+	printf("\n");
+     printf("工号   姓名   性别   出生年月   婚姻状态   职称   家庭住址   电话   e-mail\n");
+     int i=0;
+     for(i;i<mannum;i++){
+        printf("%s  %s   %s   %s   %s   %s   %s   %s   %s\n",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+     }
+     	return 0;
+}
+
+int showgonghao(){
+	struct ZG  find;
+	printf("请输入你要查询的职工工号：");
+	scanf("%s",find.num);
+	int i=0;
+	printf("\n");
+	for(i;i<mannum;i++){
+		if(strcmp(zhigong[i].num,find.num)==0){
+			printf("该职工的信息为: %s %s %s %s %s %s %s %s %s\n",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+		}
+
+	}
+		return 0;
+}
+int  showxingming(){
+	struct ZG Name;
+	printf("请输入你要查询的职工姓名：");
+	scanf("%s",Name.name);
+	int i=0;
+	for(i;i<mannum;i++){
+        if(strcmp(zhigong[i].name,Name.name)==0){
+            printf("\n该职工的信息为:%s %s %s %s %s %s %s %s %s\n",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+        }
+	}
+	return 0;
+
+}
+
+
+
+int showtitle(){
+    struct ZG Title;
+    printf("请输入你要查询的职工职称：");
+    scanf("%s",Title.title);
+    int i=0;
+    for(i;i<mannum;i++){
+        if(strcmp(zhigong[i].title,Title.title)==0){
+            printf("\n该职工的信息为:%s %s %s %s %s %s %s %s %s\n",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+        }
+    }
+	return 0;
+}
+
+int deletesm(){
+	char test;
+	printf("如要删除职工信息请输入d,如要修改职工信息请输入c\n");
+	scanf("%s",&test);
+	if(test=='d')
+	{
+	struct ZG find;
+	if(mannum==0){
+		
+		return 0;
+	} 
+	printf("请输入你要删除的职工工号：\n");
+	scanf("%s",find.num);
+	int temp;
+	int i=0;
+	for(i;i<mannum;i++){
+		if(strcmp(zhigong[i].num,find.num)==0){
+			temp=i;
+			break;
+		}
+	}
+    struct ZG temp2;
+    int k=temp;
+	for(k;k<(mannum-1);k++){
+		zhigong[k]=zhigong[k+1];
+		}
+	}
+	else if(test=='c'){
+		struct ZG  find;
+		char ch;
+	    printf("请输入你要改变的职工工号：");
+	   scanf("%s",find.num);
+	   int temp;
+	   for(int i=0;i<mannum;i++){
+		if(strcmp(zhigong[i].num,find.num)==0){
+			temp=i;
+			break;
+		}
+	   printf("请输入你要改变的职工信息\n");
+	    scanf("%s %s %s %s %s %s %s %s %s",zhigong[i].num,zhigong[i].name,zhigong[i].sex,zhigong[i].birthday,zhigong[i].marry,zhigong[i].title,zhigong[i].site,zhigong[i].tel,zhigong[i].mail);
+	    ch=getchar();
+	  
+	
+	
+	
+	
+		/*int k;
+		scanf("%d",&k);
+		scanf("%s %s %s %s %s %s %s %s %s",zhigong[k].num,zhigong[k].name,zhigong[k].sex,zhigong[k].birthday,zhigong[k].marry,zhigong[k].title,zhigong[k].site,zhigong[k].tel,zhigong[k].mail);*/
+
+	}
+		return 0;
+
+}}
+
+int main()
+{
+    int k=1,all;
+    menu();
+    while(k)
+	{
+		int flag=1;
+		int cs;
+		//system("cls");
+		//menu();
+		scanf("%d",&cs);
+		if(cs==1){
+			input_data() ;
+	
+		}
+		else if(cs==2){
+			datas();  
+		
+		}
+		else if(cs==3){
+			showgonghao() ;
+		
+		}
+		else if(cs==4){
+		showxingming() ;  
+
+		}
+		else if(cs==5){
+			showtitle() ; 
+		
+		}
+		else if(cs==6){
+			deletesm() ;  
+
+		}
+		else if(cs==0){
+			flag=0;
+		}
+		else{
+			printf("请重新输入");
+		
+		}
+         /* input_data() ; break;
+		  case 2:  datas();  break;
+  		  case 3:  showgonghao() ;    break;
+  		  case 4:  showxingming() ;  break;
+          case 5:  showtitle() ;  break;
+          case 6:  deletesm() ;  break;
+		  case 0:  break;
+	      default:  printf("\t输入出错！！\n");
+		}*/
+		if(flag==0){
+			break;
+		}
+		menu();
+		
+	}
+    return 0;
+}
