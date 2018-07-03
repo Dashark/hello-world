@@ -1,0 +1,65 @@
+/*开灯问题（算法竞赛P39）：n盏灯，编号1-n。第一个人把所有灯打开，第二个人按下所有编号为2的灯的开关，一次类推，一共K个人，k<=n<=1000;问最后哪些灯还开着
+
+输入n和k，输出开着的灯的编号。*/ 
+
+
+
+
+
+#include<stdio.h>
+
+#include<string.h>
+
+#define max 1010 
+
+int a[max];
+
+int main() {
+
+	int n,k,first=1;
+
+	memset(a,0,sizeof(a));  //该函数包含在string.h中，可以用来给整个数组清零。 
+
+	scanf("%d%d",&n,&k);
+
+	for(int i=1;i<=k;i++)
+
+	  for(int j=1;j<=n;j++){
+
+	  	if(j%i==0)             //判断这个输是否可以 整除 
+
+	  	a[j]=!a[j];
+
+	  }
+
+	for(int i=1;i<=n;i++){
+
+		if(a[i]){
+
+			if(first){               //此处控制第一个数前面不输出空格 
+
+				first=0;
+
+			}
+
+			else {
+
+				printf( " ");
+
+				
+
+			}
+
+			printf("%d",i);
+
+		}
+
+	}
+
+	printf("\n");  
+
+
+
+	return 0;
+
+}
