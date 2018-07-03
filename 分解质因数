@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+#include <math.h>
+
+int main() {
+
+	int i,j;
+
+	int n,num;
+
+	scanf("%d",&n);
+
+	for(j=0;j<n;j++)
+
+	{
+
+		scanf("%d",&num);
+
+		printf("%d=",num);
+
+		for(i=2;i<=num;i++)        //以下是精华，需仔细分析
+
+		{
+
+			while(num!=i)
+
+			{
+
+				if(num%i==0)
+
+				{ printf("%d*",i);
+
+				num=num/i;}
+
+				else
+
+				{
+
+					break;
+
+				}
+
+			}
+
+			
+
+		}
+
+			printf("%d\n",num);
+
+	}
+
+	return 0;
+
+}
