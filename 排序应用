@@ -1,0 +1,51 @@
+#include <stdio.h>
+void sortage(int arr[],int len)
+{
+    int i=0;
+    if (arr == NULL || len <= 0)
+    {
+        return;
+    }
+
+    const int oldestAge = 99;     //最大年龄
+    int timeofAge[oldestAge+1];   //每个年龄次数（辅助内存）
+
+    //初始化数组
+    for(i = 0;i <= oldestAge;i++)
+    {
+        timeofAge[i] = 0;
+    }
+
+    for (i = 0;i < len;i++)  //循环读入年龄
+    {
+        int age = arr[i];   
+        if(age < 0 || age > oldestAge )
+        {
+            printf("age is not in the range");
+        }
+        timeofAge[age]++;  //每个年龄作为数组的下标，就代表这个年龄的员工有几人
+    }
+
+    int index=0;
+    int j=0;
+    //双层循环，外层遍历所有年龄
+    for (i = 0;i <= oldestAge;i++)
+    {
+        for (j = 0;j < timeofAge[i];j++) //内层循环：出现几次就打印几次
+        {
+            arr[index] = i;
+            ++index;
+        }
+    }
+
+}
+void main()
+{
+    int i=0;
+    int arr[7]={22,18,23,22,50,34,19};
+    sortage(arr,7);
+    for(i = 0;i < 7;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+}
