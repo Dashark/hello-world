@@ -1,0 +1,33 @@
+#include<iostream>
+
+#include<cstring> 
+
+
+
+int main(){
+
+	using namespace std;
+
+	char word[5]="?ate";
+
+	for(char ch='a';strcmp(word,"mate");ch++)  //strcmp在两个字符相同是，返回值为0；
+
+	{
+
+		cout<<word<<endl;
+
+		word[0]=ch;             //自动更新字符，利用ASCII码  
+
+	}
+
+	cout << "After loop ends,word is "<<word<<endl;
+
+	
+
+
+
+	return 0;
+
+	
+
+}
