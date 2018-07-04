@@ -1,0 +1,882 @@
+1.C++与C相比的特性
+
+封装性 
+封装性把数据与操作数据的函数组织在一起，不仅使程序结构更加紧凑，并且提高了类内部数据的安全性。
+继承性 
+继承性增加了软件的可扩充性及代码重用性。
+多态性 
+多态性使设计人员在设计程序时可以对问题进行更好的抽象，有利于代码的维护和可重用。
+2.从结构到类
+
+C++中不管是结构还是类，都可以包含函数。区别是： 
+类的关键字是class ； 结构的关键字是struct。
+成员的访问控制方面： 
+结构体默认情况下，其成员是公有（public）的；
+类默认情况下，其成员是私有（private）的；
+在一个类中，公有成员是可以在类的外部进行访问的，而私有成员就只能在类的内部进行访问。
+例如下面的程序就会报错，因为x和y都是默认的私有成员，只有在类的内部才能进行访问
+
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+    int x;
+    int y;
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+};
+
+int main(void)
+{
+    point pt;
+    pt.x = 0;    //无法访问
+    pt.y = 0;    //无法访问
+    pt.output(); //无法访问
+
+    return 0;
+}
+
+为了解决上面的问题，使得可以对类内的成员进行初始化，我们用构造函数进行。先来看没有构造函数直接进行输出是x，y的值：
+
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public：
+    int x;
+    int y;
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+};
+
+int main(void)
+{
+    point pt;
+    pt.output();
+
+    return 0;
+}
+
+在没有进行初始化的条件下，输出为x=-858993460，y=-858993460（或者其它毫不相关的数）。
+
+下面引入构造函数后：
+
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point() //point的构造函数
+    {
+        x = 0;
+        y = 0;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+};
+
+int main(void)
+{
+    point pt;
+    pt.output();
+
+    return 0;
+}
+
+3.构造函数
+
+构造函数，用来对类中的成员变量进行初始化。
+在类中定义成员变量时，不能直接给成员变量赋初值，而是通过构造函数进行。
+class point
+{
+    int x = 0;//错误，此处不能给变量x赋值
+    int y;
+};
+
+C++规定构造函数的名字和类名相同，没有返回值。
+构造函数的作用是对对象本身做初始化工作，也就是给用户提供初始化类中成员变量的一种方式。
+构造函数不需要手动调用，当在main函数中执行“point pt”这条语句时，就会自动调用point这个类的构造函数，从而完成对pt对象内部数据成员x和y的初始化工作。
+如果一个类中没有定义任何的构造函数，那么编译器只有在以下三种情况，才会提供默认的构造函数： 
+如果类有虚拟成员函数或者虚拟继承父类（即有虚拟基类）时；
+如果类的基类有构造函数（可以是用户定义的构造函数，或编译器提供的默认构造函数）；
+在类中所有非静态的对象数据成员，他们所属的类中有构造函数（可以是用户定义的构造函数，或编译器提供的默认构造函数）。
+4.函数的重载
+
+下面先看一个代码：
+
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point() //point的第一个构造函数
+    {
+        x = 0;
+        y = 0;
+    }
+
+    point(int a, int b) //point的第二个构造函数
+    {
+        x = a;
+        y = b;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+};
+
+int main(void)
+{
+    point pt(6, 8);
+    pt.output();
+
+    return 0;
+}
+
+可以看到在上述代码中，有两个构造函数，他们的函数名一样，只是参数的类型和个数不一样，这就是C++中函数的重载。
+当执行point pt(6, 8)这条语句时，C++编译器将根据参数的类型和参数的个数来确定执行哪一个构造函数，在上例中，执行point（int a, int b）函数。
+函数的重载不仅仅局限于构造函数，所有C++中满足函数名相同，但是函数的参数类型、参数个数不同都可以构成函数的重载。
+只有函数的返回类型不同是不能构成函数的重载的。 
+void output()
+int output()
+上述两个不能构成函数的重载。
+5.析构函数
+
+当一个对象的声明周期结束时，我们应该去释放这个对象所占有的资源，这可以利用析构函数来完成。
+析构函数的定义格式为：~类名() 如~point()
+析构函数不允许有返回值。
+析构函数不允许带参数。
+一个类中只能有一个析构函数。
+对一个对象来说，析构函数是最后一个被调用的成员函数。
+例如下面这段代码：
+
+class Student
+{
+private:
+    char *pName;
+public:
+    Student()
+    {
+        pName = new char[20];
+    }   
+
+    ~Student()
+    {
+        delete[] pName; //如果类中没有用到指针，则析构函数内部空着就好
+    }
+};
+
+6.this指针
+
+先来看几个例子：
+
+例一
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point()
+    {
+        x = 0;
+        y = 0;
+    }
+
+    point(int a, int b)
+    {
+        x = a;
+        y = b;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+
+    void input(int x, int y)
+    {
+        x = x;
+        y = y;
+    }
+};
+
+int main(void)
+{
+    point pt(5, 5);
+    pt.input(10, 10);
+    pt.output();
+
+    return 0;
+}
+
+输出为：
+
+5
+5
+1
+2
+那么为什么输出不是10， 10呢，因为在input函数中，point类的成员变量x和y都是不可见的。并不是说成员变量在成员函数中不可见，而是如果成员函数中定义了和成员变量相同的变量，则成员变量在该成员函数中不可见，在下一个例子中可以说明这一点。
+
+例二
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point()
+    {
+        x = 0;
+        y = 0;
+    }
+
+    point(int a, int b)
+    {
+        x = a;
+        y = b;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+
+    void input(int x)
+    {
+        y = x;
+    }
+};
+
+int main(void)
+{
+    point pt(5, 5);
+    pt.input(10);
+    pt.output();
+
+    return 0;
+}
+
+输出为：
+
+5
+10
+1
+2
+在这个例子中，从输出x=5，y=10可以看出：成员变量y在成员函数input中就是可见的， 成员变量x在成员函数input中是不可见的。
+
+那么该如何利用成员函数给成员变量赋值呢，可以用下面两个方法：
+
+例三
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point()
+    {
+        x = 0;
+        y = 0;
+    }
+
+    point(int a, int b)
+    {
+        x = a;
+        y = b;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+
+    void input(int c, int d)
+    {
+        x = c;
+        y = d;
+    }
+};
+
+int main(void)
+{
+    point pt(5, 5);
+    pt.input(10, 10);
+    pt.output();
+
+    return 0;
+}
+
+输出为：
+
+10
+10
+1
+2
+例四 
+利用this指针，this指针是一个隐藏的指针，它指向对象本身，代表了对象的地址。
+例如上面几个例子中的对象pt，this=&pt。
+所有对数据成员的访问都隐含地被加上了前缀this->，例如，x=0，等价于this->x=0。
+所以我们可以这样写这个程序：
+
+#include <iostream.h>
+
+using namespace std;
+
+class point
+{
+public:
+    int x;
+    int y;
+
+    point()
+    {
+        x = 0;
+        y = 0;
+    }
+
+    point(int a, int b)
+    {
+        x = a;
+        y = b;
+    }
+
+    void output()
+    {
+        cout << x << endl << y << endl;
+    }
+
+    void input(int x, int y)
+    {
+        this->x = x;
+        this->y = x;
+    }
+};
+
+int main(void)
+{
+    point pt(5, 5);
+    pt.input(10, 10);
+
+    return 0;
+}
+
+输出为：
+
+10
+10
+1
+2
+7.类的继承
+
+继承
+
+先看下面这个例子：
+
+#include <iostream.h>
+
+using namespace std;
+
+class animal
+{
+public:
+    void eat()
+    {
+        cout << "animal eat" << endl;
+    }
+
+    void sleep()
+    {
+        cout << "animal sleep" << endl;
+    }
+
+    void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+};
+
+class fish:public animal
+{
+};
+
+int main(void)
+{
+    animal an;
+    fish fh;
+    an.eat();
+    fh.eat();
+
+    return 0;
+}
+
+其中fish继承自animal类。
+animal类称为基类，也称为父类。
+fish类称为派生类，也称为子类。
+声明方法为 “class 派生类名称：访问权限修饰符 基类名称”。 
+访问权限修饰符为public： 
+基类中的成员在派生类中仍以原来的访问权限在派生类中出现。
+如果没有指定，则默认是private： 
+基类中的成员在派生类中都变成了private类型的访问权限。
+访问权限修饰符为protected： 
+基类中的public和protected成员在派生类中都变成了protected类型的访问权限。
+基类中的private成员不能被派生类访问。
+补充：类中成员访问权限修饰符： 
+public：成员可以在任何地方被访问，其它地方访问要加上”对象名.成员“。
+protected： 成员只能在该类及其子类中访问。
+private： 成员只能在该类自身中访问，派生类中也不能访问。
+派生类除了自己的成员变量和成员方法外，还可以继承基类的成员变量和成员方法。
+接下来看一下子类和父类的构造函数和析构函数的顺序：
+
+#include <iostream.h>
+
+using namespace std;
+
+class animal
+{
+public:
+    animal()
+    {
+        cout << "animal construct" << endl;
+    }
+
+    ~animal()
+    {
+        cout << "animal destruct" << endl;
+    }
+
+    void eat()
+    {
+        cout << "animal eat" << endl;
+    }
+
+    void sleep()
+    {
+        cout << "animal sleep" << endl;
+    }
+
+    void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+};
+
+class fish:public animal
+{
+public:
+    fish()
+    {
+        cout << "fish construct" << endl;
+    }
+
+    ~fish()
+    {
+        cout << "fish destruct" << endl;
+    }
+};
+
+int main(void)
+{
+    fish fh;
+
+    return 0;
+}
+
+输出为：
+
+animal construct
+fish construct
+fish destruct
+animal destruct
+1
+2
+3
+4
+5
+可以看出，在声明子类对象时，父类的构造函数先运行，然后子类的构造函数，在对象声明周期结束时，子类的析构函数先运行，然后是父类的析构函数。
+
+在子类中调用父类的带参数的构造函数
+
+#include <iostream.h>
+
+using namespace std;
+
+class animal
+{
+public:
+    animal(int height, int weight)
+    {
+        cout << "animal construct" << endl;
+    }
+};
+
+class fish:pubilc animal
+{
+pubilc:
+    fish():animal(400, 300)
+    {
+        cout << "fish construct" << endl;
+    }
+};
+
+int main(void)
+{
+    fish fh;
+
+    return 0;
+}
+在fish类的构造函数后，加一个冒号（：），然后加上父类的带参数的构造函数。这样，在子类的构造函数被调用时，系统就会调用父类的带参数的构造函数去构造对象。
+
+多重继承
+
+如同该名字中所描述的，一个类可以从多个基类中派生。
+
+定义形式为：
+
+class 派生类名 : 访问权限 基类名称， 访问权限 基类名称 
+{ 
+…… 
+};
+
+例如B类是由类C和类D派生的，可按如下方式进行说明：
+
+class B : public C, public D 
+{ 
+…… 
+};
+
+8.虚函数与多态性、纯虚函数
+
+虚函数与多态性
+
+C++的多态性用一句话概括就是：在基类的函数前加上virtual关键字，在派生类中重写该函数，运行时将会根据对象的实际类型来调用相应的函数。如果对象是派生类，就调用派生类的函数；如果对象是基类，就调用基类的函数。C++的多态性是由虚函数类实现的，而不是纯虚函数。
+
+下面通过两个例子来对比说明：
+
+例一
+#include <iostream.h>
+
+using namespace std;
+
+class animal
+{
+public:
+    void eat()
+    {
+        cout << "animal eat" << endl;
+    }
+
+    void sleep()
+    {
+        cout << "animal sleep" << endl;
+    }
+
+    void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+};
+
+class fish:public animal
+{
+public:
+    void breathe()
+    {
+        cout << "fish bubble" << endl;
+    }
+};
+
+void fn(animal *pAn)
+{
+    pAn->breathe();
+}
+
+int main(void)
+{
+    animal *pAn;
+    fish fh;
+    pAn = &fh;
+    fn(pAn);
+
+    return 0;
+}
+输出为：
+
+animal breathe
+1
+例二
+#include <iostream.h>
+
+using namespace std;
+
+class animal
+{
+public:
+    void eat()
+    {
+        cout << "animal eat" << endl;
+    }
+
+    void sleep()
+    {
+        cout << "animal sleep" << endl;
+    }
+
+    virtual void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+};
+
+class fish:public animal
+{
+public:
+    void breathe()
+    {
+        cout << "fish bubble" << endl;
+    }
+};
+
+void fn(animal *pAn)
+{
+    pAn->breathe();
+}
+
+int main(void)
+{
+    animal *pAn;
+    fish fh;
+    pAn = &fh;
+    fn(pAn);
+
+    return 0;
+}
+
+输出为：
+
+fish bubble
+1
+为什么例一中可以直接将fish类的对象fh的地址赋值给animal类的指针变量pAn？ 
+因为fish对象也是一个animal对象，对fish类型转换为animal类型不用强制类型转换，C++编译器会自动进行这种转换。反过来，则不能把animal对象看成fish对象。
+为什么例一的输出结果为“animal breathe”而不是“fish bubble”呢？
+
+因为我们将fish类的对象fh的地址赋值给pAn时，C++编译器进行了类型转换，此时C++编译器认为变量pAn保存的就是animal对象的地址。
+fish类对象所占的内存图如下所示，它分为两部分。 
+animal的对象所占内存；
+fish的对象自身增加的部分。
+当我们将fish类的对象转换为animal类型时，该对象就被认为是原对象整个内存模型的上半部分，也就是“animal的对象所占内存”。当我们利用类型转换后的对象指针去调用它的方法时，自然也就是调用它所在的内存中的方法。
+用virtual关键字申明的函数叫做虚函数。
+
+对于例二输出为“fish bubble”，这就是C++的多态性。当C++编译器在编译的时候，发现animal类的breathe（）是虚函数，这时C++就会采用迟绑定技术。也就是编译时不确定具体调用的函数，而是在运行时，依据对象的类型（在程序中，我们传递的是fish类对象的地址）来确认调用的是哪一个函数，这种能力叫做C++的多态性。我们没有在breathe（）函数前加virtual关键字时，C++编译器在编译时就确定了哪个函数被调用，这叫做早期绑定。
+纯虚函数
+
+class animal
+{
+public:
+    void eat()
+    {
+        cout << "animal eat" << endl;
+    }
+
+    void sleep()
+    {
+    cout << "animal sleep" << endl;
+    }
+
+    virtual void breathe() = 0;
+};
+
+纯虚函数是指被标明为不具体实现的虚成员函数。
+纯虚函数可以让类先具有一个操作名称，而没有操作内容，让派生类在继承时再去具体地给出定义。
+凡是含有纯虚函数的类叫做抽象类，这种类不能声明对象，只能作为基类为派生类服务。
+在派生类中，必须完全实现基类的纯虚函数，否则派生类也成了抽象类，不能实例话对象。
+9.函数的覆盖和隐藏
+
+覆盖
+
+构成函数覆盖的条件：
+
+基类函数必须是虚函数；
+发生覆盖的两个函数分别位于基类和派生类中；
+函数名称与参数列表必须完全相同。
+例：
+
+class animal
+{
+public:
+    ...
+    virtual void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+    ...
+};
+
+class fish:public animal
+{
+public:
+    ...
+    void breathe()
+    {
+        cout << "fish bubble" << endl;
+    }
+    ...
+};
+
+上述例子中，fish类中的breathe（）函数就实现了对animal类中breathe函数的覆盖。fish类中的breathe（）函数仍然是虚函数。
+
+隐藏
+
+例一
+class animal
+{
+public:
+    ...
+    void breathe()
+    {
+        cout << "animal breathe" << endl;
+    }
+    ...
+};
+
+class fish:public animal
+{
+public:
+    ...
+    void breathe()
+    {
+        cout << "fish bubble" << endl;
+    }
+    ...
+};
+
+与覆盖中的代码相比，此段代码中，派生类fish和基类animal中的breathe函数也是完全一样的。不同的是breathe函数不是虚函数，这种情况称为函数的隐藏。所谓隐藏，是指派生类中具有与基类同名的函数（不考虑参数列表是否相同），从而在派生类中隐藏了基类的同名函数。
+两种函数隐藏的情况：
+
+派生类的函数与基类的函数完全相同（函数名和参数列表都相同），只是基类的函数没有使用virtual关键字。此时基类的函数将被隐藏，而不是覆盖。
+派生类的函数与基类的函数同名，但参数列表不同，在这种情况下，不管基类的函数声明是否有virtual关键字，基类的函数都将被隐藏（覆盖的条件是函数名和参数列表都相同，且基类中函数用virtual关键字修饰）。
+例二
+
+class Base
+{
+public:
+    virtual void fn();
+};
+
+class Derived:public Base
+{
+public:
+    void fn(int);
+};
+
+class Derived2:public Derived
+{
+public:
+    void fn();
+};
+
+在Derived类中的fn（）函数隐藏了Base类中的fn（）函数，因此Derived类中的fn（）函数不是虚函数。因为两个函数的参数列表不同。
+在Derived2类中的fn（）函数覆盖类Derived类中的fn（）函数。因为Derived2类中的fn（）函数和Base类中的fn（）虚函数具有相同的函数名和参数列表，因此Derived2类中的fn（）函数是虚函数。注意：在Derived2中，Base类的fn（）函数是不可见的，但这并不影响fn函数的覆盖，因为Derived2也是Base类的派生类。
+当隐藏发生时，如果在派生类的同名函数中想要调用基类的被隐藏函数，可以使用类名::函数名（参数）的语法形式。
+10.引用
+
+引用就是一个变量的别名。它需要用另一个变量或对象来初始化自身。引用就像一个人的外号一样。
+
+例一
+//下面的代码生命了一个引用b，并用变量a进行了初始化
+int a = 5;
+int &b = a;
+
+用&表示申明一个引用，引用必须在申明时进行初始化。
+
+int a = 5;
+int& b = a ;
+int c = 3;
+b = c;
+上例中，并不是将b变成c的引用，而是给b赋值，此时b和a的值都变成了3。
+
+例二
+#include <iostream.h>
+
+using namespace std;
+
+//change函数主要用来交换a和b的值
+void change(int& a, int& b);
+
+int main(void)
+{
+    int x = 5;
+    int y = 3;
+    cout << "original x = " << x << endl;
+    cout << "original y = " << y << endl;
+    change(x, y); //此处如果用指针传递，则调用change（&x, &y）,这样很容易让人迷惑，不知道交换的是x和y的值，还是x和y的地址？此处使用引用，可读性就比指针要好
+    cout << "changed x = " << x << endl;
+    cout << "changed y = " << y << endl;
+    return 0;
+}
+/*
+change()函数中采用了一个巧妙的算法来实现了a和b值的互换
+*/
+void change(int& a, int& b)
+{
+    a = a+b;
+    b = a-b;
+    a = a-b;
+}
+上述例子中，不能将函数定义成void change(int a, int b)。 如果定义成这样，在调用完成之后，x还是等于原来的x，y还是等于原来的y，因为函数中的a=x，b=y，而x！=a，y！=b。使用引用就不同了，使用引用后，a和x，b和y事实上是相同的，因为他们在内存中占用的是同一个内存单元。
+
+11.C++类的设计习惯及头文件重复包含问题的解决
+
+在设计一个类的时候，通常是将类的定义及类成员函数的声明放到头文件（即.h文件）中，将类中成员函数的实现放到源文件（即.cpp）中。对于main（）函数，我们则单独把它放到main.cpp文件中。
+
+对于头文件重复包含的情况，如main.cpp包含了animal.h文件和fish.h文件，而fish.h文件又包含了animal.h文件。这样就会出现头文件重复包含了，编译报错：‘class’ type redefinition。解决方法如下，在每一个头文件中，都使用条件预处理指令，如下：
+
+#ifndef _ANIMAL_H_
+#define _ANIMAL_H_
+class animal
+{
+public:
+    animal();
+    ~animal();
+    void eat();
+    void sleep();
+    virtual void breathe();
+};
+#endif
