@@ -1,4 +1,4 @@
-struct Date {
+/*struct Date {
   int year;
   int month;
   int day;
@@ -24,4 +24,35 @@ int main() {
   else
     printf("Very Bad!\n");
   return 0;
+}*/
+#include<iostream>
+using namespace std;
+template<typename T>
+void sort(T *a,int n)
+{
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=i+1;j<n;j++){
+			if(a[i]>a[j]){
+				T temp=a[i];
+				a[i]=a[j];
+				a[j]=temp;
+			}
+		}
+	}
+	for(i=0;i<n;i++) cout<<a[i]<<" ";
 }
+int main()
+{
+	int n;
+	int a[100],temp,i;
+	for(i=0;i<n;i++){
+		cin>>a[i];
+	}
+	n=sizeof(a)/sizeof(int);
+	sort(a,n);
+	/*for(i=0;i<;i++){
+		cout<<a[i];
+	}*/
+	return 0;
+} 
