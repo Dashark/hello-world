@@ -1,25 +1,26 @@
-/*��λת��������ҵ�� 
-��Ա��������github���ƣ�ExecutantLK�������Σ�GitHub��ArokHT�����½�(Github:gitvide)
-��Ա����������������������λ��������λ�������λ���������ƣ�����д����������
-���Σ������ʱ�䣬���ȣ�������ѹ����
-�½ܣ������������룬������˻��ຯ����ʵ�ּ̳У���Ʊ�ʾ�¶ȵĵ�λת���ࡣ
+
+/*单位转换器大作业： 
+组员：刘坤（github名称：ExecutantLK），黄涛（GitHub：ArokHT），陈杰(Github:gitvide)
+组员工作量：刘坤：完成面积单位，电流单位，体积单位三个类的设计，并书写了主函数；
+黄涛：完成了时间，长度，重量，压力，
+陈杰：整合整个代码，并设计了基类函数，实现继承，设计表示温度的单位转换类。
 //////////////////////////////////////////////////////////////// 
-˼·��������ҵ�涨������������ԭ��ֵ��ԭ��λ��Ҫת���ɵĵ�λ����ô������Ϊ�����Ļ����ͻ����������ݳ�Ա��
-����Ա�������������������˼·��������ֻ��Ҫһ��find����������ƥ��õ�λ����һ�൥λ����translate����
-������ת����ֵ������ֵ�λ��ֵ����Ȼ������һ��show�������������ֵ��show���������������������Ҫ��ƵĻ���
-��ÿһ�����ж����У���ô�������һ�����࣬���е�������Ա����ȫ��Ū�ɴ��麯�����ɼ̳г���������ʵ�֣�������
-��Ա���ǽ���Ū��protect���Ӷ����м̳к󣬸����ݳ�Ա��Ȼ�������˽�г�Ա������ͨ����Ա���������ã��Ӷ�ʵ��
-����
+思路：由于作业规定输入三个量，原数值，原单位，要转换成的单位，那么我们认为设计类的话，就会有三个数据成员，
+而成员函数，我们以最基本的思路来看，就只需要一个find函数（用来匹配该单位是哪一类单位），translate函数
+（用来转换数值，变成现单位的值），然后再用一个show（）函数把这个值给show出来。而这三个数，如果要设计的话，
+在每一个类中都会有，那么我们设计一个基类，其中的三个成员函数全部弄成纯虚函数，由继承出来的类来实现，而数据
+成员我们将它弄成protect，从而公有继承后，该数据成员仍然是子类的私有成员，可以通过成员函数来调用，从而实现
+功能
 //////////////////////////////////////////////////////////////// 
-������ʵ�ֵĵ�λת����
-1.���ȵ�λ��km, m, dm, cm, mm 
-2.������λ��t, kg, g, mg 
-3.ʱ�䵥λ��day, h, min, s, ms 
-4.�����λ��mm2,cm2,dm2,m2,ha,km2��mm2���У�2��������ƽ���� 
-5.������λ��pa,na,ua,ma,a,ka 
-6.ѹǿ��λ��mpa, kpa, psi, Pa(Ϊ�������pa��ͻ���ʴ�д) 
-7.�¶ȵ�λ���������¶�K�������¶� F�������¶�C 
-8.�����λ�� mm3,cm3,dm3,m3,ml,l���ֱ�Ϊ�������ף��������ס������������������� */
+以下是实现的单位转换：
+1.长度单位：km, m, dm, cm, mm 
+2.重量单位：t, kg, g, mg 
+3.时间单位：day, h, min, s, ms 
+4.面积单位：mm2,cm2,dm2,m2,ha,km2（mm2等中，2代表的是平方） 
+5.电流单位：pa,na,ua,ma,a,ka 
+6.压强单位：mpa, kpa, psi, Pa(为不与电流pa冲突，故大写) 
+7.温度单位：开尔文温度K，华氏温度 F，摄氏温度C 
+8.体积单位： mm3,cm3,dm3,m3,ml,l（分别为立方毫米，立方厘米。。。。。毫升，升） */
 #include<iostream>
 #include<stdlib.h>
 #include<stdio.h>
@@ -28,7 +29,7 @@
 #include<string.h> 
 #include<iomanip>
 
-int which; //ȫ�ֱ������������Ƶ���
+int which; //全局变量，用来控制调用
 using namespace std;
 class units
 {
@@ -39,7 +40,7 @@ public:
 protected:
 	long  double num;
 	string ori;
-	string now;									//���������Ϊ�������ԭʼ��λ���ֵ�λ�������е�λ��������num
+	string now;									//这个是用来为后面根据原始单位和现单位在数组中的位置来计算num
 	int first,second;
 };
 class temperature:public units
@@ -113,41 +114,41 @@ void temperature::show() const
 	cout << num << endl;
 }
 class areaunits:public units
-{         //�����λ 
+{         //面积单位 
 	public:
-		areaunits(long double x,string s1,string s2);  //�ù��캯������frist��second��ֵ 
-		int find(string s1,string s2);  //�����ж��Ƿ�õ��ø��� 
-		void translate();                 //��������ת����ֵ 
-		void show() const;       //չʾ 
+		areaunits(long double x,string s1,string s2);  //该构造函数不给frist和second赋值 
+		int find(string s1,string s2);  //用来判断是否该调用该类 
+		void translate();                 //用来计算转变后的值 
+		void show() const;       //展示 
 };
 class vunits:public units
-{        //�����λ 
+{        //体积单位 
 	public:
-		vunits(long  double x,string s1,string s2);   //����ͬ�� 
+		vunits(long  double x,string s1,string s2);   //大致同上 
 		int find(string s1,string s2);
 		void translate();
 		void show() const;
 }; 
 
 class eleunits:public units
-{          //������λ 
+{          //电流单位 
 	public:
-		eleunits(long  double x,string s1,string s2);   //����ͬ�� 
+		eleunits(long  double x,string s1,string s2);   //大致同上 
 		int find(string s1,string s2);
 		void translate();
 		void show() const;
 };
 areaunits::areaunits(long double x,string s1,string s2)
-{   //���캯�� 
+{   //构造函数 
 	num=x;
 	ori=s1;
 	now=s2;
 }
 void areaunits::translate()
 { 
-	                             //cout<<first<<"  "<<second<<endl;���ڵ��� 
+	                             //cout<<first<<"  "<<second<<endl;用于调试 
 	if(first<=3&&second<=3)
-	{    //�������λ�Ĺ�ϵ��������Ӧ�����е�λ�ã���������Ӧ�û�õ�ֵ���Լ��ı��ϵ 
+	{    //由面积单位的关系和他在相应数组中的位置，来给定他应该获得的值，以及改变关系 
 		int temp=first-second;
 		if(first>second)
 		{
@@ -207,14 +208,14 @@ void areaunits::translate()
 	}
 }
 areaunits::find(string s1,string s2)
-{    //�����ҵ�ƥ���ʹ�� 
+{    //用来找到匹配的使用 
 	char units[10][100]=
 	{
 		"mm2",
 		"cm2",
 		"dm2",
 		"m2",
-		"ha",   //���� 
+		"ha",   //公顷 
 		"km2",  		
 	};
 	for(int i=0;i<6;i++)
@@ -237,16 +238,16 @@ areaunits::find(string s1,string s2)
 }
 void areaunits::show() const
 {
-	cout<<setiosflags(ios::fixed)<<num<<endl;//�˴�����ʹ�����С����ʽ��� 
-}     //����Ϊ�����λ��ʵ��
+	cout<<setiosflags(ios::fixed)<<num<<endl;//此处用于使结果以小数形式输出 
+}     //以上为面积单位的实现
 vunits::vunits(long double x,string s1,string s2)
-{   //���캯�� 
+{   //构造函数 
 	num=x;
 	ori=s1;
 	now=s2;
 }
 int vunits::find(string s1,string s2)
-{    //�����ҵ�ƥ���ʹ�� 
+{    //用来找到匹配的使用 
 	char units[10][100]=
 	{
 		"mm3",
@@ -276,7 +277,7 @@ int vunits::find(string s1,string s2)
 
 }
 void vunits::translate()
-{  //����ļ��������λ֮��Ĺ�ϵ�ĺ��� 
+{  //具体的计算体积单位之间的关系的函数 
 	if(first==4)
 	{
 		first=1;	
@@ -307,7 +308,7 @@ void vunits::translate()
 }   
 void vunits::show() const
 {
-	cout<<setiosflags(ios::fixed)<<num<<endl;//�˴�����ʹ�����С����ʽ��� 
+	cout<<setiosflags(ios::fixed)<<num<<endl;//此处用于使结果以小数形式输出 
 }    
  
  
@@ -365,7 +366,7 @@ void eleunits::translate()
 
 void eleunits::show() const
 {
-	cout<<num<<endl;//�˴�����ʹ�����С����ʽ��� 
+	cout<<num<<endl;//此处用于使结果以小数形式输出 
 }
 
 
@@ -621,20 +622,20 @@ int main(){
 	string str1,str2;
 	char ch;
 	printf("\n");
-	printf("\n\t\t               ��λת��ϵͳ\n");
+	printf("\n\t\t               单位转换系统\n");
 	do{
 	
-	cout<<"��������Ҫת������ֵ��";
+	cout<<"请输入需要转换的数值：";
 	
 	cin>>x;
-	cout<<"������ԭ��λ�ĵ�λ���ƣ�";
+	cout<<"请输入原单位的单位名称：";
 	cin>>str1;
-	cout<<"��������Ҫת���ɵĵ�λ��" ;
+	cout<<"请输入需要转换成的单位：" ;
 	cin>>str2;
 	
 
 
-	transform T(x,str1,str2);       //�˴��ֱ�����࣬��ƥ��Ӧ�����ĸ��������㵥λת�� 
+	transform T(x,str1,str2);       //此处分别调用类，来匹配应该用哪个类来计算单位转换 
 	T.inputfind(str1, str2);
 	T.calculate(x);
 	temperature temper(x,str1,str2);
@@ -646,26 +647,26 @@ int main(){
 	ele1.find(str1,str2);
 	vun1.find(str1,str2);
 
-	switch(which)        //����������� 
+	switch(which)        //根据情况调用 
 	{
 	    case 1:
 	    case 2:
 		case 3:
-		case 6:cout<<"ת�������ս��Ϊ��"<<setiosflags(ios::fixed)<<T.calculate(x)<<endl;break;
+		case 6:cout<<"转换后最终结果为："<<setiosflags(ios::fixed)<<T.calculate(x)<<endl;break;
 		case 7: temper.translate();
-				cout << "ת�������ս��Ϊ��";
+				cout << "转换后最终结果为：";
 				temper.show(); 
 				break;
 		case 4: area1.translate();
-		        cout<<"ת�������ս��Ϊ��";
+		        cout<<"转换后最终结果为：";
 		        area1.show();
 		        break;
 	    case 5: ele1.translate();
-	            cout<<"ת�������ս��Ϊ��";
+	            cout<<"转换后最终结果为：";
 	            ele1.show();
 	            break;
 	    case 8: vun1.translate();
-	            cout<<"ת�������ս��Ϊ��";
+	            cout<<"转换后最终结果为：";
 	            vun1.show();
 	            break;
 	}
