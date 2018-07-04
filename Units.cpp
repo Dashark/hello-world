@@ -1,6 +1,675 @@
-//å•ä½è½¬æ¢ç¨‹åºï¼Œè¾“å…¥å€¼å’ŒåŸå•ä½ï¼Œæ–°å•ä½ï¼Œè¿”å›æ–°å•ä½ä¸‹çš„å€¼ã€‚
-//é‡é‡å•ä½ï¼šKg, g, lb, gr,......
-//å‹åŠ›å•ä½ï¼šPa, MPa, psi,......
-//é•¿åº¦å•ä½ï¼šm, km, ft, in,......
-//å…¶å®ƒå•ä½ï¼šmd, cp,......
-//è¿˜æœ‰å¾ˆå¤šå•ä½è½¬æ¢ï¼Œæœ‰äº›å•ä½æ˜¯å…¶å®ƒå•ä½ç»„åˆå‡ºæ¥çš„
+/*µ¥Î»×ª»»Æ÷´ó×÷Òµ£º 
+×éÔ±£ºÁõÀ¤£¨githubÃû³Æ£ºExecutantLK£©£¬»ÆÌÎ£¨GitHub£ºArokHT£©£¬³Â½Ü(Github:gitvide)
+×éÔ±¹¤×÷Á¿£ºÁõÀ¤£ºÍê³ÉÃæ»ıµ¥Î»£¬µçÁ÷µ¥Î»£¬Ìå»ıµ¥Î»Èı¸öÀàµÄÉè¼Æ£¬²¢ÊéĞ´ÁËÖ÷º¯Êı£»
+»ÆÌÎ£ºÍê³ÉÁËÊ±¼ä£¬³¤¶È£¬ÖØÁ¿£¬Ñ¹Á¦£¬
+³Â½Ü£ºÕûºÏÕû¸ö´úÂë£¬²¢Éè¼ÆÁË»ùÀàº¯Êı£¬ÊµÏÖ¼Ì³Ğ£¬Éè¼Æ±íÊ¾ÎÂ¶ÈµÄµ¥Î»×ª»»Àà¡£
+//////////////////////////////////////////////////////////////// 
+Ë¼Â·£ºÓÉÓÚ×÷Òµ¹æ¶¨ÊäÈëÈı¸öÁ¿£¬Ô­ÊıÖµ£¬Ô­µ¥Î»£¬Òª×ª»»³ÉµÄµ¥Î»£¬ÄÇÃ´ÎÒÃÇÈÏÎªÉè¼ÆÀàµÄ»°£¬¾Í»áÓĞÈı¸öÊı¾İ³ÉÔ±£¬
+¶ø³ÉÔ±º¯Êı£¬ÎÒÃÇÒÔ×î»ù±¾µÄË¼Â·À´¿´£¬¾ÍÖ»ĞèÒªÒ»¸öfindº¯Êı£¨ÓÃÀ´Æ¥Åä¸Ãµ¥Î»ÊÇÄÄÒ»Ààµ¥Î»£©£¬translateº¯Êı
+£¨ÓÃÀ´×ª»»ÊıÖµ£¬±ä³ÉÏÖµ¥Î»µÄÖµ£©£¬È»ºóÔÙÓÃÒ»¸öshow£¨£©º¯Êı°ÑÕâ¸öÖµ¸øshow³öÀ´¡£¶øÕâÈı¸öÊı£¬Èç¹ûÒªÉè¼ÆµÄ»°£¬
+ÔÚÃ¿Ò»¸öÀàÖĞ¶¼»áÓĞ£¬ÄÇÃ´ÎÒÃÇÉè¼ÆÒ»¸ö»ùÀà£¬ÆäÖĞµÄÈı¸ö³ÉÔ±º¯ÊıÈ«²¿Åª³É´¿Ğéº¯Êı£¬ÓÉ¼Ì³Ğ³öÀ´µÄÀàÀ´ÊµÏÖ£¬¶øÊı¾İ
+³ÉÔ±ÎÒÃÇ½«ËüÅª³Éprotect£¬´Ó¶ø¹«ÓĞ¼Ì³Ğºó£¬¸ÃÊı¾İ³ÉÔ±ÈÔÈ»ÊÇ×ÓÀàµÄË½ÓĞ³ÉÔ±£¬¿ÉÒÔÍ¨¹ı³ÉÔ±º¯ÊıÀ´µ÷ÓÃ£¬´Ó¶øÊµÏÖ
+¹¦ÄÜ
+//////////////////////////////////////////////////////////////// 
+ÒÔÏÂÊÇÊµÏÖµÄµ¥Î»×ª»»£º
+1.³¤¶Èµ¥Î»£ºkm, m, dm, cm, mm 
+2.ÖØÁ¿µ¥Î»£ºt, kg, g, mg 
+3.Ê±¼äµ¥Î»£ºday, h, min, s, ms 
+4.Ãæ»ıµ¥Î»£ºmm2,cm2,dm2,m2,ha,km2£¨mm2µÈÖĞ£¬2´ú±íµÄÊÇÆ½·½£© 
+5.µçÁ÷µ¥Î»£ºpa,na,ua,ma,a,ka 
+6.Ñ¹Ç¿µ¥Î»£ºmpa, kpa, psi, Pa(Îª²»ÓëµçÁ÷pa³åÍ»£¬¹Ê´óĞ´) 
+7.ÎÂ¶Èµ¥Î»£º¿ª¶ûÎÄÎÂ¶ÈK£¬»ªÊÏÎÂ¶È F£¬ÉãÊÏÎÂ¶ÈC 
+8.Ìå»ıµ¥Î»£º mm3,cm3,dm3,m3,ml,l£¨·Ö±ğÎªÁ¢·½ºÁÃ×£¬Á¢·½ÀåÃ×¡£¡£¡£¡£¡£ºÁÉı£¬Éı£© */
+#include<iostream>
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#include<cstring>
+#include<string.h> 
+#include<iomanip>
+
+int which; //È«¾Ö±äÁ¿£¬ÓÃÀ´¿ØÖÆµ÷ÓÃ
+using namespace std;
+class units
+{
+public:
+	virtual int find(string s1,string s2) = 0;
+	virtual void translate() = 0;
+	virtual void show() const = 0;
+protected:
+	long  double num;
+	string ori;
+	string now;									//Õâ¸öÊÇÓÃÀ´ÎªºóÃæ¸ù¾İÔ­Ê¼µ¥Î»ºÍÏÖµ¥Î»ÔÚÊı×éÖĞµÄÎ»ÖÃÀ´¼ÆËãnum
+	int first,second;
+};
+class temperature:public units
+{
+public:
+	temperature(long  double x,string s1,string s2);
+	int find(string s1,string s2);
+	void translate();
+	void show() const ;
+	
+};
+temperature::temperature(long  double x,string s1,string s2)
+{
+	ori = s1;
+	now = s2;
+	num = x;
+}
+temperature::find(string s1,string s2)
+{
+	char temper[3][3]=
+	{
+		"F",
+		"K",
+		"C",
+	 };
+	for(int i = 0;i<3;i++)
+	{
+		if(temper[i]==s1)
+		{
+			which = 7;
+			first = i;
+		}
+		if(temper[i]==s2)
+		{
+			second = i;
+		}
+	}
+	
+}
+void temperature::translate()
+{
+	if(first==0&&second==1)
+	{
+		double t = 5*(num-32)/9;
+		num = t+273.16;
+	}
+	if(first==0&&second==2)
+	{
+		num = 5*(num-32)/9;
+	}
+	if(first==1&&second==0)
+	{
+		double t = num - 273.16;
+		num = t*(9/5) + 32;
+	}
+	if(first==1&&second==2)
+	{
+		num = num - 273.16;
+	}
+	if(first==2&&second==0)
+	{
+		num = num*(9/5) + 32;
+	}
+	if(first==2&&second==1)
+	{
+		num = num + 273.16;
+	}
+}
+void temperature::show() const
+{
+	cout << num << endl;
+}
+class areaunits:public units
+{         //Ãæ»ıµ¥Î» 
+	public:
+		areaunits(long double x,string s1,string s2);  //¸Ã¹¹Ôìº¯Êı²»¸øfristºÍsecond¸³Öµ 
+		int find(string s1,string s2);  //ÓÃÀ´ÅĞ¶ÏÊÇ·ñ¸Ãµ÷ÓÃ¸ÃÀà 
+		void translate();                 //ÓÃÀ´¼ÆËã×ª±äºóµÄÖµ 
+		void show() const;       //Õ¹Ê¾ 
+};
+class vunits:public units
+{        //Ìå»ıµ¥Î» 
+	public:
+		vunits(long  double x,string s1,string s2);   //´óÖÂÍ¬ÉÏ 
+		int find(string s1,string s2);
+		void translate();
+		void show() const;
+}; 
+
+class eleunits:public units
+{          //µçÁ÷µ¥Î» 
+	public:
+		eleunits(long  double x,string s1,string s2);   //´óÖÂÍ¬ÉÏ 
+		int find(string s1,string s2);
+		void translate();
+		void show() const;
+};
+areaunits::areaunits(long double x,string s1,string s2)
+{   //¹¹Ôìº¯Êı 
+	num=x;
+	ori=s1;
+	now=s2;
+}
+void areaunits::translate()
+{ 
+	                             //cout<<first<<"  "<<second<<endl;ÓÃÓÚµ÷ÊÔ 
+	if(first<=3&&second<=3)
+	{    //ÓÉÃæ»ıµ¥Î»µÄ¹ØÏµºÍËûÔÚÏàÓ¦Êı×éÖĞµÄÎ»ÖÃ£¬À´¸ø¶¨ËûÓ¦¸Ã»ñµÃµÄÖµ£¬ÒÔ¼°¸Ä±ä¹ØÏµ 
+		int temp=first-second;
+		if(first>second)
+		{
+			num=num*(pow(100,temp));
+		}
+		else if(first<second)
+		{
+			temp=fabs(temp);
+			num=num/(pow(100,temp));
+	    }
+	}
+	else if(first>3&&second<=3)
+	{
+		int temp=3-second;
+		int temp1=first-3;
+		if(temp!=0)
+		{
+		num=num*(pow(100,temp));
+		}
+		
+		if(temp1==1)
+		{
+			num=num*10000;
+		} 
+		else
+		{
+			num=num*1000000;
+		}
+	}
+	else if(first<=3&&second>3)
+	{
+		int temp=3-first;
+		int temp1=second-1;
+		if(temp!=0)
+		{
+		num=num/(pow(100,temp));
+		}
+		
+		if(temp1==1)
+		{
+			num=num/10000;
+		} 
+		else
+		{
+			num=num/1000000;
+		}
+	}
+	else{
+		if(first>second)
+		{
+			num=num*100;
+		}
+		else
+		{
+			num=num/100;
+		}
+	}
+}
+areaunits::find(string s1,string s2)
+{    //ÓÃÀ´ÕÒµ½Æ¥ÅäµÄÊ¹ÓÃ 
+	char units[10][100]=
+	{
+		"mm2",
+		"cm2",
+		"dm2",
+		"m2",
+		"ha",   //¹«Çê 
+		"km2",  		
+	};
+	for(int i=0;i<6;i++)
+	{
+	     if(units[i]==s1)
+		{
+			which=4;
+			first=i;
+		}
+			
+	}
+	for(int i=0;i<6;i++)
+	{
+	     if(units[i]==s2)
+	        { 
+				second=i;
+			}
+	}		
+
+}
+void areaunits::show() const
+{
+	cout<<setiosflags(ios::fixed)<<num<<endl;//´Ë´¦ÓÃÓÚÊ¹½á¹ûÒÔĞ¡ÊıĞÎÊ½Êä³ö 
+}     //ÒÔÉÏÎªÃæ»ıµ¥Î»µÄÊµÏÖ
+vunits::vunits(long double x,string s1,string s2)
+{   //¹¹Ôìº¯Êı 
+	num=x;
+	ori=s1;
+	now=s2;
+}
+int vunits::find(string s1,string s2)
+{    //ÓÃÀ´ÕÒµ½Æ¥ÅäµÄÊ¹ÓÃ 
+	char units[10][100]=
+	{
+		"mm3",
+		"cm3",
+		"dm3",
+		"m3",
+		"ml",
+		"l",
+	};
+	for(int i=0;i<7;i++)
+	{
+	     if(units[i]==s1)
+		{
+			which=8;
+			first=i;
+		}
+			
+	}
+	for(int i=0;i<7;i++)
+	{
+	     if(units[i]==s2)
+	        { 
+				second=i;
+			}
+	}		
+	
+
+}
+void vunits::translate()
+{  //¾ßÌåµÄ¼ÆËãÌå»ıµ¥Î»Ö®¼äµÄ¹ØÏµµÄº¯Êı 
+	if(first==4)
+	{
+		first=1;	
+	}
+	else if(first==5)
+	{
+		first=2;
+	}
+	if(second==4)
+	{
+		second=1;	
+	}
+	else if(second==5)
+	{
+		second=2;
+	}
+	int temp=first-second;
+	if(temp>0)
+	{
+		num=num*(pow(1000,temp));
+	}
+	else if(temp<0)
+	{
+		temp=fabs(temp);
+		num=num/(pow(1000,temp));
+	}
+	
+}   
+void vunits::show() const
+{
+	cout<<setiosflags(ios::fixed)<<num<<endl;//´Ë´¦ÓÃÓÚÊ¹½á¹ûÒÔĞ¡ÊıĞÎÊ½Êä³ö 
+}    
+ 
+ 
+ 
+ 
+ 
+ 
+eleunits::eleunits(long double x,string s1,string s2)
+{
+	num=x;
+	ori=s1;
+	now=s2;
+}
+int eleunits::find(string s1,string s2)
+{
+	char units[10][100]=
+	{
+	    "pa", 
+		"na",
+		"ua",
+		"ma",
+		"a",
+		"ka",	
+	};
+	for(int i=0;i<6;i++)
+	{
+	     if(units[i]==s1)
+		 {
+	     	 first=i;
+			 which=5;
+		 }
+	}	
+	for(int i=0;i<6;i++)
+	{
+	     if(units[i]==s2)
+		 {
+	     	 second=i;
+		 }
+	}		
+}   
+void eleunits::translate()
+{
+	int temp=first-second;
+	
+	if(temp>0){
+		num=num*(pow(1000,temp));
+		
+	}
+	else if(temp<0)
+	{
+		temp=fabs(temp);
+		num=num/(pow(1000,temp));
+	}
+}
+
+void eleunits::show() const
+{
+	cout<<num<<endl;//´Ë´¦ÓÃÓÚÊ¹½á¹ûÒÔĞ¡ÊıĞÎÊ½Êä³ö 
+}
+
+
+class transform
+{
+	public:
+		transform(long  double x, string s1, string s2);
+		void inputfind(string s1, string s2);
+		double calculate(long  double x);
+		double digit;
+		string str1, str2, oringe, now; 
+		
+};
+transform::transform(long double x, string s1, string s2)
+{
+	digit=x;
+	str1=s1;
+	str2=s2;
+}
+void transform::inputfind(string s1, string s2)
+{
+	string length[5]={"km", "m", "dm", "cm", "mm"};//???? 
+	for(int i=0; i<5; i++)
+	{
+		if(s1==length[i])
+		{
+			which=1;
+			switch(i)
+			{
+				case 0: oringe="0"; break;
+				case 1: oringe="1"; break;
+				case 2: oringe="2"; break;
+				case 3: oringe="3"; break;
+				case 4: oringe="4"; break;
+			}
+			//oringe=i;
+			for(int j=0; j<5; j++)
+			{
+				if(s2==length[j])
+				{
+					switch(j)
+					{
+					case 0: now="0"; break;
+					case 1: now="1"; break;
+					case 2: now="2"; break;
+					case 3: now="3"; break;
+					case 4: now="4"; break;
+					}
+				
+					break; 
+				}
+			}
+			break; 
+		}
+	}
+	string weight[4]={"t", "kg", "g", "mg"};//???? 
+	for(int i=0; i<4; i++)
+	{
+		if(s1==weight[i])
+		{
+			which=2;
+			switch(i)
+			{
+				case 0: oringe="0"; break;
+				case 1: oringe="1"; break;
+				case 2: oringe="2"; break;
+				case 3: oringe="3"; break;
+			}
+			for(int j=0; j<4; j++)
+			{
+				if(s2==weight[j])
+				{
+					switch(j)
+					{
+					case 0: now="0"; break;
+					case 1: now="1"; break;
+					case 2: now="2"; break;
+					case 3: now="3"; break;
+					}
+					break; 
+				}
+			}
+			break; 
+		}
+	}
+	string time[5]={"day", "h", "min", "s", "ms"};//???? 
+	for(int i=0; i<5; i++)
+	{
+		if(s1==time[i])
+		{
+			which=3;
+			switch(i)
+			{
+				case 0: oringe="0"; break;
+				case 1: oringe="1"; break;
+				case 2: oringe="2"; break;
+				case 3: oringe="3"; break;
+				case 4: oringe="4"; break;
+			}
+			//oringe=i;
+			for(int j=0; j<5; j++)
+			{
+				if(s2==time[j])
+				{
+					switch(j)
+					{
+					case 0: now="0"; break;
+					case 1: now="1"; break;
+					case 2: now="2"; break;
+					case 3: now="3"; break;
+					case 4: now="4"; break;
+					}
+					//now=j;
+					break; 
+				}
+			}
+			break; 
+		}
+	}
+	string pressure[4]={"mpa", "kpa", "psi", "Pa"};//???? 
+	for(int i=0; i<4; i++)
+	{
+		if(s1==pressure[i])
+		{
+			which=6;
+			switch(i)
+			{
+				case 0: oringe="0"; break;
+				case 1: oringe="1"; break;
+				case 2: oringe="2"; break;
+				case 3: oringe="3"; break;
+			}
+			for(int j=0; j<4; j++)
+			{
+				if(s2==pressure[j])
+				{
+					switch(j)
+					{
+					case 0: now="0"; break;
+					case 1: now="1"; break;
+					case 2: now="2"; break;
+					case 3: now="3"; break;
+					}
+					break; 
+				}
+			}
+			break; 
+		}
+	}
+}
+//double transform::calculate(double x)
+double transform::calculate(long double x)
+{
+	if(which==1)
+	{
+	string s=oringe+now;
+	//switch(s)
+	//{
+		if(s=="01") return x*1000; //break;
+		if(s=="02") return x*10000; //break;
+		if(s=="03") return x*100000;// break;
+		if(s=="04") return x*1000000;// break;
+		if(s=="10") return x/1000;// break;
+		if(s=="12") return x*10; //break;
+		if(s=="13") return x*100; //break;
+		if(s=="14") return x*1000; //break;
+		if(s=="20") return x/10000; //break;
+		if(s=="21") return x/10;// break;
+		if(s=="23") return x*10;// break;
+		if(s=="24") return x*100;// break;
+		if(s=="30") return x/100000; //break;
+		if(s=="31") return x/100; //break;
+		if(s=="32") return x/10; //break;
+		if(s=="34") return x*10; //break;
+		if(s=="40") return x/1000000; //break;
+		if(s=="41") return x/1000; //break;
+		if(s=="42") return x/100; //break;
+		if(s=="43") return x/10; //break;*/
+	}
+	if(which==2)
+	{
+	string s=oringe+now;
+	//switch(s)
+	//{
+	if(s=="01") return x*1000; //break;
+	if(s=="02") return x*1000000; //break;
+	if(s=="03") return x*1000000000;// break;
+	//if(s=="04") return x*100000;// break;
+	if(s=="10") return x/1000;// break;
+	if(s=="12") return x*1000; //break;
+	if(s=="13") return x*1000000; //break;
+		//	if(s=="14") return x*1000; //break;
+	if(s=="20") return x/1000000; //break;
+	if(s=="21") return x/1000;// break;
+	if(s=="23") return x*1000;// break;
+		//	if(s=="24") return x*100;// break;
+	if(s=="30") return x/1000000000; //break;
+	if(s=="31") return x/1000000; //break;
+	if(s=="32") return x/1000; //break;
+		//	if(s=="34") return x*10; //break;
+		//	if(s=="40") return x/1000000; //break;
+		//	if(s=="41") return x/1000; //break;
+		//	if(s=="42") return x/100; //break;
+		//	if(s=="43") return x/10; //break;*/
+		//}
+	}
+	if(which==3)
+	{
+	string s=oringe+now;
+	
+	if(s=="01") return x*24; //break;
+	if(s=="02") return x*24*60; //break;
+	if(s=="03") return x*24*60*60;// break;
+	if(s=="04") return x*24*60*60*1000;// break;
+	if(s=="10") return x/24;// break;
+	if(s=="12") return x*60; //break;
+	if(s=="13") return x*60*60; //break;
+	if(s=="14") return x*60*60*1000; //break;
+	if(s=="20") return x/(24*60); //break;
+	if(s=="21") return x/60;// break;
+	if(s=="23") return x*60;// break;
+	if(s=="24") return x*60*100;// break;
+	if(s=="30") return x/(60*60*24); //break;
+	if(s=="31") return x/(60*60); //break;
+	if(s=="32") return x/60; //break;
+	if(s=="34") return x*1000; //break;
+	if(s=="40") return x/(24*60*60*1000); //break;
+	if(s=="41") return x/(60*60*1000); //break;
+	if(s=="42") return x/(60*1000); //break;
+	if(s=="43") return x/1000; //break;*/
+		//}
+	}
+	if(which==6) 
+	{
+	string s=oringe+now;
+	if(s=="01") return x*1000; //break;
+	if(s=="02") return x*145.037744; //break;
+	if(s=="03") return x*1000000;// break;
+	if(s=="10") return x/1000;// break;
+	if(s=="12") return x/1000*145.037744; //break;
+	if(s=="13") return x*1000; //break;
+	if(s=="20") return x/145.037744; //break;
+	if(s=="21") return x/145.037744*1000;// break;
+	if(s=="23") return x/145.037744*1000*1000;// break;
+	if(s=="30") return x/1000000; //break;
+	if(s=="31") return x/1000; //break;
+	if(s=="32") return x/145.037744; //break;
+	}
+}
+
+int main(){
+	long double x;
+	string str1,str2;
+	char ch;
+	printf("\n");
+	printf("\n\t\t               µ¥Î»×ª»»ÏµÍ³\n");
+	do{
+	
+	cout<<"ÇëÊäÈëĞèÒª×ª»»µÄÊıÖµ£º";
+	
+	cin>>x;
+	cout<<"ÇëÊäÈëÔ­µ¥Î»µÄµ¥Î»Ãû³Æ£º";
+	cin>>str1;
+	cout<<"ÇëÊäÈëĞèÒª×ª»»³ÉµÄµ¥Î»£º" ;
+	cin>>str2;
+	
+
+
+	transform T(x,str1,str2);       //´Ë´¦·Ö±ğµ÷ÓÃÀà£¬À´Æ¥ÅäÓ¦¸ÃÓÃÄÄ¸öÀàÀ´¼ÆËãµ¥Î»×ª»» 
+	T.inputfind(str1, str2);
+	T.calculate(x);
+	temperature temper(x,str1,str2);
+	temper.find(str1,str2);
+	areaunits area1(x,str1,str2);
+	eleunits ele1(x,str1,str2);
+	vunits vun1(x,str1,str2);
+	area1.find(str1,str2);
+	ele1.find(str1,str2);
+	vun1.find(str1,str2);
+
+	switch(which)        //¸ù¾İÇé¿öµ÷ÓÃ 
+	{
+	    case 1:
+	    case 2:
+		case 3:
+		case 6:cout<<"×ª»»ºó×îÖÕ½á¹ûÎª£º"<<setiosflags(ios::fixed)<<T.calculate(x)<<endl;break;
+		case 7: temper.translate();
+				cout << "×ª»»ºó×îÖÕ½á¹ûÎª£º";
+				temper.show(); 
+				break;
+		case 4: area1.translate();
+		        cout<<"×ª»»ºó×îÖÕ½á¹ûÎª£º";
+		        area1.show();
+		        break;
+	    case 5: ele1.translate();
+	            cout<<"×ª»»ºó×îÖÕ½á¹ûÎª£º";
+	            ele1.show();
+	            break;
+	    case 8: vun1.translate();
+	            cout<<"×ª»»ºó×îÖÕ½á¹ûÎª£º";
+	            vun1.show();
+	            break;
+	}
+	cout<<endl;
+}while (ch=getchar()!=EOF);
+	return 0;
+}
