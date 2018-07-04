@@ -84,9 +84,16 @@ public:
 	virtual bool Find(string st1,string st2){
 		for(int i=0;i<4;i++){  //个数
 			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
-			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
-				index=i;  //遍历，看是否相匹配
-				return true;
+			bool flag1=(it1!=total[u[i]].end()&&it2!=total[u[i]].end());
+			bool flag2=(it1!=total[u[i]].end()||it2!=total[u[i]].end());
+			if(flag2){
+				if(flag1){
+					cout<<u[i]<<" units transform ";//什么单位的转换
+				    index=i;  //遍历，看是否相匹配
+				    return true;
+				}
+				else
+				cout<<"can't transform to Basic_units"<<endl;//识别出单位但是无法转换
 			} 
 		}
 		return false;
@@ -103,6 +110,7 @@ private:
 	string u[4];
 public:
 	Combine_units():index(0){
+		
 		u[0]="speed_s";     //  length/time
 		Mapsi_insert(&total[u[0]],"m/s",1);
 		Mapsi_insert(&total[u[0]],"km/s",0.001);
@@ -115,43 +123,46 @@ public:
 		Mapsi_insert(&total[u[0]],"mi/s",0.00062137);
 		Mapsi_insert(&total[u[0]],"in/s",39.37007874);
 		Mapsi_insert(&total[u[0]],"ft/s",3.2808399);
+		Mapsi_insert(&total[u[0]],"m/min",60);
+		Mapsi_insert(&total[u[0]],"km/min",0.001*60);
+		Mapsi_insert(&total[u[0]],"dm/min",10*60);
+		Mapsi_insert(&total[u[0]],"cm/min",100*60);
+		Mapsi_insert(&total[u[0]],"mm/min",1000*60);
+		Mapsi_insert(&total[u[0]],"um/min",1000000*60);
+	//	Mapsi_insert(&total[u[0]],"nm/min",1000000000*60);//溢出 
+		Mapsi_insert(&total[u[0]],"nmi/min",0.00053996*60);
+		Mapsi_insert(&total[u[0]],"mi/min",0.00062137*60);
+		Mapsi_insert(&total[u[0]],"in/min",39.37007874*60);
+		Mapsi_insert(&total[u[0]],"ft/min",3.2808399*60);
+		Mapsi_insert(&total[u[0]],"km/h",0.001*3600);
+		Mapsi_insert(&total[u[0]],"dm/h",10*3600);
+		Mapsi_insert(&total[u[0]],"cm/h",100*3600);
+		Mapsi_insert(&total[u[0]],"mm/h",1000*3600);
+	//	Mapsi_insert(&total[u[0]],"um/h",1000000*3600);//溢出 
+	//	Mapsi_insert(&total[u[0]],"nm/h",1000000000*3600);//溢出 
+		Mapsi_insert(&total[u[0]],"nmi/h",0.00053996*3600);
+		Mapsi_insert(&total[u[0]],"mi/h",0.00062137*3600);
+		Mapsi_insert(&total[u[0]],"in/h",39.37007874*3600);
+		Mapsi_insert(&total[u[0]],"ft/h",3.2808399*3600);
 		
-		u[1]="speed_min";
-		Mapsi_insert(&total[u[1]],"m/min",1/60);
-		Mapsi_insert(&total[u[1]],"km/min",0.001/60);
-		Mapsi_insert(&total[u[1]],"dm/min",10/60);
-		Mapsi_insert(&total[u[1]],"cm/min",100/60);
-		Mapsi_insert(&total[u[1]],"mm/min",1000/60);
-		Mapsi_insert(&total[u[1]],"um/min",1000000/60);
-		Mapsi_insert(&total[u[1]],"nm/min",1000000000/60);
-		Mapsi_insert(&total[u[1]],"nmi/min",0.00053996/60);
-		Mapsi_insert(&total[u[1]],"mi/min",0.00062137/60);
-		Mapsi_insert(&total[u[1]],"in/min",39.37007874/60);
-		Mapsi_insert(&total[u[1]],"ft/min",3.2808399/60);
-        
-		u[2]="speed_h";
-		Mapsi_insert(&total[u[2]],"km/h",0.001/3600);
-		Mapsi_insert(&total[u[2]],"dm/h",10/3600);
-		Mapsi_insert(&total[u[2]],"cm/h",100/3600);
-		Mapsi_insert(&total[u[2]],"mm/h",1000/3600);
-		Mapsi_insert(&total[u[2]],"um/h",1000000/3600);
-		Mapsi_insert(&total[u[2]],"nm/h",1000000000/3600);
-		Mapsi_insert(&total[u[2]],"nmi/h",0.00053996/3600);
-		Mapsi_insert(&total[u[2]],"mi/h",0.00062137/3600);
-		Mapsi_insert(&total[u[2]],"in/h",39.37007874/3600);
-		Mapsi_insert(&total[u[2]],"ft/h",3.2808399/3600);
-		
-		u[3]="work"; 
+		u[1]="work"; 
 		Mapsi_insert(&total[u[3]],"j",1);
 		Mapsi_insert(&total[u[3]],"kw.h",3600000);
-		//还有许多种组合 
+		//还有许多种组合 此处不在赘述 
 }
-virtual bool Find(string st1,string st2){
-		for(int i=0;i<4;i++){         
+	virtual bool Find(string st1,string st2){
+		for(int i=0;i<2;i++){
 			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
-			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
-				index=i;
-				return true; 
+			bool flag1=(it1!=total[u[i]].end()&&it2!=total[u[i]].end());
+			bool flag2=(it1!=total[u[i]].end()||it2!=total[u[i]].end());
+			if(flag2){
+				if(flag1){
+					cout<<u[i]<<" units transform ";
+				    index=i;
+				    return true;
+				}
+				else
+				cout<<"can't transform to Combine_units"<<endl;
 			} 
 		}
 		return false;
@@ -199,11 +210,18 @@ u[1]="volume";
 		Mapsi_insert(&total[u[1]],"fu^3",pow(0.00497097,3));
 	} 
 	virtual bool Find(string st1,string st2){
-		for(int i=0;i<2;i++){         
+		for(int i=0;i<2;i++){
 			Mapsi::iterator it1=total[u[i]].find(st1),it2=total[u[i]].find(st2);
-			if(it1!=total[u[i]].end()&&it2!=total[u[i]].end()){
-				index=i;
-				return true; 
+			bool flag1=(it1!=total[u[i]].end()&&it2!=total[u[i]].end());
+			bool flag2=(it1!=total[u[i]].end()||it2!=total[u[i]].end());
+			if(flag2){
+				if(flag1){
+					cout<<u[i]<<" units transform ";
+				    index=i;
+				    return true;
+				}
+				else
+				cout<<"can't transform to Power_units"<<endl;
 			} 
 		}
 		return false;
@@ -225,8 +243,19 @@ int main(){
 	if(Bu.Find(st1,st2)){
 		cout<<"result: "<<Bu.result(n,st1,st2)<<endl;
 	}
+	else{
+		Combine_units Cu;
+		if(Cu.Find(st1,st2)){
+			cout<<"result: "<<Cu.result(n,st1,st2)<<endl;
+		}
 		else{
+			Power_units Pu;
+			if(Pu.Find(st1,st2)){
+				cout<<"result: "<<Pu.result(n,st1,st2)<<endl;
+			}
+			else 
 			cout<<"My program is too low to identify your units."<<endl;
 		}
 	return 0;
 }
+} 
