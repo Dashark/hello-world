@@ -1,23 +1,32 @@
+#include <iostream>
+#include <string>
 class Table {
 public:
+Table() {};
+Table(int row, int column) {
+}
+~Table() {};
 
-  void show();
-  int addRow();
-  void delRow(int n);
-  int addColumn();
-  void delColumn(int n);
+  void show(){}
+  int addRow(){}
+  void delRow(int n){}
+  int addColumn(){}
+  void delColumn(int n){}
 private:
   Cell cells;
 };
 class Cell {
 public:
-  Cell(char con[]);
+  Cell(char con[]){
+    content = con[];
+  }
   ~Cell();
 
-  void show();
+  void show(){
+    std::cout<<content}
 private:
-  string content;
-}
+  std::string content;
+};
 int main() {
   Table tb;
   tb.show();
