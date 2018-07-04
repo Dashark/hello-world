@@ -27,5 +27,6 @@ int main() {
     printf("Very Good!\n");
   else
     printf("Very Bad!\n");
+    
   return 0;
 }
