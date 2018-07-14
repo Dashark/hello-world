@@ -6,7 +6,7 @@ using namespace std;
 class Parallelogram {
   public:
   Parallelogram(double height = 1, double length = 1, double acuteang = 90) : h(height), l(length), acuteang(acuteang) {}
-  ~Parallelogram();
+  ~Parallelogram(){}
   void show();
   double area();
   double height();

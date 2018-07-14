@@ -90,7 +90,7 @@ int main() {
   for(int i=0;i<30;i++)
     day.nextDay();
   day.show();
-  for(i=0;i<30;i++)
+  for(int i=0;i<30;i++)
     day.previousDay();
   day.show();
   if(day.equal(today))

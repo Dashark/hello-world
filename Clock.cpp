@@ -4,7 +4,7 @@ using namespace std;
 class Clock {
   public:
   Clock(int h = 0, int m = 0, int s = 0) : h(h), min(m), sec(s) {}
-  ~Clock();
+  ~Clock(){}
   void show();
   void adjust(int hour, int min, int sec);
   void tick();
