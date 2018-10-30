@@ -13,8 +13,16 @@ int main (){
 	printf("请输入三个系数d，e，f\n");
 	scanf ("%lf,%lf,%lf",&d,&e,&f);	
 	printf("%lfx+%lfy=%lf\n",d,e,f);
+	if(a*e==b*d) {
+		if(c*d==a*f)
+		printf("方程有无数解\n");
+		else
+		printf("方程无解\n");
+    }
+    else {
 	x=(c*e-b*f)/(a*e-b*d);
 	y=(c*d-a*f)/(b*d-a*e);
 	printf("方程解为x=%lf,y=%lf",x,y);
+    }
 	return 0;
 } 
