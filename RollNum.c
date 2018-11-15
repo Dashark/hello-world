@@ -1,5 +1,31 @@
-//å›æ–‡æ•°ï¼šæ­£è¯»ä¸åè¯»ç›¸ç­‰çš„æ•°
-//2018/11/14 æ›´æ–°
-int main() {
-    //to do sth
+#include <stdio.h> 
+#include <math.h>
+int h[100];
+int main(void)  
+{
+	int a,b,c,d,e,f,x;
+	scanf("%d",&x);
+	b=1;e=1;
+	do 
+	{
+		f=x/pow(10,b);
+		d=x/pow(10,b-1);
+		h[b]=d%10;
+		b+=1;
+	}while(f>0);
+	for(c=1;c<=b/2;c++)
+	{
+		if(h[c]==h[b-c])
+		e=1;
+		else
+		{
+			e=0;
+			break;
+		}
+	}
+	if(e==1)
+	printf("¸ÃÊıÎª»ØÎÄÊı¡£");
+	else
+	printf("¸ÃÊı²»Îª»ØÎÄÊı¡£");
+	return 0;
 }

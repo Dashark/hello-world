@@ -1,5 +1,21 @@
-//ç´ æ•°æ˜¯åªæœ‰1å’Œæœ¬èº«æ˜¯å› å­çš„æ•°
-//2018/11/14 æ›´æ–°
-int main() {
-    //to do sth
+#include <stdio.h>
+#include <math.h> 
+int main() 
+{
+	int a,b,c;
+	c=1;
+	scanf("%d",&a);
+	for(b=2;b<sqrt(a);b++)
+	{
+		if(a%b==0)
+		{
+			c=0;
+			break;
+	    }
+	}
+	if(c==1)
+	printf("Õâ¸öÊıÊÇËØÊı¡£");
+	else
+	printf("Õâ¸öÊı²»ÊÇËØÊı¡£");
+	return 0;
 }
