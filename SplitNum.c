@@ -1,5 +1,13 @@
-//输入整数，将每位数字打印出来（从左向右打印，空格区分）
-//2018/11/14 更新
-int main() {
-    //to do sth
+#include <stdio.h>
+void PrintNum(int num){//����PrintNum���� 
+	if(num>9){
+		PrintNum(num/10);
+	}
+	printf("%d ",num%10);
 }
+int main(){
+	int num=0;
+	scanf("%d",&num);
+	PrintNum(num);
+return 0;
+
