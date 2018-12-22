@@ -1,5 +1,20 @@
-//回文数：正读与反读相等的数
-//2018/11/14 更新
-int main() {
-    //to do sth
+#include <stdio.h>
+#include <string.h>
+int main(){	
+int n,i,x,z,m;
+scanf("%d",&n);
+for(i=0;i<n;i++){
+	scanf("%d",&x);
+	z=x;
+	m=0;
+	while(x){
+	m=m*10+x%10;
+	x=x/10;
+	}
+	if(z==m)
+	printf("yes");
+	else
+	printf("no");
+}
+	return 0;
 }
