@@ -1,8 +1,8 @@
 #include <stdio.h>
-int main() {
-  printf("Hello World!\n");
-  int a,b,c;
-  a=1,b=2,c=a+b;
-  printf("%d",c); 
+#include<stdlib.h>
+int main() 
+{
+	printf("Hello World!\n");
+		system("pause");
   return 0;
 }
