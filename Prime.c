@@ -1,22 +1,45 @@
-/*满足下列条件的自然数称为超级素数:该数本身,所有数字之和,所有数字之积以及所有数字的平方和都是素数.例如113就是一个超级素数.求[100,9999]之内:(1)超级素数的个数.(2)所有超级素数之和.(3)最大的超级素数.*/
-//2018/11/14 更新
-int sum_bit(int num) {
-  return 0;
-}
-
-int multi_bit(int num) {
-  return 0;
-}
-
-int square_sum_bit(int num) {
-  return 0;
-}
-
-bool isprime(int num) {
-  return false;
-}
-
-int main() {
-  if(isprime(113)&&isprime(sum_bit(113))&&isprime(multi_bit(113))&&isprime(square_sum_bit(113)))
-    //to do sth
+#include <stdio.h>
+int main(){
+	int n=0,i,y=0,j,k,a[10],b,c,x,t,d;
+	for(i=10;i<100;i++){
+		j=0;
+		do{
+		a[j]=i%10;
+		i/=10;
+		j++;
+		}while(i>0);
+		for(k=0;k<=j;k++){
+			b+=a[k];
+			c*=a[k];
+			d+=a[k]*a[k];
+		}
+	for(n=2;n<b;n++){
+	if(b%n==0){
+	for(n=2;n<=c;n++){
+		if(c%n==0){for(n=2;n<=d;n++){
+				if(d%n==0){
+				a[n]=i;
+				n++;}
+		}
+	}
+	}
+			
+		}
+	}
+	
+	}
+	for(x=0;x<n;x++){
+		y+=a[x];
+	}
+	for(x=0;x<=n;x++){
+			for(j=x+1;j<=n;j++){
+				if(a[x]<a[j]){
+					t=a[x];
+					a[x]=a[y];
+					a[y]=t;
+				}
+			}
+	}
+	printf("%d %d %d",&n+1,&y,&a[0]);
+	return 0;
 }
