@@ -1,35 +1,42 @@
-//å›æ–‡æ•°ï¼šæ­£è¯»ä¸åè¯»ç›¸ç­‰çš„æ•°
-//2018/11/14 æ›´æ–°
+//»ØÎÄÊı£ºÕı¶ÁÓë·´¶ÁÏàµÈµÄÊı
+//2018/11/14 ¸üĞÂ
 #include"stdio.h"
 #define MAX_LEN 101
-int numBit(int num);
-int power(int n, int exp);
+int numBit(long long num);
+// int power(int n, int exp);
 int main() {
     //to do sth
-    int n, numarr[MAX_LEN], i = 1, bits, s, temp;
-    scanf("%d",&n);
+    long long n, temp;
+    int numarr[MAX_LEN], bits, bit_temp;
+    scanf("%lld",&n);
     temp = n;
     bits = numBit(n);
-    s = power(10,numBit(n) - 1);
-    while(n != 0) {
-        numarr[i] = n / s;
-        i++;
-        n = n % s;
-        s = s / 10;
+    bit_temp = bits;
+    // s = power(10,numBit(n) - 1);
+    // while(n != 0) {
+    //     numarr[i] = n / s;
+    //     i++;
+    //     n = n % s;
+    //     s = s / 10;
+    // }
+    while(bits != 0) {
+        numarr[bits--] = n % 10;
+        n = n/10;
     }
-    for(i = 1; i < (bits / 2); i++) {
-        if(numarr[i] == numarr[bits - i]) {
+    // printf("%d\n",bit_temp);
+    for(int i = 1; i <= (bit_temp / 2); i++) {
+        if(numarr[i] == numarr[bit_temp + 1 - i]) {
             continue;
         }
         else {
-            printf("%dä¸æ˜¯å›æ–‡ä¸²ã€‚\n",temp);
+            printf("%lld²»ÊÇ»ØÎÄ´®¡£\n",temp);
             return 1;
         }
     }
-    printf("%dæ˜¯å›æ–‡ä¸²ã€‚\n",temp);
+    printf("%lldÊÇ»ØÎÄ´®¡£\n",temp);
     return 0;
 }
-int numBit(int num) {
+int numBit(long long num) {
     int i = 0;
     while(num != 0) {
         i++;
@@ -38,10 +45,10 @@ int numBit(int num) {
     return i;
 }
 
-int power(int n, int exp) {
-    int res = 1;
-    while(exp--) {
-        res *= n;
-    }
-    return res;
-}
+// int power(int n, int exp) {
+//     int res = 1;
+//     while(exp--) {
+//         res *= n;
+//     }
+//     return res;
+// }
