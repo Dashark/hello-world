@@ -4,7 +4,7 @@ int main() {
   int a,b,c;
   a=1;
   b=2;
-  c=a+b;
-  printf("%d",c); 
+  c=a+b-5;
+  printf("%d",c+2); 
   return 0;
 }
