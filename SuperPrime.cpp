@@ -1,13 +1,13 @@
-class Prime {
+class Number {
 public:
-  Prime(int num);
-  ~Prime();
+  Number(int num);
+  ~Number();
 
   bool isPrime();
 private:
   const int mNum;
 };
-class SuperPrime : public Prime {
+class SuperPrime : public Number {
 public:
   SuperPrime(int num);
   ~SuperPrime();
