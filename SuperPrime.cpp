@@ -28,13 +28,27 @@ private:
 };
 class NumberSet {
 private:
-  Number nums[20];
+  Number *nums[20];
+  int size;
 public:
   NumberSet() {
+  	size = 0;
+  	for(int i = 0; i < 20; ++i)
+  	  nums[i] = NULL;
   }
   ~NumberSet() {
   }
   void add(const Number &n) {
+     size += 1;
+	 nums[size] = &n; 
+  }
+  Number sum() {
+  	Number sum(0);
+  	for(int i = 0; i < size; ++i) {
+  	  if(nums[i] != NULL)
+  	    sum.add(*(nums[i]));
+	}
+	return sum;
   }
 };
 class SuperPrime : public Number {
