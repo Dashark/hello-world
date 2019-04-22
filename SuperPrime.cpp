@@ -37,10 +37,12 @@ public:
   	  nums[i] = NULL;
   }
   ~NumberSet() {
+  	for(int i = 0; i < size; ++i)
+  	  delete nums[i];
   }
   void add(const Number &n) {
      size += 1;
-	 nums[size] = &n; 
+	 nums[size] = new Number(n); 
   }
   Number sum() {
   	Number sum(0);
