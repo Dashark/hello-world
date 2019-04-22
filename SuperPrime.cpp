@@ -1,9 +1,18 @@
 class Number {
 public:
-  Number(int num);
+  Number(int num):mNum(num) {
+  }
   ~Number();
 
-  bool isPrime();
+  bool isPrime() {
+  	for(int i = 2; i < mNum; ++i) {
+  	  if(mNum % i == 0)
+  	    break;
+	}
+	if(i != mNum)
+	  return false;
+	return true;
+  }
 private:
   const int mNum;
 };
