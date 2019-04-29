@@ -2,6 +2,8 @@ class Number {
 public:
   Number(int num):mNum(num) {
   }
+  Number(const Number &n):mNum(n.mNum) {
+  }
   ~Number();
   NumberSet split() {
   	NumberSet ns;
