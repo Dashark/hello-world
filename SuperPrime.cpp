@@ -40,9 +40,13 @@ public:
   	for(int i = 0; i < size; ++i)
   	  delete nums[i];
   }
-  void add(const Number &n) {
-     size += 1;
+  bool add(const Number &n) {
+  	if(size != 20 && nums[size] == NULL) {
 	 nums[size] = new Number(n); 
+     size += 1;
+     return true;
+    }
+    return false;
   }
   Number sum() {
   	Number sum(0);
