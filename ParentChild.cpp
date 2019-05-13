@@ -12,13 +12,16 @@ public:
   	cout << "Child!!!" << endl;
   }
 };
-void show(const Parent &p) {
+void show(const Parent &p) {  //¹æÔò 
 	p.show();
 } 
+
 int main() {
+	Parent p;
+	show(p);
 	Child c;
 	show(c);
-	Parent p;
-	show(p)
+	//GrandChild gc;
+	//show(gc);
 	return 0;
 }
