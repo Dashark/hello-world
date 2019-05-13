@@ -2,20 +2,23 @@
 using namespace std;
 class Parent {
 public:
-  virtual void show() {
+  virtual void show() const {   //∂‡Ã¨ 
   	cout << "Parent!!!" << endl;
   }
 };
-class Child: public Parent {
+class Child:public Parent {
 public:
-  void show() {
+  virtual void show() const {
   	cout << "Child!!!" << endl;
   }
 };
+void show(const Parent &p) {
+	p.show();
+} 
 int main() {
 	Child c;
-	Parent *p = &c;
-	p->show();
-	//c.show();
+	show(c);
+	Parent p;
+	show(p)
 	return 0;
 }
