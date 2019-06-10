@@ -1,11 +1,13 @@
 class Something : public Bigthing {
-	Otherthing ot;
+	const Otherthing ot;
 public:
 	Something() {
 	}
 	Something(int n):Bigthing(n), ot(n){
 	}
 	~Something(){
+	}
+	virtual void show() const {
 	}
 	virtual void show() {
 	}
