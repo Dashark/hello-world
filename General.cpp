@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+namespace myspace {
 class Something : public Bigthing {
 	const Otherthing ot;
 	static int x;
@@ -16,8 +19,9 @@ public:
 		return new Something(n);
 	}
 };
+};
 int main() {
-	Something *st = Something::create(123), *st1 = st->create(321);
+	myspace::Something *st = myspace::Something::create(123), *st1 = st->create(321);
 	st->show();
 	st1->show();
 	return 0;
