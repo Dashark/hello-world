@@ -11,6 +11,8 @@ class Something : public Bigthing {
 public:
 	~Something(){
 	}
+	int operator()(int n) {  //Function Object
+	}
 	virtual void show() const {
 	}
 	virtual void show() {
