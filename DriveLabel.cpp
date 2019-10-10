@@ -1,5 +1,5 @@
 // DriveLabel.cpp : Defines the entry point for the console application.
-//
+// some
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
