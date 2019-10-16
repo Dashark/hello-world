@@ -32,3 +32,5 @@
 *.so
 /Date.cpp~
 /Prime.c~
+*.json
+*.bin
