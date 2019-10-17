@@ -9,7 +9,7 @@ int main()
     if (z == z1) {
         z = (m + x) / y;
     }
-    printf("Z is %f\n", z);
-    printf("Z1 is %f\n", z1);
+    printf("Z is %0.5f\n", z);
+    printf("Z1 is %0.5f\n", z1);
     return 0;
 }
