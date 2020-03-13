@@ -1,10 +1,10 @@
 #include <stdio.h>
-typedef struct _datetime {
+class DateTime {
   int year, month, day;
   int hour, minute, second;
   void initTime();
   void showTime();
-} DateTime;
+};
 int main() {
   DateTime dt, dt1;
   dt.initTime();
