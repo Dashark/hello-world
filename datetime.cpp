@@ -2,22 +2,24 @@
 typedef struct _datetime {
   int year, month, day;
   int hour, minute, second;
+  void initTime();
+  void showTime();
 } DateTime;
-static void initTime(DateTime *dt);
-static void showTime(DateTime dt);
 int main() {
-  DateTime dt;
-  initTime(&dt);
-  showTime(dt);
+  DateTime dt, dt1;
+  dt.initTime();
+  dt.showTime();
+  dt1.initTime();
+  dt1.showTime();
   return 0;
 }
-static void initTime(DateTime *dt)
+void DateTime::initTime()
 {
-  dt->year = 2020; dt->month = 3; dt->day = 13;
-  dt->hour = 10; dt->minute = 25; dt->second = 55;
+  year = 2020; month = 3; day = 13;
+  hour = 11; minute = 27; second = 55;
 }
-static void showTime(DateTime dt)
+void DateTime::showTime()
 {
-  printf("当前时间：%d/%d/%d %d:%d:%d\n", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+  printf("当前时间：%d/%d/%d %d:%d:%d\n", year, month, day, hour, minute, second);
 }
  
