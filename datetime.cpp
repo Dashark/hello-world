@@ -7,6 +7,7 @@ public:
   DateTime();
   ~DateTime();
   void showTime();
+  void showMoon();  //作业：将当前公历转换为农历显示出来 
 };
 int main() {
   DateTime dt, dt1;
