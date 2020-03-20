@@ -1,19 +1,19 @@
 #include <stdio.h>
 class DateTime {
+private:
   int year, month, day;
   int hour, minute, second;
-  void initTime();
+public:
+  DateTime();
   void showTime();
 };
 int main() {
   DateTime dt, dt1;
-  dt.initTime();
   dt.showTime();
-  dt1.initTime();
   dt1.showTime();
   return 0;
 }
-void DateTime::initTime()
+DateTime::DateTime()
 {
   year = 2020; month = 3; day = 13;
   hour = 11; minute = 27; second = 55;
