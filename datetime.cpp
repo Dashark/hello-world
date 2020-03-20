@@ -10,18 +10,20 @@ public:
 };
 int main() {
   DateTime dt, dt1;
+  std::cout << &dt << std::endl;
+  std::cout << &dt1 << std::endl;
   dt.showTime();
   dt1.showTime();
   return 0;
 }
 DateTime::DateTime()
 {
-  year = 2020; month = 3; day = 13;
+  year = 2020; month = 3; day = 20;
   hour = 11; minute = 27; second = 55;
 }
 DateTime::~DateTime() 
 {
-  std::cout << "Go die, Ha~Ha~" << std::endl;
+  std::cout << this << " Go die, Ha~Ha~" << std::endl;
 }
 void DateTime::showTime()
 {
