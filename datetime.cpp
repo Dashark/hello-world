@@ -1,7 +1,6 @@
 #include<stdio.h>
 int Sub(int mon,int dat);
 void Lunar(int sub);
-void Zhong(int num);
 int main()
 {
 	printf("请输入2020年的公历，如“1月1日”：");
@@ -42,32 +41,10 @@ int Sub(int mon,int dat)
 	sub+=dat;
 	return sub;
 }
-void Zhong(int num){
-	switch(num){
-		case 1:printf("一");
-		break;
-		case 2:printf("二");
-		break;
-		case 3:printf("三");
-		break;
-		case 4:printf("四");
-		break;
-		case 5:printf("五");
-		break;
-		case 6:printf("六");
-		break;
-		case 7:printf("七");
-		break;
-		case 8:printf("八");
-		break;
-		case 9:printf("九");
-		break;
-		case 10:printf("十");
-		break;
-	}
-}
+
 void Lunar(int sub)
 {
+	char zhong[10][3]={"一","二","三","四","五","六","七","八","九","十"} ;
 	if(sub<25){
 		printf("腊月");
 		sub+=6;
@@ -123,19 +100,19 @@ void Lunar(int sub)
 	
 	if(sub<=10){
 		printf("初");
-		Zhong(sub); 
+		printf("%s",zhong[sub-1]);  
 	}
 	else if(sub<20){
 		printf("十");
 		sub=sub-10;
-		Zhong(sub);
+		printf("%s",zhong[sub-1]); 
 	}
 	else if(sub=20)
 		printf("二十");
 	else if(sub<30){
 		printf("廿");
 		sub=sub-20;
-		Zhong(sub); 
+		printf("%s",zhong[sub-1]); 
 	}
 	else printf("三十");
 }
