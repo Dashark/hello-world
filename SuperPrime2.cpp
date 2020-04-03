@@ -1,3 +1,4 @@
+//作业：完成以下框架的代码细节，程序能编译运行得到正确结果 
 #include <iostream>
 class SuperPrime {
   public:
