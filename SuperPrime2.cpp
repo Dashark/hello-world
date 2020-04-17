@@ -15,18 +15,38 @@ class Prime {
   private:
   	const int number;
 }; 
+class PrimeSet {
+  public:
+  	PrimeSet(int size) {
+  	  //集合的构造什么？ 
+  	  N = new Prime*[size];
+  	  this->size = size;
+  	  index = 0;
+	}
+	~PrimeSet() {
+  	  for (int i = 0; i < index; ++i)  //销毁对象 
+		delete N[i]; 
+	  delete[] N;
+	}
+	bool add(int n) {
+	  if(index == size)  return false;
+	  Prime *p = new Prime(n);
+	  N[index] = p;
+	  index += 1;
+	  return true;
+	}
+  private:
+  	Prime **N;
+	int size, index;
+};
 class SuperPrime {
   public:
   	SuperPrime():number(0) {  //为什么必须有？ 
-  	  size = 0;
   	}
   	SuperPrime(int n):number(n) {
-  	  size = 0;
   	  split();  //它就是构造对象 
 	}
   	~SuperPrime() {
-  	  for (int i = 0; i < size; ++i)  //销毁对象 
-		delete N[i]; 
 	}
   	bool isSuperPrime() {
   	  Prime p(number);
@@ -36,16 +56,12 @@ class SuperPrime {
 	}
   private:
   	const int number;
-  	Prime *N[100];
-	int size;
 	void split() {   //工厂方法设计模式 
 	  // number split into N
 	  int temp = number;
 	  while(temp > 0) {
 	  	int n = temp % 10;
 	  	temp /= 10;
-	  	N[size] = new Prime(n);   //构造对象 
-	  	size += 1;
 	  } 
 	}
 	int sum() {
@@ -58,17 +74,21 @@ class SuperPrime {
 	  return 0;
 	}
 };
-class Set {
+class SuperPrimeSet {
   public:
-  	Set(int from, int to) {
-  	  size = 0;
+  	SuperPrimeSet(int from, int to) {
+  	  size = to - from;
+  	  for (int i = from; i < to; i++)
+  	    set[i-from] = new SuperPrime(i);
 	}
-  	~Set() {
+  	~SuperPrimeSet() {
+  	  for(int i = 0; i < size; i++)
+  	    delete set[i];
 	}
   	int count() {
   	  int count = 0;
   	  for (int i = 0; i < size; i++)
-  	    if(set[i].isSuperPrime())
+  	    if(set[i]->isSuperPrime())
   	      count += 1;
 	  return count; 
 	}
@@ -82,7 +102,7 @@ class Set {
 	  return sum; 
 	}
   private:
-  	SuperPrime set[1000];
+  	SuperPrime *set[1000];
   	int size;
 };
 int main() {
