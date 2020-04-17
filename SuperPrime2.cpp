@@ -70,7 +70,7 @@ class SuperPrime {
 	  while(temp > 0) {
 	  	int n = temp % 10;
 	  	temp /= 10;
-	  	pset.add(n);
+	  	pset.add(n);  //作业：单个数字为对象？还是和/积/平方和为对象？ 
 	  } 
 	}
 	int sum() {
