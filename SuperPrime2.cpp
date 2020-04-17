@@ -35,20 +35,27 @@ class PrimeSet {
 	  index += 1;
 	  return true;
 	}
+	bool isAllPrime() {
+	  for(int i = 0; i < index; i++)
+	    if (!N[i]->isPrime())
+	      return false;
+	  return true;
+	} 
   private:
   	Prime **N;
 	int size, index;
 };
 class SuperPrime {
   public:
-  	SuperPrime():number(0) {  //为什么必须有？ 
+  	SuperPrime():number(0), pset(3) {  //为什么必须有？ 
   	}
-  	SuperPrime(int n):number(n) {
+  	SuperPrime(int n):number(n), pset(3) {
   	  split();  //它就是构造对象 
 	}
   	~SuperPrime() {
 	}
   	bool isSuperPrime() {
+  	  //怎么使用pset？ 
   	  Prime p(number);
 	  if (p.isPrime())
 	    return true; 
@@ -56,12 +63,14 @@ class SuperPrime {
 	}
   private:
   	const int number;
+  	PrimeSet pset;
 	void split() {   //工厂方法设计模式 
 	  // number split into N
 	  int temp = number;
 	  while(temp > 0) {
 	  	int n = temp % 10;
 	  	temp /= 10;
+	  	pset.add(n);
 	  } 
 	}
 	int sum() {
@@ -102,8 +111,8 @@ class SuperPrimeSet {
 	  return sum; 
 	}
   private:
-  	SuperPrime *set[1000];
-  	int size;
+  	SuperPrime **set;
+  	int size, index;
 };
 int main() {
   SuperPrime sp(113);
