@@ -66,7 +66,8 @@ public:
     ~SuperPrime() {
     }
     bool isSuperPrime() {
-        if (pset.isAllPrime())
+    	Prime p(number); 
+        if (p.isPrime()&&pset.isAllPrime())
             return true;
         return false;
     }
