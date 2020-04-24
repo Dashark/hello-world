@@ -1,5 +1,4 @@
-//×÷Òµ£ºÃæÏò¶ÔÏóÉè¼ÆÒÔÏÂ¿ò¼ÜµÄ´úÂëÏ¸½Ú£¬³ÌĞòÄÜ±àÒëÔËĞĞµÃµ½ÕıÈ·½á¹û 
-//×÷Òµ£ºÃæÏò¶ÔÏóÉè¼ÆÒÔÏÂ¿ò¼ÜµÄ´úÂëÏ¸½Ú£¬³ÌĞòÄÜ±àÒëÔËĞĞµÃµ½ÕıÈ·½á¹û 
+//ä½œä¸šï¼šé¢å‘å¯¹è±¡è®¾è®¡ä»¥ä¸‹æ¡†æ¶çš„ä»£ç ç»†èŠ‚ï¼Œç¨‹åºèƒ½ç¼–è¯‘è¿è¡Œå¾—åˆ°æ­£ç¡®ç»“æœ
 #include <iostream>
 using namespace std;
 class Prime {
@@ -11,7 +10,7 @@ public:
     ~Prime() {
     }
     bool isPrime() {
-        //2µ½number-1µÄÒò×Ó
+        //2åˆ°number-1çš„å› å­
         int s = 0;
         for (int i = 1; i <= number; i++)
             if (number % i == 0)
@@ -29,13 +28,13 @@ private:
     int size, index;
 public:
     PrimeSet(int size) {//size=3
-        //¼¯ºÏµÄ¹¹ÔìÊ²Ã´£¿ 
+        //é›†åˆçš„æ„é€ ä»€ä¹ˆï¼Ÿ 
         N = new Prime * [size];
         this->size = size;
         index = 0;
     }
     ~PrimeSet() {
-        for (int i = 0; i < index; ++i)  //Ïú»Ù¶ÔÏó 
+        for (int i = 0; i < index; ++i)  //é”€æ¯å¯¹è±¡ 
             delete N[i];
         delete[] N;
     }
@@ -55,10 +54,10 @@ public:
 };
 class SuperPrime {
 public:
-    SuperPrime() :number(0), pset(3) {  //ÎªÊ²Ã´±ØĞëÓĞ£¿ 
+    SuperPrime() :number(0), pset(3) {  //ä¸ºä»€ä¹ˆå¿…é¡»æœ‰ï¼Ÿ 
     }
     SuperPrime(int n) :number(n), pset(3) {
-        split();  //Ëü¾ÍÊÇ¹¹Ôì¶ÔÏó 
+        split();  //å®ƒå°±æ˜¯æ„é€ å¯¹è±¡ 
         sum();
         multi();
         squareSum();
@@ -76,13 +75,13 @@ private:
     int size = 0;
     const int number;
     PrimeSet pset;
-    void split() {   //¹¤³§·½·¨Éè¼ÆÄ£Ê½ 
+    void split() {   //å·¥å‚æ–¹æ³•è®¾è®¡æ¨¡å¼ 
       // number split into N
         int temp = number;
         while (temp > 0) {
             N[size++] = temp % 10;
             temp /= 10;
-            //            pset.add(n);  //×÷Òµ£ºµ¥¸öÊı×ÖÎª¶ÔÏó£¿»¹ÊÇºÍ/»ı/Æ½·½ºÍÎª¶ÔÏó£¿ 
+            //            pset.add(n);  //ä½œä¸šï¼šå•ä¸ªæ•°å­—ä¸ºå¯¹è±¡ï¼Ÿè¿˜æ˜¯å’Œ/ç§¯/å¹³æ–¹å’Œä¸ºå¯¹è±¡ï¼Ÿ 
         }
     }
     int sum() {
