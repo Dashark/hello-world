@@ -15,6 +15,44 @@ class Prime {
   private:
   	const int number;
 }; 
+class PrimeSet {
+  public:
+  	PrimeSet(int size) {
+  	  //集合的构造什么？ 
+  	  set = new Prime*[size];
+  	  this->size = size;
+  	  index = 0;
+	}
+	~PrimeSet() {
+  	  for (int i = 0; i < index; ++i)  //销毁对象 
+		delete set[i]; 
+	  delete[] set;
+	}
+ 	int count() {
+  	  int count = 0;
+  	  for (int i = 0; i < size; i++)
+  	    if(set[i]->isPrime())
+  	      count += 1;
+	  return count; 
+	}
+
+	bool add(int n) {
+	  if(index == size)  return false;
+	  Prime *p = new Prime(n);
+	  set[index] = p;
+	  index += 1;
+	  return true;
+	}
+	bool isAllPrime() {
+	  for(int i = 0; i < index; i++)
+	    if (!set[i]->isPrime())
+	      return false;
+	  return true;
+	} 
+  private:
+  	Prime **set;
+	int size, index;
+};
 class SuperPrime : public Prime {
   public:
   	SuperPrime():Prime(0), pset(3) {  //为什么必须有？ 
@@ -46,44 +84,6 @@ class SuperPrime : public Prime {
 	int squareSum() {
 	  return 0;
 	}
-};
-class PrimeSet {
-  public:
-  	PrimeSet(int size) {
-  	  //集合的构造什么？ 
-  	  N = new Prime*[size];
-  	  this->size = size;
-  	  index = 0;
-	}
-	~PrimeSet() {
-  	  for (int i = 0; i < index; ++i)  //销毁对象 
-		delete N[i]; 
-	  delete[] N;
-	}
- 	int count() {
-  	  int count = 0;
-  	  for (int i = 0; i < size; i++)
-  	    if(set[i]->isSuperPrime())
-  	      count += 1;
-	  return count; 
-	}
-
-	bool add(int n) {
-	  if(index == size)  return false;
-	  Prime *p = new Prime(n);
-	  N[index] = p;
-	  index += 1;
-	  return true;
-	}
-	bool isAllPrime() {
-	  for(int i = 0; i < index; i++)
-	    if (!N[i]->isPrime())
-	      return false;
-	  return true;
-	} 
-  private:
-  	Prime **set;
-	int size, index;
 };
 class SuperPrimeSet {
   public:
