@@ -68,7 +68,7 @@ class SuperPrime : public Prime {
 	}
   	~SuperPrime() {
 	}
-  	bool isSuperPrime() {
+  	bool isPrime() {   //类/对象的接口，更抽象说是外观 
 	  if (Prime::isPrime() && pset.isAllPrime())
 	    return true; 
   	  return false;
@@ -99,7 +99,7 @@ class SuperPrimeSet {
   	int count() {
   	  int count = 0;
   	  for (int i = 0; i < size; i++)
-  	    if(set[i]->isSuperPrime())
+  	    if(set[i]->isPrime())
   	      count += 1;
 	  return count; 
 	}
@@ -118,7 +118,7 @@ class SuperPrimeSet {
 };
 int main() {
   SuperPrime sp(113);
-  if (sp.isSuperPrime())
+  if (sp.isPrime())
     std::cout << "113 is SuperPrime" << std::endl;
   else
     std::cout << "113 is NOT SuperPrime" << std::endl;
