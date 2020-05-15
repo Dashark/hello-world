@@ -24,9 +24,7 @@ class PrimeSet {
   	  index = 0;
 	}
 	~PrimeSet() {
-  	  for (int i = 0; i < index; ++i)  //销毁对象 
-		delete set[i]; 
-	  delete[] set;
+  	  delete[] set;
 	}
  	int count() {
   	  int count = 0;
@@ -36,9 +34,8 @@ class PrimeSet {
 	  return count; 
 	}
 
-	bool add(int n) {
+	bool add(Prime *p) {
 	  if(index == size)  return false;
-	  Prime *p = new Prime(n);
 	  set[index] = p;
 	  index += 1;
 	  return true;
@@ -63,7 +60,7 @@ class SuperPrime : public Prime {
 	  while(temp > 0) {
 	  	int t = temp % 10;
 	  	temp /= 10;
-	  	pset.add(t);  //作业：单个数字为对象？还是和/积/平方和为对象？ 
+	  	//pset.add(t);  //作业：单个数字为对象？还是和/积/平方和为对象？ 
 	  } 
 	}
   	~SuperPrime() {
@@ -86,10 +83,11 @@ class SuperPrime : public Prime {
 	}
 };
 int main() {
+  Prime p(13);
   SuperPrime sp(113);
-  if (sp.isPrime())
-    std::cout << "113 is SuperPrime" << std::endl;
-  else
-    std::cout << "113 is NOT SuperPrime" << std::endl;
+  PrimeSet set(2);
+  set.add(&sp); 
+  set.add(&p);
+  std::cout << "How Many : " << set.count() << std::endl;
   return 0;
 }
