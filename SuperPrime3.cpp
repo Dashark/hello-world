@@ -2,6 +2,7 @@
 //重新设计下面的代码，使其可以处理大整数的素数与超级素数
 //同时仔细理解面向对象的编程方式
 #include <iostream>
+#include<cmath>
 class BigPrime {
 public:
 	BigPrime(long long int n) : num(n) {}
@@ -68,20 +69,21 @@ private:
 		return s;
 	}
 };
+template<class T>
 class Set {
 public:
 	Set(int sz) :size(sz) {
 		index = 0;
-		pset = new BigPrime * [size];
+		pset = new T * [size];
 	}
 	~Set() {
 		delete[] pset;  //鍥炴敹
 	}
-	bool add(BigPrime* bp) {
+	bool add(T* bp) {
 		pset[index++] = bp;
 		return true;
 	}
-	bool remove(BigPrime* bp) {};
+	bool remove(T* bp) {};
 	int count() const {
 		int ret = 0;
 		for (int i = 0; i < index; i++) {
@@ -94,11 +96,11 @@ public:
 		return 0;
 	}
 private:
-	BigPrime** pset;
+	T** pset;
 	int size, index;
 };
 int main() {
-	Set set(1000);
+	Set<BigPrime> set(1000);
 	BigSuperPrime bp(12345678987654321);
 	set.add(&bp);
 	if (bp.isPrime())
@@ -107,4 +109,3 @@ int main() {
 		std::cout << "the number is not a SuperPrime";
 	return 0;
 }
-
