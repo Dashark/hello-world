@@ -1,17 +1,13 @@
 #include <iostream>
-#include <stdio.h>
-#include <string.h>
+#include <string>
 class MyStruct {
 public:
-	char hello[50];
-	char name[50];
-	MyStruct(char h[], char n[]) {
-		strcpy(hello, h);
-		strcpy(name, n);
+	std::string hello;
+	std::string name;
+	MyStruct(char h[], char n[]):name(n), hello(h) {
 	}
 	int myfunction() {
 		std::cout << name << "   "<< hello << std::endl;
-		printf("%s   %s\n", name, hello);
 		return 10;
 	}
 }; 
