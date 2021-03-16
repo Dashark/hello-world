@@ -3,9 +3,9 @@
 struct MyStruct {
 	char hello[50];
 	char name[50];
-	int myfunction(struct MyStruct* myinfo) {
-		std::cout << myinfo->name << "   "<< myinfo->hello << std::endl;
-		printf("%s   %s\n", myinfo->name, myinfo->hello);
+	int myfunction() {
+		std::cout << name << "   "<< hello << std::endl;
+		printf("%s   %s\n", name, hello);
 		return 10;
 	}
 }; 
@@ -16,5 +16,5 @@ int main()
 	    "DaShark"
 	};
 	// call my function
-	return myobj.myfunction(&myobj);
+	return myobj.myfunction();
 } 
