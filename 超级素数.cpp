@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cmath>
 using namespace std;
 class Answer
 {
@@ -36,9 +37,9 @@ public:
             s1 = i / 100;
             s2 = (i / 10) % 10;
             s3 = i % 10;
-            if ((isPrime(i)) && (isPrime(s1 + s2 + s3)) && (isPrime(s1 * s2 * s3)))
+            if ((isPrime(i)) && (isPrime(s1 + s2 + s3)) && (isPrime(s1 * s2 * s3))&&(isPrime(pow(s1,2)+pow(s2,2)+pow(s3,2))))
             {
-                //// cout << i << endl;
+                //  cout << i << endl;
                 num++;
                 maxn = i;
                 sum += i;
