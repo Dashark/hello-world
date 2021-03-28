@@ -1,0 +1,41 @@
+#include<iostream>
+int prime[100]; 
+bool isprime(int n) ; 
+
+int main()
+{
+	int n = 100 , cnt = 0 , sum = 0 ; 
+	while ( n < 1000 )
+	{
+		if ( isprime(n) )
+		{
+			int a = 0 , b = 0 , c = 0 , m = n ; 
+			c = m % 10 ; 
+			b = ( m /= 10 ) % 10 ; 
+			a = m / 10 ; //分割数字
+			if ( isprime(a + b + c) && isprime(a * b * c) && isprime( a * a + b * b + c * c ) )
+			{
+				prime[cnt ++] = n ; 
+				sum += n ; 
+			}
+		}
+		n ++ ;  
+	}
+	std::cout << "超级素数的个数：" << cnt << std::endl ; 
+	std::cout << "所有的超级素数之和：" << sum << std::endl ; 
+	std::cout << "最大的超级素数：" << prime[cnt - 1] << std::endl ; 
+	
+	return 0 ; 
+}
+
+bool isprime(int n) 、、判断素数
+{
+	for ( int i = 2 ; i * i < n ; i ++ )
+	{
+		if ( n % i == 0 )
+		{
+			return false ;
+		}
+	}
+	return true ; 
+}
