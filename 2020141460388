@@ -1,0 +1,28 @@
+#include<iostream>
+int main()
+{
+	int num,e,f,g;int sum1=0,sum2=0,sum3=0,sum;
+	for(int a=100;a<1000;a++){
+		sum=0;
+	int b=a/100;int c=(a-b*100)/10;int u=(a-b*100-c*10);
+	e=b+c+u;f=b*c*u;g=b*b+c*c+u*u;
+	if(e>2&&f>2&&g>2){
+	for(int z=1;z<4;z++){
+	if(z==1) num=e;
+	else if(z==2) num=f;
+	else if(z==3) num=g;
+	int m=0;
+	for(int i=2;i<num;i++){
+    if(num%i==0)
+    m++;
+    }
+    if(m==0)
+    sum++;
+}
+if(sum==3){
+sum1++;sum2=sum2+a;if(a>sum3) sum3=a;
+}
+}
+}
+std::cout<<sum1<<" "<<sum2<<" "<<sum3;
+}
