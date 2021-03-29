@@ -12,7 +12,7 @@ int main()
 			int a = 0 , b = 0 , c = 0 , m = n ; 
 			c = m % 10 ; 
 			b = ( m /= 10 ) % 10 ; 
-			a = m / 10 ; //分割数字
+			a = m / 10 ; 
 			if ( isprime(a + b + c) && isprime(a * b * c) && isprime( a * a + b * b + c * c ) )
 			{
 				prime[cnt ++] = n ; 
@@ -28,9 +28,9 @@ int main()
 	return 0 ; 
 }
 
-bool isprime(int n) 、、判断素数
+bool isprime(int n) 
 {
-	for ( int i = 2 ; i * i < n ; i ++ )
+	for ( int i = 2 ; i * i <= n ; i ++ )
 	{
 		if ( n % i == 0 )
 		{
