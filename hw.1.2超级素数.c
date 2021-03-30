@@ -91,12 +91,12 @@ int main(){
 			sumsp += sp;
 			max = sp;
 			
-			printf("Q%d\n",sp);
+			//printf("Q%d\n",sp);
 			
 		}
 		
 	}
-	printf("个数：%d 和：%d 最大：%d\n",countsp,sumsp,max);
+	printf("个数：%d 和：%d 最大：%d \n",countsp,sumsp,max);
 	
 	
 	return 0;
