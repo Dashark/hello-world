@@ -1,0 +1,49 @@
+#include<stdio.h>
+int isP(int i)
+{
+	int l,m,n;
+	for(l=2;l<i+1;l++)
+	{
+		if(i%l==0)
+			break;	
+	}
+	if(l==i)
+		return 1;
+	else
+		return 0;
+	
+}
+int main(void)
+{
+	int i;
+	int a, b, c;
+	int sum,pfh,ji;
+	int n=0;
+	int su[1000];
+	
+/*	a = isP(113);
+	printf("%d",a);
+*/
+	
+	for(i=100;i<1000;i++)
+	{
+		a = i/100; //百位
+		b = (i%100)/10; //十位
+		c = i%10;	//个位
+									//printf("%d %d %d\n",a,b,c);
+		sum = a+b+c;
+		ji=a*b*c;
+		pfh = a*a + b*b + c*c;
+		if(isP(i)==1 &&  isP(sum)==1 && isP(pfh)==1&& isP(ji)==1)
+		{
+			n++;
+			su[n]=i;
+		}
+	
+		
+	 } 
+	 printf("the amount of super prime is: %d",n);
+	
+
+	
+}
