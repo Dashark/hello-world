@@ -1,9 +1,6 @@
 #include <iostream>
 #include<stdio.h>
 int main() {
-  #include<stdio.h>
-//sum <= 27 mul <= 729 mul2 <= 243
-int main(){
 	int p[1000] = {0};
 	int pp[1000] = {0};
 	int i = 2; 
