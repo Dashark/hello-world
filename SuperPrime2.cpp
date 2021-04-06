@@ -1,24 +1,47 @@
 #include <iostream>
+#include <vector>
+class Nature {
+private: 
+  const int num;  //数 
+public:
+  Nature(int n):num(n) {
+  }
+  ~Nature();
+  Nature add(Nature sp);    //求和 
+  bool compare(Nature sp) {  //比大小 
+     if(num > sp.num)
+       return true;
+    return false;
+  }
+	
+};
+
 class SuperPrime {
 private:
-  const int left, right;
+  std::vector<Nature> range;  //超级素数的容器 
 public:
-  SuperPrime(int a, int b):left(a), right(b) {
+  SuperPrime(int a, int b) {
+  	for(int i = a; i < b; i++) {
+  	  Nature nat(i);
+  	  if(nat.isSuperPrime()) //过滤器 
+  	    range.push_back(nat);
+    }
   }
   int max() {
-  	//哪个对象做？ 
-    for(int x1 = left; x1 < right; x1++) {
-      split(x1);
-	  //判断素数 
-	}
-	
+  	for(std::vector<Nature>::iterate it = range.begin();
+	      it != range.end(); it++) {
+	  if(it->compare())
+	} 
   	return 0;
   }
+ 
   int howmany() {
-  	return 0;
+  	return range.size();
   }
   int sum() {
-  	return 0;
+  	for(std::vector<Nature>::iterate it = range.begin();
+	      it != range.end(); it++) {
+    }
   }
 private:
   void split(int x) {
@@ -32,17 +55,6 @@ private:
 	}
   }
 };
-
-
-
-
-
-
-
-
-
-
-
 
 int main() 
 {
