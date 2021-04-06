@@ -5,20 +5,13 @@ private:
 public:
   SuperPrime(int a, int b):left(a), right(b) {
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
   int max() {
+  	//哪个对象做？ 
+    for(int x1 = left; x1 < right; x1++) {
+      split(x1);
+	  //判断素数 
+	}
+	
   	return 0;
   }
   int howmany() {
@@ -26,6 +19,17 @@ public:
   }
   int sum() {
   	return 0;
+  }
+private:
+  void split(int x) {
+    int a, sum, mult, sqrsum;
+    while(x != 0) {
+      a = x % 10;
+	  sum += a;
+	  mult *= a;
+	  sqrsum += a*a;
+	  x = x / 10;
+	}
   }
 };
 
