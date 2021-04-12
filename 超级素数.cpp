@@ -1,17 +1,20 @@
 #include<stdio.h> 
-f(int n)
+Primenumber(int n)
 {
-	int z=1;
-	int i;
-	for(i=2;i<=n-1;i++)
+	if(n==1||n==0)
 	{
-		if(n%i==0)
-		{
-			z=0;
-			break;
-		}
+		return 0;
 	}
-	return (z);
+	else
+	{
+		for(int i=2;i<n;i++){
+			if(n%i==0){
+				return 0;
+			}
+		}
+	
+	}
+	return 1;
 }
 int main()
 {
@@ -21,14 +24,14 @@ int main()
 	
 	for(m=100;m<=999;m++)
 	{
-			a=m/100;
-			b=m%100/10;
-			c=m%10;
+			a=m%10;
+			b=m/10%10;
+			c=m/100;
 			int x,y,z;
 	        x=a+b+c;
 	        y=a*b*c;
 	        z=a*a+b*b+c*c;
-			if((m<1000)&&(f(m)==1)&&(f(x)==1)&&(f(y)==1)&&(f(z)==1))
+			if((m<1000)&&(Primenumber(m)==1)&&(Primenumber(x)==1)&&(Primenumber(y)==1)&&(Primenumber(z)==1))
 			{
 				num+=1;
 				sum+=m;
