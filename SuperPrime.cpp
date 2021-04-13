@@ -1,5 +1,5 @@
 #include<stdio.h> 
-int prime(int a){
+int isprime(int a){
 	int i;
 	int b = 0;
 	for( i = 2; i <= a; i++){
@@ -28,7 +28,7 @@ int main(){
 		m = a + b + c;
 		n = a * b * c;
 		t = a * a + b * b +c * c;
-		if( prime(m) == 1 && prime(n) == 1 && prime(t) == 1){
+		if( isprime(m) == 1 && isprime(n) == 1 && isprime(t) == 1){
 			q = q + 1;
 			sum = sum + i;
 			f = i;
