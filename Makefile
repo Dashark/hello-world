@@ -5,6 +5,7 @@ main:main.cpp
 
 sp:SuperPrime_HW.cpp
 	$(CXX) SuperPrime_HW.cpp -o sp
+	$(CXX) SuperPrime_HW2.cpp -o sp
 
 check:
 
