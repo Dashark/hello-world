@@ -19,8 +19,11 @@ public:
     std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
     for(int i = a; i < b; i++) {
       Nature nat(i);
-	  natures.push_back(nat);  
+      std::cout << "HAHA" << std::endl;
 	}
+  }
+  ~SuperPrime() {
+    std::cout << "Destroy SuperPrime " << std::endl;
   }
 };
 int main() {
