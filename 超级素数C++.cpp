@@ -1,4 +1,4 @@
-#include<stdio.h> 
+#include<iostream> 
 int prime(int a){
 	int i;
 	int b = 0;
@@ -28,17 +28,16 @@ int main(){
 		m = a + b + c;
 		n = a * b * c;
 		t = a * a + b * b +c * c;
-		prime(m);
-		prime(n);
-		prime(t);
 		if( prime(m) == 1 && prime(n) == 1 && prime(t) == 1){
 			q = q + 1;
 			sum = sum + i;
 			f = i;
 		}	
 	}
-	printf("超级素数的个数是%d\n", q);
-	printf("超级素数之和为%d\n", sum);
-	printf("最大超级素数是%d\n", f);
+	std::cout<<"超级素数的个数是 "<< q <<std::endl;
+	std::cout<<"超级素数之和为 "<< sum <<std::endl;
+	std::cout<<"最大超级素数是 "<< f <<std::endl;
 	return 0;
 }
+
+
