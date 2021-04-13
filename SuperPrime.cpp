@@ -1,41 +1,25 @@
 #include <iostream>
+#include <vector>
 class Nature {
-private: 
-  int num;  //数 
+private:
+  int num;
 public:
-  Nature();
-  ~Nature();
-  Nature add(Nature sp);    //求和 
-  bool compare(Nature sp) {  //比大小 
-     if(num > sp.num)
-       return true;
-    return false;
+  Nature(int n):num(n) {
   }
-	
 };
 class SuperPrime {
-private: 
-  const unsigned int num;  //数 
+private:
+  std::vector<Nature> natures;
 public:
-  SuperPrime(int n):num(n) {
-  }
-  ~SuperPrime() {
-  }
-  Nature add(SuperPrime sp) {    //求和 
-     return Nature(num + sp.num);
- }
-  bool compare(SuperPrime sp) {  //比大小 
-     if(num > sp.num)
-       return true;
-    return false;
+  SuperPrime(int a, int b) {
+    //std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
+    for(int i = a; i < b; i++) {
+      Nature nat(i);
+	  natures.push_back(nat);  
+	}
   }
 };
 int main() {
-  Nature sum(0);
-  for(int i = 100; i < 999; i++) {
-    Nature sp1(i);
-    if ( sp1.isPrime() )
-      sum = sum.add(sp1);
-  }
+  SuperPrime sp(100, 999);
   return 0;
 } 
