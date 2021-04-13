@@ -1,81 +1,43 @@
-class Number {
-public:
-  Number(int num):mNum(num) {
-  }
-  Number(const Number &n):mNum(n.mNum) {
-  }
-  ~Number();
-  NumberSet split() {
-  	NumberSet ns;
-  	int n = mNum;
-  	while(n != 0) {
-  	  int d = n % 10;
-  	  Number dig(d);
-  	  ns.add(dig);
-  	  n = n / 10;
+#include<stdio.h> 
+int prime(int a){
+	int i;
+	int b = 0;
+	for( i = 2; i <= a; i++){
+		if(a % i == 0){
+			b = b + 1;
+		}
 	}
-	return ns;
-  }
-  bool isPrime() {
-  	for(int i = 2; i < mNum; ++i) {
-  	  if(mNum % i == 0)
-  	    break;
+	if(b == 1){
+		return 1;
 	}
-	if(i != mNum)
-	  return false;
-	return true;
-  }
-private:
-  const int mNum;
-};
-class NumberSet {
-private:
-  Number *nums[20];
-  int size;
-public:
-  NumberSet() {
-  	size = 0;
-  	for(int i = 0; i < 20; ++i)
-  	  nums[i] = NULL;
-  }
-  ~NumberSet() {
-  	for(int i = 0; i < size; ++i)
-  	  delete nums[i];
-  }
-  bool add(const Number &n) {
-  	if(size != 20 && nums[size] == NULL) {
-	 nums[size] = new Number(n); 
-     size += 1;
-     return true;
-    }
-    return false;
-  }
-  Number sum() {
-  	Number sum(0);
-  	for(int i = 0; i < size; ++i) {
-  	  if(nums[i] != NULL)
-  	    sum.add(*(nums[i]));
+	else{
+	 return 0;
 	}
-	return sum;
-  }
-};
-class SuperPrime : public Number {
-public:
-  SuperPrime(int num);
-  ~SuperPrime();
-
-  bool isPrime();
-
-  Prime sumBit();
-  Prime multiBit();
-  Prime sqaureSumBit();
-private:
-  const int num;
 }
-int main()
-{
-    SuperPrime sp(113);
-    if(sp.isPrime()) {
-        ; // do something
-    }
+int main(){
+	int i ;
+	int q = 0;
+	int sum = 0;
+	int f = 0;
+	for(i = 100; i < 1000; i++ ){
+		int a, b, c;
+		a = i % 10;
+		b = (i / 10) % 10;
+		c = i / 100;
+		int m , n , t ;
+		m = a + b + c;
+		n = a * b * c;
+		t = a * a + b * b +c * c;
+		if( prime(m) == 1 && prime(n) == 1 && prime(t) == 1){
+			q = q + 1;
+			sum = sum + i;
+			f = i;
+		}	
+	}
+	printf("超级素数的个数是 %d\n", q);
+	printf("超级素数之和为 %d\n", sum);
+	printf("最大超级素数是 %d\n",f);
+	return 0;
 }
+
+
