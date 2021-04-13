@@ -33,8 +33,25 @@ public:
   ~SuperPrime() {
     std::cout << "Destroy SuperPrime " << std::endl;
   }
+  
+  Nature max() {
+  	std::vector<Nature>::iterate it = natures.begin();
+  	Nature max(0);
+  	for(; it != natures.end(); it ++) {
+  	  if(it->isSuperPrime()) {
+  	  	if (max.compare(*it)) {
+  	  	  max = *it;
+		}
+	  }
+	}
+  	return max;
+  }
 };
 int main() {
   SuperPrime sp(10, 13);
+  Nature n = sp.max(); 
+  std::cout << "最大超级素数：" ;
+  n.show();
+  
   return 0;
 } 
