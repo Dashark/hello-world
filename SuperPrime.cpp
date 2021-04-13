@@ -20,6 +20,8 @@ public:
     for(int i = a; i < b; i++) {
       Nature nat(i);
       std::cout << "HAHA" << std::endl;
+      natures.push_back(nat);
+      std::cout << "DDDDD" << std::endl;
 	}
   }
   ~SuperPrime() {
