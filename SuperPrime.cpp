@@ -4,8 +4,14 @@ class Nature {
 private:
   int num;
 public:
+  Nature():num(0){
+    std::cout << "Default Create Nature as " << num << std::endl;
+  }
   Nature(int n):num(n) {
     std::cout << "Create Nature as " << num << std::endl;
+  }
+  Nature(const Nature &nat):num(nat.num){
+    std::cout << "Copy Create Nature as " << num << std::endl;
   }
   ~Nature() {
     std::cout << "Destroy Nature as " << num << std::endl;
@@ -29,6 +35,6 @@ public:
   }
 };
 int main() {
-  SuperPrime sp(10, 12);
+  SuperPrime sp(10, 13);
   return 0;
 } 
