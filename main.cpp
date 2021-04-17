@@ -7,8 +7,6 @@ public:
 };
 int main() {
   HelloWorld hw;
-  HelloWorld w;
   hw.hello();
-  w.hello();
   return 0;
 }
