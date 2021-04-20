@@ -66,7 +66,7 @@ public:
       std::cout << "HAHA" << std::endl;
       if(nat.isSuperPrime())
         natures.push_back(nat);
-      std::cout << "DDDDD" << std::endl;
+      std::cout << "DDDD" << std::endl;
 	}
   }
   ~Container() {
