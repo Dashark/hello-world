@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main()
+{
+  int i=101, j,num,sum;
+  int c = 0;
+  for (; i <= 999; i++)
+{
+  int f = 1,j=2;
+  for (; j <= i - 1; j++)
+  {
+  if (i%j == 0) {
+  f=0;
+  break;}
+  }
+  if (f==1) 
+{
+   c++;
+   printf("%-4d", i);
+
+    sum+=i;}
+
+
+}
+     printf("sum:%d  num:%d",sum,c);
+    return 0;
+}
