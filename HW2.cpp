@@ -36,18 +36,18 @@ public:
 	}
 	int prime(int a) {
 		int i, b = 0;
-
+		int c = 0;
 		if (a == 2)
 			b = 1;
 
 		for (i = 2; i < a; i++) {
 			if (a % i == 0)
 			{
-				b = 0;
-				break;
+				c++;
 			}
-			else b = 1;
-
+		}
+		if (c == 0) {
+			b = 1;
 		}
 
 		return b;
