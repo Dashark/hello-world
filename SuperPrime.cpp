@@ -1,43 +1,57 @@
-#include<stdio.h> 
-int isprime(int a){
-	int i;
-	int b = 0;
-	for( i = 2; i <= a; i++){
-		if(a % i == 0){
-			b = b + 1;
+#include <iostream>
+#include <vector>
+class Nature {
+private:
+  int num;
+public:
+  Nature():num(0){
+    std::cout << "Default Create Nature as " << num << std::endl;
+  }
+  Nature(int n):num(n) {
+    std::cout << "Create Nature as " << num << std::endl;
+  }
+  Nature(const Nature &nat):num(nat.num){
+    std::cout << "Copy Create Nature as " << num << std::endl;
+  }
+  ~Nature() {
+    std::cout << "Destroy Nature as " << num << std::endl;
+  }
+};
+class SuperPrime {
+private:
+  std::vector<Nature> natures;
+public:
+  SuperPrime(int a, int b) {
+    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
+    for(int i = a; i < b; i++) {
+      Nature nat(i);
+      std::cout << "HAHA" << std::endl;
+      natures.push_back(nat);
+      std::cout << "DDDDD" << std::endl;
+	}
+  }
+  ~SuperPrime() {
+    std::cout << "Destroy SuperPrime " << std::endl;
+  }
+  
+  Nature max() {
+  	std::vector<Nature>::iterate it = natures.begin();
+  	Nature max(0);
+  	for(; it != natures.end(); it ++) {
+  	  if(it->isSuperPrime()) {
+  	  	if (max.compare(*it)) {
+  	  	  max = *it;
 		}
+	  }
 	}
-	if(b == 1){
-		return 1;
-	}
-	else{
-	 return 0;
-	}
-}
-int main(){
-	int i ;
-	int q = 0;
-	int sum = 0;
-	int f = 0;
-	for(i = 100; i < 1000; i++ ){
-		int a, b, c;
-		a = i % 10;
-		b = (i / 10) % 10;
-		c = i / 100;
-		int m , n , t ;
-		m = a + b + c;
-		n = a * b * c;
-		t = a * a + b * b +c * c;
-		if( isprime(m) == 1 && isprime(n) == 1 && isprime(t) == 1){
-			q = q + 1;
-			sum = sum + i;
-			f = i;
-		}	
-	}
-	printf("超级素数的个数是 %d\n", q);
-	printf("超级素数之和为 %d\n", sum);
-	printf("最大超级素数是 %d\n",f);
-	return 0;
-}
-
-
+  	return max;
+  }
+};
+int main() {
+  SuperPrime sp(10, 13);
+  Nature n = sp.max(); 
+  std::cout << "最大超级素数：" ;
+  n.show();
+  
+  return 0;
+} 
