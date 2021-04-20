@@ -1,4 +1,10 @@
-#include "HelloWorld.h"
+class HelloWorld {
+public:
+  HelloWorld() {
+  }
+  void hello() {
+  }
+};
 int main() {
   HelloWorld hw;
   hw.hello();
