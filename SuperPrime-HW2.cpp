@@ -50,7 +50,7 @@ public:
 int main() {
   SuperPrime sp(10, 13);
   Nature n = sp.max(); 
-  std::cout << "×î´ó³¬¼¶ËØÊı£º" ;
+  std::cout << "ï¿½ï¿½ó³¬¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ;
   n.show();
   
   return 0;
