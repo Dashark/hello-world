@@ -3,29 +3,7 @@
 class Nature {
 private:
   int num;
-public:
-  Nature():num(0){
-    std::cout << "Default Create Nature as " << num << std::endl;
-  }
-  Nature(int n):num(n) {
-    std::cout << "Create Nature as " << num << std::endl;
-  }
-  Nature(const Nature &nat):num(nat.num){
-    std::cout << "Copy Create Nature as " << num << std::endl;
-  }
-  ~Nature() {
-    std::cout << "Destroy Nature as " << num << std::endl;
-  }
-  bool isPrime() {
-    if(num == 1 || num == 0)
-    return false;
-    for(int i = 2; i <= (int)sqrt(num); i++)
-    {
-      if(num % i == 0)
-      return false;
-    }
-    return true;
-  }
+
   int compare(const Nature &nat) {
   	if (num > nat.num)
   	  return 1;
