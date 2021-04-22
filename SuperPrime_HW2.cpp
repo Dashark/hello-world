@@ -16,33 +16,70 @@ public:
   ~Nature() {
     std::cout << "Destroy Nature as " << num << std::endl;
   }
-};
-class SuperPrime {
+  bool isPrime() {
+    if(num == 1 || num == 0)
+    return false;
+    for(int i = 2; i <= (int)sqrt(num); i++)
+    {
+      if(num % i == 0)
+      return false;
+    }
+    return true;
+  }
+  int compare(const Nature &nat) {
+  	if (num > nat.num)
+  	  return 1;
+  	else if(num == nat.num)
+  	  return 0;
+  	
+  	return -1;
+  }
 private:
-  std::vector<Nature> natures;
+};
+class SuperPrime : public Nature {
+private:
+  int num;
 public:
-  SuperPrime(int a, int b) {
+  SuperPrime(int n):num(n) {
+  } 
+  bool isPrime() {
+  	Nature nat(num);
+  	return nat.isPrime();
+  } 
+  int compare(const SuperPrime &nat) {
+  	if (num > nat.num)
+  	  return 1;
+  	else if(num == nat.num)
+  	  return 0;
+  	
+  	return -1;
+  }
+};
+class Container {
+private:
+  std::vector<SuperPrime> natures;
+public:
+  Container(int a, int b) {
     std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
     for(int i = a; i < b; i++) {
-      Nature nat(i);
+      SuperPrime nat(i);
       std::cout << "HAHA" << std::endl;
-      natures.push_back(nat);
+      if(nat.isSuperPrime())
+        natures.push_back(nat);
       std::cout << "DDDDD" << std::endl;
 	}
   }
-  ~SuperPrime() {
+  ~Container() {
     std::cout << "Destroy SuperPrime " << std::endl;
   }
   
-  Nature max() {
-  	std::vector<Nature>::iterate it = natures.begin();
+  SuperPrime max() {
+  	std::vector<SuperPrime>::iterate it = natures.begin();
   	Nature max(0);
   	for(; it != natures.end(); it ++) {
-  	  if(it->isSuperPrime()) {
-  	  	if (max.compare(*it)) {
+      if (max.compare(*it)) {
   	  	  max = *it;
-		}
-	  }
+      }
 	}
   	return max;
   }
