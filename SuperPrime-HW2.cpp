@@ -48,7 +48,9 @@ public:
   	
   }
   SuperPrime(int n,int b) {
+	  
   } 
+	
   SuperPrime(int n):num(n) {
   } 
   bool isSuperPrime() {
