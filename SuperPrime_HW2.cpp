@@ -107,9 +107,9 @@ public:
 int main() 
 {
   	SuperPrime sp(100, 999);
-  	std::cout << "×î´óµÄ³¬¼¶ËØÊı£º" << sp.max() << std::endl ;
-  	std::cout << "³¬¼¶ËØÊıµÄ¸öÊı£º" << sp.number() << std::endl ;
-  	std::cout << "³¬¼¶ËØÊıµÄºÍ£º" << sp.sum()<< std::endl ;
+  	std::cout << "æœ€å¤§çš„è¶…çº§ç´ æ•°ï¼š" << sp.max() << std::endl ;
+  	std::cout << "è¶…çº§ç´ æ•°çš„ä¸ªæ•°ï¼š" << sp.number() << std::endl ;
+  	std::cout << "è¶…çº§ç´ æ•°çš„å’Œï¼š" << sp.sum()<< std::endl ;
 
   	
   	return 0;
