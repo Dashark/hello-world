@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<math.h>
-#include<iostream> 
 
 int main(){
 	
@@ -48,11 +47,9 @@ int main(){
 		
 	}
 	
-	std::cout<<num<<std::endl;
-	std::cout<<jia<<std::endl;
-	std::cout<<max<<std::endl;
+	printf("%d\n",num);
+	printf("%d\n",jia);
+	printf("%d\n",max);
 	
-	
-
-  return 0;
+	return 0;
 }
