@@ -8,15 +8,24 @@ private:
   int num;
 public:
   Nature():num(0){
+    //std::cout << "Default Create Nature as " << num << std::endl;
   }
-  Nature(int n):num(n) { 
+  Nature(int n):num(n) {
+    //std::cout << "Create Nature as " << num << std::endl;
   }
-  Nature(const Nature &nat):num(nat.num){    
+  Nature(const Nature &nat):num(nat.num){
+    //std::cout << "Copy Create Nature as " << num << std::endl;
   }
-  ~Nature() {    
+  ~Nature() {
+    //std::cout << "Destroy Nature as " << num << std::endl;
   }
-};
-bool is_prime(int m) {
+
+		friend class superprime;
+	};
+class superprime{
+	private:int num1,num2,num3;std::vector<int>natures;
+	public:
+		bool is_prime(int m) {
 	int i;
 	if(m<=2) 
 	return false;
@@ -32,10 +41,7 @@ bool is_prime(int m) {
 			else
 			return false; 
 		}
-class superprime{
-	private:int num1,num2,num3;std::vector<int>natures;
-	public:
-		int num_amount() {
+		Nature num_amount() {
 		return num1=natures.size();
 		}
 		superprime(int a,int b) {
@@ -44,11 +50,11 @@ class superprime{
   	    natures.push_back(i);
         } 
 		}
-		int num_sum(){
+		Nature num_sum(){
 			int sum = accumulate(natures.begin(),natures.end(),0);
 			num2=sum; 
 		} 
-		int num_big(){
+		Nature num_big(){
         int big =*max_element(natures.begin(),natures.end()); 
             num3=big;
 		} 
@@ -66,4 +72,5 @@ int main()
   Nature n3=sp.num_big(); 
   sp.show();
   return 0;
-} 
+}
+
