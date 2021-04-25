@@ -43,10 +43,14 @@ public:
 	int show()
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		return num;
 =======
 		return num ;
 >>>>>>> a4bb835fa3c3d18aba01162082cc1be822c7b46f
+=======
+		return num;
+>>>>>>> d2062996a9aeb4aa58738d425f92646cb9620d22
 	}
 };
 
@@ -98,6 +102,7 @@ int main()
 {
 	SuperPrime sp(100, 999);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	std::cout << "超级素数的个数：" << sp.max() << std::endl;
 	std::cout << "所有的超级素数之和：" << sp.sum() << std::endl;
 	std::cout << "最大的超级素数：" << sp.howmany() << std::endl;
@@ -106,5 +111,10 @@ int main()
 	std::cout << "���еĳ�������֮�ͣ�" << sp.sum() << std::endl;
 	std::cout << "���ĳ���������" << sp.howmany() << std::endl;
 >>>>>>> a4bb835fa3c3d18aba01162082cc1be822c7b46f
+=======
+	std::cout << "超级素数的个数：" << sp.max() << std::endl;
+	std::cout << "所有的超级素数之和：" << sp.sum() << std::endl;
+	std::cout << "最大的超级素数：" << sp.howmany() << std::endl;
+>>>>>>> d2062996a9aeb4aa58738d425f92646cb9620d22
 	return 0;
 }
