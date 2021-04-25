@@ -70,7 +70,8 @@ private:
 public:
   	SuperPrime(int a, int b) 
 	{
-    	for(int i = a; i < b; i++) 
+    	num_of_SP = 0 ; 
+		for(int i = a; i < b; i++) 
 		{
       		Nature nat(i);
       		if (nat.isSuperPrime())
@@ -79,7 +80,7 @@ public:
 				num_of_SP ++ ;
       			std::cout << "num_of_SP ++" << std::endl;
 				sum_of_SP += nat.show() ;
-				std::cout << "sum_of_SP =" << sum_of_SP << std::endl;
+				std::cout << "sum_of_SP=" << sum_of_SP << std::endl;
 				maxn = nat.show() ;
 			}
 			    
@@ -105,7 +106,7 @@ public:
 };
 int main() 
 {
-  	SuperPrime sp(10, 14);
+  	SuperPrime sp(100, 999);
   	std::cout << "最大的超级素数：" << sp.max() << std::endl ;
   	std::cout << "超级素数的个数：" << sp.number() << std::endl ;
   	std::cout << "超级素数的和：" << sp.sum()<< std::endl ;
