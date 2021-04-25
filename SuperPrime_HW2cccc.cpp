@@ -23,11 +23,11 @@ public:
     for(int i = 2; i <= (int)sqrt(num); i++)
     {
       if(num % i == 0)
-      return false;
+      return 0;
     }
-    return true;
+    return 1;
   }
-  bool isSuperPrime(int num){
+  bool isSuperPrime(int sum){
   	    int a, b, c;
 		a = num % 10;
 		b = (num / 10) % 10;
@@ -37,10 +37,11 @@ public:
 		n = a * b * c;
 		t = a * a + b * b +c * c;
 		if(isPrime(m) && isPrime(n) && isPrime(t)){
-			return true;
+			return 1;
 		}
+		return 0;
   }
-  int compare(const Nature &nat) {
+  int compare(Nature &nat) {
   	if (num > nat.num)
   	  return 1;
   	else if(num == nat.num)
@@ -48,46 +49,31 @@ public:
   	
   	return -1;
   }
-private:
+  class SuperPrime;
 };
-class SuperPrime : public Nature {
+class SuperPrime : public Nature
+
+{
 private:
-  int num;
+  std::vector<Nature> natures;
 public:
-  SuperPrime(int n):num(n) {
-  } 
-  bool isPrime() {
-  	Nature nat(num);
-  	return nat.isPrime(num);
-  } 
-  int compare(const SuperPrime &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+
+  SuperPrime(int a, int b)
+  {
+    // cout << "Create SuperPrime from " << a << " to " << b << endl;
+    for (int i = a; i < b; i++)
+
+    {
+
+      Nature nat(i);
+      if (nat.isSuperPrime(i))
+        {natures.push_back(nat);
+          std::cout << "SuperPrime£º"  << nat.num << endl;
+        }
+    }
   }
-};
-class Container {
-private:
-  std::vector<SuperPrime> natures;
-public:
-  Container(int a, int b) {
-    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
-    for(int i = a; i < b; i++) {
-      SuperPrime nat(i);
-      std::cout << "HAHA" << std::endl;
-      if(nat.isSuperPrime(a,b))
-        natures.push_back(nat);
-      std::cout << "DDDDD" << std::endl;
-	}
-  }
-  ~Container() {
-    std::cout << "Destroy SuperPrime " << std::endl;
-  }
-  
-  SuperPrime max() {
+
+  Nature max() {
   	std::vector<SuperPrime>::iterator it = natures.begin();
   	Nature max(0);
   	for(; it != natures.end(); it ++) {
@@ -97,7 +83,24 @@ public:
 	}
   	return max;
   }
+  Nature count(){
+  	std::vector<SuperPrime>::iterator it = natures.begin();
+  	Nature count(0);
+  	for(;it != natures.end(); it++){
+  		count++;
+	  }
+	  return count;
+  }
+  Nature sum(){
+  	std::vector<SuperPrime>::iterator it = natures.begin();
+  	Nature sum(0);
+  	for(;it != natures.end(); it++){
+  		sum += it;
+	  }
+	  return sum;
+  }
 };
+
 int main() {
   SuperPrime sp(10, 13);
   Nature n = sp.max(); 
