@@ -89,6 +89,7 @@ int main() {
   Nature n = sp.max(); 
   std::cout << "��󳬼�������" ;
   n.show();
+  n.show();
   
   return 0;
 } 
