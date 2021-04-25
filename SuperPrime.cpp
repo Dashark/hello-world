@@ -1,41 +1,57 @@
 #include <iostream>
+#include <vector>
 class Nature {
-private: 
-  int num;  //数 
+private:
+  int num;
 public:
-  Nature();
-  ~Nature();
-  Nature add(Nature sp);    //求和 
-  bool compare(Nature sp) {  //比大小 
-     if(num > sp.num)
-       return true;
-    return false;
+  Nature():num(0){
+    std::cout << "Default Create Nature as " << num << std::endl;
   }
-	
+  Nature(int n):num(n) {
+    std::cout << "Create Nature as " << num << std::endl;
+  }
+  Nature(const Nature &nat):num(nat.num){
+    std::cout << "Copy Create Nature as " << num << std::endl;
+  }
+  ~Nature() {
+    std::cout << "Destroy Nature as " << num << std::endl;
+  }
 };
 class SuperPrime {
-private: 
-  const unsigned int num;  //数 
+private:
+  std::vector<Nature> natures;
 public:
-  SuperPrime(int n):num(n) {
+  SuperPrime(int a, int b) {
+    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
+    for(int i = a; i < b; i++) {
+      Nature nat(i);
+      std::cout << "HAHA" << std::endl;
+      natures.push_back(nat);
+      std::cout << "DDDDD" << std::endl;
+	}
   }
   ~SuperPrime() {
+    std::cout << "Destroy SuperPrime " << std::endl;
   }
-  Nature add(SuperPrime sp) {    //求和 
-     return Nature(num + sp.num);
- }
-  bool compare(SuperPrime sp) {  //比大小 
-     if(num > sp.num)
-       return true;
-    return false;
+  
+  Nature max() {
+  	std::vector<Nature>::iterate it = natures.begin();
+  	Nature max(0);
+  	for(; it != natures.end(); it ++) {
+  	  if(it->isSuperPrime()) {
+  	  	if (max.compare(*it)) {
+  	  	  max = *it;
+		}
+	  }
+	}
+  	return max;
   }
 };
 int main() {
-  Nature sum(0);
-  for(int i = 100; i < 999; i++) {
-    Nature sp1(i);
-    if ( sp1.isPrime() )
-      sum = sum.add(sp1);
-  }
+  SuperPrime sp(10, 13);
+  Nature n = sp.max(); 
+  std::cout << "最大超级素数：" ;
+  n.show();
+  
   return 0;
 } 
