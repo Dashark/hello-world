@@ -3,7 +3,7 @@
 #include<cmath>
 class Nature {
 private:
-  int num;
+   int num;
 public:
   Nature():num(0){
     std::cout << "Default Create Nature as " << num << std::endl;
@@ -74,7 +74,7 @@ public:
   }
 
   Nature max() {
-  	std::vector<SuperPrime>::iterator it = natures.begin();
+  	std::vector<Nature>::iterator it = natures.begin();
   	Nature max(0);
   	for(; it != natures.end(); it ++) {
       if (max.compare(*it)) {
@@ -84,7 +84,7 @@ public:
   	return max;
   }
   Nature count(){
-  	std::vector<SuperPrime>::iterator it = natures.begin();
+  	std::vector<Nature>::iterator it = natures.begin();
   	Nature count(0);
   	for(;it != natures.end(); it++){
   		count++;
@@ -92,7 +92,7 @@ public:
 	  return count;
   }
   Nature sum(){
-  	std::vector<SuperPrime>::iterator it = natures.begin();
+  	std::vector<Nature>::iterator it = natures.begin();
   	Nature sum(0);
   	for(;it != natures.end(); it++){
   		sum += it;
