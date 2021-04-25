@@ -1,0 +1,48 @@
+#include<iostream>
+using namespace std;
+int f(int x);
+class Number
+{	
+	public:
+	int n;
+	int he;
+	int ji;
+	int ping;
+};
+int main()
+{
+	int i,H=0,g,s,b,he,ji,N=0,k;
+	for(i=100;i<1000;i++)
+	{
+		Number num;
+		num.n=i;
+		b=i/100;
+		s=(i-b*100)/10;
+		g=i-b*100-s*10;
+		num.he=g+s+b;
+		num.ji=g*s*b;
+		num.ping=g*g+s*s+b*b;
+		if(f(num.n)==1&&f(num.he)==1&&f(num.ji)==1&&f(num.ping)==1)
+		{
+			N++;
+			k=num.n;
+			H=H+num.n;
+		}		
+	}  
+	cout<<"超级素数个数为"<<N<<endl; 
+	cout<<"所有超级素数之和为"<<H<<endl;
+	cout<<"最大的超级素数为"<<k<<endl;
+}
+int f(int x)
+{	
+	int m=0;
+	for(int i=2;i<x;i++)
+	{
+		if(x%i!=0)
+			m++;
+	} 
+	if(m==x-2) 
+		return(1);
+	else 
+		return(0);
+}
