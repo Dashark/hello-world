@@ -148,7 +148,8 @@ private:
 public:
   	SuperPrime(int a, int b) 
 	{
-    	for(int i = a; i < b; i++) 
+    	num_of_SP = 0 ; 
+		for(int i = a; i < b; i++) 
 		{
       		Nature nat(i);
       		if (nat.isSuperPrime())
@@ -157,7 +158,7 @@ public:
 				num_of_SP ++ ;
       			std::cout << "num_of_SP ++" << std::endl;
 				sum_of_SP += nat.show() ;
-				std::cout << "sum_of_SP =" << sum_of_SP << std::endl;
+				std::cout << "sum_of_SP=" << sum_of_SP << std::endl;
 				maxn = nat.show() ;
 			}
 			    
@@ -184,10 +185,10 @@ public:
 };
 int main() 
 {
-  	SuperPrime sp(10, 14);
-  	std::cout << "×î´óµÄ³¬¼¶ËØÊý£º" << sp.max() << std::endl ;
-  	std::cout << "³¬¼¶ËØÊýµÄ¸öÊý£º" << sp.number() << std::endl ;
-  	std::cout << "³¬¼¶ËØÊýµÄºÍ£º" << sp.sum()<< std::endl ;
+  	SuperPrime sp(100, 999);
+  	std::cout << "æœ€å¤§çš„è¶…çº§ç´ æ•°ï¼š" << sp.max() << std::endl ;
+  	std::cout << "è¶…çº§ç´ æ•°çš„ä¸ªæ•°ï¼š" << sp.number() << std::endl ;
+  	std::cout << "è¶…çº§ç´ æ•°çš„å’Œï¼š" << sp.sum()<< std::endl ;
 
   	
   	return 0;

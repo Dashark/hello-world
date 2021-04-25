@@ -42,7 +42,11 @@ public:
 	}
 	int show()
 	{
+<<<<<<< HEAD
 		return num;
+=======
+		return num ;
+>>>>>>> a4bb835fa3c3d18aba01162082cc1be822c7b46f
 	}
 };
 
@@ -93,8 +97,14 @@ public:
 int main()
 {
 	SuperPrime sp(100, 999);
+<<<<<<< HEAD
 	std::cout << "è¶…çº§ç´ æ•°çš„ä¸ªæ•°ï¼š" << sp.max() << std::endl;
 	std::cout << "æ‰€æœ‰çš„è¶…çº§ç´ æ•°ä¹‹å’Œï¼š" << sp.sum() << std::endl;
 	std::cout << "æœ€å¤§çš„è¶…çº§ç´ æ•°ï¼š" << sp.howmany() << std::endl;
+=======
+	std::cout << "³¬¼¶ËØÊıµÄ¸öÊı£º" << sp.max() << std::endl;
+	std::cout << "ËùÓĞµÄ³¬¼¶ËØÊıÖ®ºÍ£º" << sp.sum() << std::endl;
+	std::cout << "×î´óµÄ³¬¼¶ËØÊı£º" << sp.howmany() << std::endl;
+>>>>>>> a4bb835fa3c3d18aba01162082cc1be822c7b46f
 	return 0;
 }
