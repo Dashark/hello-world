@@ -2,9 +2,10 @@
 #include <vector>
 #include<cmath>
 class Nature {
-private:
-   int num;
+//private:
+ //  int num;
 public:
+	int num;
   Nature():num(0){
     std::cout << "Default Create Nature as " << num << std::endl;
   }
@@ -16,6 +17,9 @@ public:
   }
   ~Nature() {
     std::cout << "Destroy Nature as " << num << std::endl;
+  }
+  void show(){
+  	std::cout << num << std::endl;
   }
   bool isPrime(int sum) {
     if(num == 1 || num == 0)
@@ -68,7 +72,7 @@ public:
       Nature nat(i);
       if (nat.isSuperPrime(i))
         {natures.push_back(nat);
-          std::cout << "SuperPrime£º"  << nat.num << endl;
+          std::cout << "SuperPrime£º"  << nat.num << std::endl;
         }
     }
   }
@@ -87,7 +91,7 @@ public:
   	std::vector<Nature>::iterator it = natures.begin();
   	Nature count(0);
   	for(;it != natures.end(); it++){
-  		count++;
+  		count.num++;
 	  }
 	  return count;
   }
@@ -95,7 +99,7 @@ public:
   	std::vector<Nature>::iterator it = natures.begin();
   	Nature sum(0);
   	for(;it != natures.end(); it++){
-  		sum += it;
+  		sum.num += it ->num;
 	  }
 	  return sum;
   }
