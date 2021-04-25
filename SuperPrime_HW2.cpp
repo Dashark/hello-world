@@ -19,7 +19,7 @@ public:
   bool isPrime() {
     if(num == 1 || num == 0)
     return false;
-    for(int i = 2; i <= (int)sqrt(num); i++)
+    for(int i = 2; i <= (int)num; i++)
     {
       if(num % i == 0)
       return false;
@@ -34,7 +34,10 @@ public:
   	
   	return -1;
   }
-private:
+  show()
+  {
+  	std::cout<<num;
+  }
 };
 class SuperPrime : public Nature {
 private:
@@ -46,6 +49,16 @@ public:
   	Nature nat(num);
   	return nat.isPrime();
   } 
+  bool isSuperPrime()
+  {
+  	Nature nat1(num);
+  	Nature nat2((num/100)+((num%100)/10)+(num%10));
+  	Nature nat3((num/100)*((num%100)/10)*(num%10));
+  	Nature nat4((num/100)*(num/100)+((num%100)/10)*((num%100)/10)+(num%10)*(num%10));
+  	if(nat1.isPrime()&&nat2.isPrime()&&nat3.isPrime()&&nat4.isPrime())
+  	return true;
+  	else return false;
+  }
   int compare(const SuperPrime &nat) {
   	if (num > nat.num)
   	  return 1;
@@ -73,8 +86,8 @@ public:
     std::cout << "Destroy SuperPrime " << std::endl;
   }
   
-  SuperPrime max() {
-  	std::vector<SuperPrime>::iterate it = natures.begin();
+  Nature max() {
+  	std::vector<SuperPrime>::iterator it = natures.begin();
   	Nature max(0);
   	for(; it != natures.end(); it ++) {
       if (max.compare(*it)) {
@@ -85,9 +98,9 @@ public:
   }
 };
 int main() {
-  SuperPrime sp(10, 13);
+  Container sp(100,999);
   Nature n = sp.max(); 
-  std::cout << "��󳬼�������" ;
+  std::cout<<"最大：";
   n.show();
   
   return 0;
