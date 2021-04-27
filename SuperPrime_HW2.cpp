@@ -8,7 +8,7 @@ private:
   int num;
 
 public:
-  Nature() : num(0) {}//num=0
+  Nature() : num(0) {}
   Nature(int n) : num(n) {}//num=n 
   ~Nature(){};
 
