@@ -24,11 +24,11 @@ public:
   SuperPrime(int n):Nature(n) {
   }
   bool isPrime() {
-  	int tmp = num + 1;
+  	int tmp = num;
   	int sum = 0, mul = 1, sqr = 0;
   	while(tmp != 0) {
-  	  tmp = tmp / 10;
   	  int x = tmp % 10;
+  	  tmp = tmp / 10;
   	  sum += x;
   	  mul *= x;
   	  sqr += x*x;
@@ -52,7 +52,5 @@ int main() {
   for(it=sps.begin(); it!=sps.end();it++) {
   	delete *it;
   }
-  
-  //最大的超级素数 
   return 0;
 } 
