@@ -85,10 +85,7 @@ public:
   }
 };
 int main() {
-  SuperPrime sp(10, 13);
-  Nature n = sp.max(); 
-  std::cout << "��󳬼�������" ;
-  n.show();
+ 
   
   return 0;
 } 
