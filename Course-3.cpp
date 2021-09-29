@@ -4,6 +4,17 @@
 // 当 y = 2, 求 x = ? 
 #include <stdio.h>
 #include <math.h>
+float mysqrt(float n) {
+  // how to guess
+  float x = n/2;
+  while(...) {
+   if (x*x > n) 
+      x = x/2;
+   else
+     x = (x+n)/2;
+  }
+  return 0.0f;
+}
 int main() {
   float x1, x2;
   float y, a, b, c, temp;
