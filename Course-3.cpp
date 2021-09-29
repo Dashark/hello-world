@@ -6,16 +6,21 @@
 #include <math.h>
 int main() {
   float x1, x2;
-  float y, a, b, c;
+  float y, a, b, c, temp;
   printf("Please input \n");
   scanf("%f %f %f %f", &y, &a, &b, &c);
   c =  c - y;
-  a = 2 * a;
-  float temp = sqrt(b*b - 4* a*c);
-  x1 = (-b + temp)/(a);
-  x2 = (-b - temp)/(a);
-  printf("Results \n");
-  printf("%f\n", x1);  
-  printf("%f\n", x2);
+  temp = b*b - 4* a*c;
+  if(temp >= 0) {
+    temp = sqrt(temp);
+    a = 2 * a;
+    x1 = (-b + temp)/(a);
+    x2 = (-b - temp)/(a);
+    printf("Results \n");
+    printf("%f\n", x1);  
+    printf("%f\n", x2);
+  }
+  else
+    printf("No Results \n");
   return 0;
 } 
