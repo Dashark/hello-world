@@ -1,4 +1,4 @@
-# hello-world
+# Hello-World
 C/C++编程初学者
 
 # Git手册
