@@ -1,16 +1,16 @@
-#include <iostream>
 #include<stdio.h>
-int main() {
+//sum <= 27 mul <= 729 mul2 <= 243
+int main(){
 	int p[1000] = {0};
 	int pp[1000] = {0};
 	int i = 2; 
-	for(;i < 1000;i++){//ç­›æ•°æ³• 
+	for(;i < 1000;i++){//É¸Êý·¨ 
 		p[i] = i;
 	}
 	
 	int j = 0;
 	i = 2;
-	for(; i < 1000;i++){//ç”Ÿæˆä¸€ä¸ªçº¯å‡€çš„ç´ æ•°æ•°ç»„ 
+	for(; i < 1000;i++){//Éú³ÉÒ»¸ö´¿¾»µÄËØÊýÊý×é 
 		if(p[i] == 0){
 			continue;
 		}
@@ -96,8 +96,8 @@ int main() {
 		}
 		
 	}
-	printf("ä¸ªæ•°ï¼š%d å’Œï¼š%d æœ€å¤§ï¼š%d \n",countsp,sumsp,max);
+	printf("¸öÊý£º%d ºÍ£º%d ×î´ó£º%d \n",countsp,sumsp,max);
 	
 	
-  return 0;
-}
+	return 0;
+} 
