@@ -6,15 +6,41 @@
 //完成如下程序
 // 2021-11-14
 #include <stdio.h>
+#include <string.h>
+#define RESNUM 200
+int compare(int x, int y, int const res[][2],int time);
 int main()
 {
+
     char ress[2048];
-    int x, y;
+    char *data=ress;
+    
+    int x, y,offset,time=0;
+    
+    
     scanf("%s", ress);
     scanf("%d %d", &x, &y);
+    int res[RESNUM][2]={0},num=0;
+	
+    for(int i=0;sscanf(data,"%dx%d,%n",&res[i][0],&res[i][1],&offset)==2;i++){
+        data+=offset;
+        time++;
+   }
+    
+    num=compare(x,y,res,time);
 
     // 学习一下 sscanf 可以方便处理 ress 字符串
 
-    printf("选中的分辨率是%s\n", "???");
+    printf("选中的分辨率是%dx%d\n", res[num][0],res[num][1]);
+
     return 0;
+}
+int compare(int x,int y, int const res[][2],int time){
+    int num=0;
+    for(int i=0;i<RESNUM;i++){
+        if((x-res[i][0])*(x-res[i][0])+(y-res[i][1])*(y-res[i][1]) <= (x-res[num][0])*(x-res[num][0])+(y-res[num][1])*(y-res[num][1])){
+            num=i;
+        }
+    }
+    return num;
 }
