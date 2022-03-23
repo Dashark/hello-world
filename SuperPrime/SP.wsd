@@ -1,0 +1,14 @@
+@startuml
+class Prime {
+    +bool judgePrime()
+    +void showPrime()
+    +int getSize()
+    #vector<int> p
+}
+class SuperPrime {
+    +bool judgePrime()
+    +void showPrime()
+    -void findPrime(int,int)
+}
+Prime <|-- SuperPrime
+@enduml
