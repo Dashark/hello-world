@@ -1,0 +1,16 @@
+@startuml
+
+PlainObjectBase <|-- Matrix
+PlainObjectBase <|-- Array
+
+MatrixBase <|-- PlainObjectBase
+ArrayBase <|-- PlainObjectBase
+
+DenseBase <|-- MatrixBase
+DenseBase <|-- ArrayBase 
+
+DenseCoeffsBase <|-- DenseBase 
+
+class EigenBase <<Derived>>
+EigenBase <|-- DenseCoeffsBase 
+@enduml
