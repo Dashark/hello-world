@@ -54,3 +54,28 @@ Matrix的运算符重载，特别是()的重载。
 # 11th Week
 
 多重继承与 Mix in-class 编程
+
+## Activities
+
+1. C++的多重继承代码展示
+2. Java版本的Mixins模式代码展示
+
+## 结果
+
+估计同学们没有听懂
+
+# 12th Week
+
+作业：把Java版本的Mixins写成C++版本的。
+
+## Activities
+
+1. 讲解C++版本的Mixins代码
+2. 将C++的多重继承重构为模板类的继承
+   1. Persons作为Students的基类，具有学习的能力。Students<Persons>
+   2. Faculties作为Persons的子类，具有教书的能力。Faculties<Persons>
+   3. TAs本质是学生，具有Faculties的教书能力。Faculties<Students<Persons>>
+3. 将CRTP的设计应用
+   1. Persons就是Students。
+   2. Persons就是Faculties。
+   3. Persons也是TAs，Students就是TAs，TAs也是Faculties。
