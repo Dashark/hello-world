@@ -1,94 +1,121 @@
 #include <iostream>
 #include <vector>
-class Nature {
+using namespace std;
+
+class Nature
+{
 private:
   int num;
+
 public:
-  Nature():num(0){
-    std::cout << "Default Create Nature as " << num << std::endl;
+  Nature() : num(0) {}
+  Nature(int n) : num(n) {}//num=n 
+  ~Nature(){};
+
+  void show(){
+    cout << num << endl;
   }
-  Nature(int n):num(n) {
-    std::cout << "Create Nature as " << num << std::endl;
-  }
-  Nature(const Nature &nat):num(nat.num){
-    std::cout << "Copy Create Nature as " << num << std::endl;
-  }
-  ~Nature() {
-    std::cout << "Destroy Nature as " << num << std::endl;
-  }
-  bool isPrime() {
-    if(num == 1 || num == 0)
-    return false;
-    for(int i = 2; i <= (int)sqrt(num); i++)
+
+  int isPrime(int n)
+  {
+    if (n < 2)
+      return 0;
+    for (int i = 2; i <= (n/2); i++)
     {
-      if(num % i == 0)
-      return false;
+      if (n % i == 0)
+        return 0;
     }
-    return true;
+    return 1;
   }
-  int compare(const Nature &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+
+  int compare(Nature it){
+    if(it.num > num)
+      return 1;
+    else 
+      return 0;
+  }//£¿£¿ 
+  int isSuperPrime()
+  {
+    int a = num / 100; //baiwei
+    int b = (num % 100) / 10;
+    int c = num % 10;
+    if (isPrime(num) && isPrime(a + b + c) && isPrime(a * b * c) && isPrime(a * a + b * b + c * c))
+    {
+      return 1;
+    }
+    return 0;
   }
-private:
+  friend class SuperPrime;//½«SuperPrime×÷ÎªÓÑÔªº¯Êı 
 };
-class SuperPrime : public Nature {
+
+class SuperPrime : public Nature//¼Ì³Ğ 
+{
 private:
-  int num;
+  vector<Nature> natures;//pushback   begin end  iterator  µÈ²Ù×÷²»»á 
+//natures±£´æNatureÀàĞÍµÄ¶ÔÏó ÊÇÒ»¸ö¿ÕµÄvector 
 public:
-  SuperPrime(int n):num(n) {
-  } 
-  bool isPrime() {
-  	Nature nat(num);
-  	return nat.isPrime();
-  } 
-  int compare(const SuperPrime &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+  SuperPrime(int a, int b)
+  {
+    // cout << "Create SuperPrime from " << a << " to " << b << endl;
+    for (int i = a; i < b; i++)
+    {
+      Nature nat(i);
+      if (nat.isSuperPrime())
+        {natures.push_back(nat.num);//ÎªÊ²Ã´ÕâÀïnat.num¿ÉÒÔ±»·ÃÎÊ 
+        //push_back °ÑÒ»¸öÖµ¼Óµ½naturesµÄÎ²¶Ë 
+          
+        }
+    }
   }
-};
-class Container {
-private:
-  std::vector<SuperPrime> natures;
-public:
-  Container(int a, int b) {
-    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
-    for(int i = a; i < b; i++) {
-      SuperPrime nat(i);
-      std::cout << "HAHA" << std::endl;
-      if(nat.isSuperPrime())
-        natures.push_back(nat);
-      std::cout << "DDDDD" << std::endl;
-	}
-  }
-  ~Container() {
-    std::cout << "Destroy SuperPrime " << std::endl;
-  }
-  
-  SuperPrime max() {
-  	std::vector<SuperPrime>::iterate it = natures.begin();
-  	Nature max(0);
-  	for(; it != natures.end(); it ++) {
-      if (max.compare(*it)) {
-  	  	  max = *it;
+
+    Nature max()
+    {
+      vector<Nature>::iterator it = natures.begin();
+      Nature max(0); 
+      
+      for (; it != natures.end(); it++)// end Î²ºóµü´úÆ÷ 
+      {
+        if (max.compare(*it))
+            max = *it;
       }
-	}
-  	return max;
-  }
+      return max;
+    }
+
+    Nature count()
+    {
+      vector<Nature>::iterator it = natures.begin();
+      Nature count(0);
+      for (; it != natures.end(); it++)
+      {
+        count.num++;
+      }
+      return count;
+    }
+
+  Nature sum()
+    {
+      vector<Nature>::iterator it = natures.begin();
+      Nature sum(0);
+      for (; it != natures.end(); it++)
+      {
+        sum.num += it->num;//==(*it).num 
+      }
+      return sum;
+    }
 };
-int main() {
-  SuperPrime sp(10, 13);
-  Nature n = sp.max(); 
-  std::cout << "ï¿½ï¿½ó³¬¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ;
-  n.show();
-  
+
+int main()
+{
+  SuperPrime sp(100, 999);
+  Nature max = sp.max();
+  Nature count = sp.count();
+  Nature sum = sp.sum();
+  cout << "SuperPrime's Sum is£º"; //ÒòÎªnumÊÇprivate  ËùÒÔÖ»ÄÜÍ¨¹ı³ÉÔ±º¯ÊıÀ´·ÃÎÊ 
+  sum.show();
+  cout << "SuperPrime's Max is: ";
+  max.show();
+  cout << "SuperPrime's Num is: ";
+  count.show();
   return 0;
-} 
+}
+
