@@ -1,94 +1,153 @@
+//´úÂëÀûÓÃĞ§ÂÊ½ÏµÍ£¬ÈçĞèÌá¸ßÀûÓÃĞ§ÂÊ£¬ĞèÒªÖØĞÂ¹¹½¨Àà£¬±¾´úÂë²»ÔÙ×¸Êö
 #include <iostream>
 #include <vector>
-class Nature {
+#include<cmath>
+class Nature
+{
 private:
   int num;
+
 public:
-  Nature():num(0){
-    std::cout << "Default Create Nature as " << num << std::endl;
+  Nature() : num(0)
+  {
+    // std::cout << "Default Create Nature as " << num << std::endl;
   }
-  Nature(int n):num(n) {
-    std::cout << "Create Nature as " << num << std::endl;
+  Nature(int n) : num(n)
+  {
+    // std::cout << "Create Nature as " << num << std::endl;
   }
-  Nature(const Nature &nat):num(nat.num){
-    std::cout << "Copy Create Nature as " << num << std::endl;
+  Nature(const Nature &nat) : num(nat.num)
+  {
+    // std::cout << "Copy Create Nature as " << num << std::endl;
   }
-  ~Nature() {
-    std::cout << "Destroy Nature as " << num << std::endl;
+  ~Nature()
+  {
+    // std::cout << "Destroy Nature as " << num << std::endl;
   }
-  bool isPrime() {
-    if(num == 1 || num == 0)
-    return false;
-    for(int i = 2; i <= (int)sqrt(num); i++)
+  bool compare(Nature it)
+  {
+    if(it.num > num)
     {
-      if(num % i == 0)
+      return true;
+    }
+    else
+    return false;
+  }
+  bool isPrime(int num1)
+  {
+    if(num1 == 1 || num1 == 0)
+    return false;
+    for(int i = 2; i <= (int)sqrt(num1); i++)
+    {
+      if(num1 % i == 0)
       return false;
     }
     return true;
   }
-  int compare(const Nature &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+  bool isSuperPrime()
+  {
+    int a = num % 10;
+    int b = (num / 10) % 10;
+    int c = num / 100;
+    if(isPrime(num) && isPrime(a+b+c) && isPrime(a*b*c) && isPrime(a*a+b*b+c*c))
+    return true;
+    else
+    return false;
   }
-private:
+  void show()
+  {
+    std::cout<< num <<std::endl;
+  }
+  friend class SuperPrime;
 };
-class SuperPrime : public Nature {
+class SuperPrime
+{
 private:
-  int num;
+  std::vector<Nature> natures;
+
 public:
-  SuperPrime(int n):num(n) {
-  } 
-  bool isPrime() {
-  	Nature nat(num);
-  	return nat.isPrime();
-  } 
-  int compare(const SuperPrime &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+  SuperPrime(int a, int b)
+  {
+    // std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
+    for (int i = a; i < b; i++)
+    {
+      Nature nat(i);
+      // std::cout << "HAHA" << std::endl;
+      natures.push_back(nat);
+      // std::cout << "DDDDD" << std::endl;
+    }
   }
-};
-class Container {
-private:
-  std::vector<SuperPrime> natures;
-public:
-  Container(int a, int b) {
-    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
-    for(int i = a; i < b; i++) {
-      SuperPrime nat(i);
-      std::cout << "HAHA" << std::endl;
-      if(nat.isSuperPrime())
-        natures.push_back(nat);
-      std::cout << "DDDDD" << std::endl;
-	}
+  ~SuperPrime()
+  {
+    // std::cout << "Destroy SuperPrime " << std::endl;
   }
-  ~Container() {
-    std::cout << "Destroy SuperPrime " << std::endl;
-  }
-  
-  SuperPrime max() {
-  	std::vector<SuperPrime>::iterate it = natures.begin();
-  	Nature max(0);
-  	for(; it != natures.end(); it ++) {
-      if (max.compare(*it)) {
-  	  	  max = *it;
+
+  Nature max()
+  {
+    std::vector<Nature>::iterator it = natures.begin();
+    Nature max(0);
+    // Nature sum(0);
+    // Nature num(0);
+    for (; it != natures.end(); it++)
+    {
+      if (it->isSuperPrime())
+      {
+        std::cout << it->num << std::endl;
+        // sum.num += it->num;
+        // num.num++;
+        if (max.compare(*it))
+        {
+          max = *it;
+        }
       }
-	}
-  	return max;
+    }
+    return max;
   }
+  Nature num()
+  {
+    std::vector<Nature>::iterator it = natures.begin();
+    // Nature max(0);
+    // Nature sum(0);
+    Nature num(0);
+    for (; it != natures.end(); it++)
+    {
+      if (it->isSuperPrime())
+      {
+        // sum.num += it->num;
+        num.num++;
+      }
+    }
+    return num;
+  }
+  Nature sum()
+  {
+    std::vector<Nature>::iterator it = natures.begin();
+    Nature max(0);
+    Nature sum(0);
+    // Nature num(0);
+    for (; it != natures.end(); it++)
+    {
+      if (it->isSuperPrime())
+      {
+        sum.num += it->num;
+        // num.num++;
+      }
+    }
+    return sum;
+  }
+
 };
-int main() {
-  SuperPrime sp(10, 13);
-  Nature n = sp.max(); 
-  std::cout << "ï¿½ï¿½ó³¬¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" ;
+int main()
+{
+  SuperPrime sp(100, 999);
+  Nature n = sp.max();
+  Nature m = sp.num();
+  Nature o = sp.sum();
+  std::cout << "×î´óµÄ³¬¼¶ËØÊıÊÇ£º";
   n.show();
-  
+  std::cout << "×î´óµÄ³¬¼¶ËØÊıÊÇ£º";
+  m.show();
+  std::cout << "×î´óµÄ³¬¼¶ËØÊıÊÇ£º";
+  o.show();
   return 0;
-} 
+}
