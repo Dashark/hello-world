@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 class Nature {
 private:
   int num;
