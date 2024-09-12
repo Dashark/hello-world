@@ -1,94 +1,103 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 class Nature {
-private:
-  int num;
-public:
-  Nature():num(0){
-    std::cout << "Default Create Nature as " << num << std::endl;
-  }
-  Nature(int n):num(n) {
-    std::cout << "Create Nature as " << num << std::endl;
-  }
-  Nature(const Nature &nat):num(nat.num){
-    std::cout << "Copy Create Nature as " << num << std::endl;
-  }
-  ~Nature() {
-    std::cout << "Destroy Nature as " << num << std::endl;
-  }
-  bool isPrime() {
-    if(num == 1 || num == 0)
+	public:
+		int num,m,s=0;
+	Nature() :num(0) {
+	}
+	Nature(int n) :num(n) {
+	}
+	Nature(const Nature& nat) :num(nat.num) {
+	}
+	~Nature() {
+	}
+    bool isSuperprime() {
+		int  c[3], n[3], sum[2], p;
+			c[0]=(num%100)%10;//个位
+			c[1]=(num%100)/10;//十位
+			c[2]=num/100;//百位 
+			n[0]=c[0]*c[0];
+			n[1]=c[1]*c[1];
+			n[2]=c[2]*c[2];
+			sum[0]=c[0]+c[1]+c[2]; //各位数的和 
+			sum[1]=n[0]+n[1]+n[2]; //各位数平方的和 
+			p=c[0]*c[1]*c[2]; //所有数字之积 
+		if (prime(num) && prime(sum[1]) && prime(sum[0]) && prime(p))
+		{
+			return true;
+		}
+		else return false;
+	}//判断超级素数 
+    int prime(int a){
+    	if(a == 1 || a == 0)
     return false;
-    for(int i = 2; i <= (int)sqrt(num); i++)
+    for(int i = 2; i <= (int)sqrt(a); i++)
     {
-      if(num % i == 0)
+      if(a % i == 0)
       return false;
     }
     return true;
   }
-  int compare(const Nature &nat) {
+	//判断一个数是不是素数 
+    int compare(const Nature &nat) {
   	if (num > nat.num)
   	  return 1;
   	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
-  }
-private:
-};
-class SuperPrime : public Nature {
-private:
-  int num;
-public:
-  SuperPrime(int n):num(n) {
-  } 
-  bool isPrime() {
-  	Nature nat(num);
-  	return nat.isPrime();
-  } 
-  int compare(const SuperPrime &nat) {
-  	if (num > nat.num)
-  	  return 1;
-  	else if(num == nat.num)
-  	  return 0;
-  	
-  	return -1;
+  	return 0;
+
   }
 };
-class Container {
+class Superprime {
 private:
-  std::vector<SuperPrime> natures;
+	int num,m,s=0;
+    std::vector<Nature> natures;
 public:
-  Container(int a, int b) {
-    std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
-    for(int i = a; i < b; i++) {
-      SuperPrime nat(i);
-      std::cout << "HAHA" << std::endl;
-      if(nat.isSuperPrime())
-        natures.push_back(nat);
-      std::cout << "DDDDD" << std::endl;
-	}
+	Superprime(int a, int b)
+  {
+    // std::cout << "Create SuperPrime from " << a << " to " << b << std::endl;
+    for (int i = a; i < b; i++)
+    {
+      Nature nat(i);
+      // std::cout << "HAHA" << std::endl;
+      natures.push_back(nat);
+      // std::cout << "DDDDD" << std::endl;
+    }
   }
-  ~Container() {
-    std::cout << "Destroy SuperPrime " << std::endl;
+  ~Superprime()
+  {
+    // std::cout << "Destroy SuperPrime " << std::endl;
   }
-  
-  SuperPrime max() {
-  	std::vector<SuperPrime>::iterate it = natures.begin();
-  	Nature max(0);
-  	for(; it != natures.end(); it ++) {
-      if (max.compare(*it)) {
-  	  	  max = *it;
+    Nature max() {
+    std::vector<Nature>::iterator it = natures.begin();
+    Nature max(0);
+		 for (; it != natures.end(); it++)
+    {
+      if (it->isSuperprime())
+      {
+        if (max.compare(*it))
+        {
+          max = *it;
+        }
       }
-	}
-  	return max;
-  }
+      if (it->isSuperprime())
+      {
+      	m++;
+	  }
+	  if(it->isSuperprime())
+	  {
+	  	s+=it->num;
+	  }
+    }
+    std::cout<<"超级素数的和为："<<s<<std::endl;
+    std::cout<<"超级素数的个数为："<<m<<std::endl;
+    return max;
+	}//最大超级素数 
+
 };
 int main() {
-  SuperPrime sp(10, 13);
-  Nature n = sp.max(); 
-  std::cout << "��󳬼�������" ;
-  n.show();
-  
-  return 0;
-} 
+    Superprime sp(100, 999);
+    Nature n = sp.max();
+    std::cout<<"最大的超级素数："<<n.num;
+    return 0;
+}
